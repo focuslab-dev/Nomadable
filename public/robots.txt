@@ -1,0 +1,9 @@
+# *
+User-agent: *
+Allow: /
+
+# Host
+Host: https://nomadable.net
+
+# Sitemaps
+Sitemap: https://nomadable.net/sitemap.xml

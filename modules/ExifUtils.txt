@@ -1,0 +1,163 @@
+// import EXIF from "exif-js";
+// import { MetaData } from "../redux/slices/postSlice";
+
+// /**
+//  * Types
+//  */
+
+// interface GPS {
+//   lat: number | null;
+//   lng: number | null;
+// }
+
+// export interface ExifNumberValue {
+//   numerator: number;
+//   denominator: number;
+// }
+
+// export interface Equipment {
+//   make: string;
+//   camera: string;
+//   lens: string;
+//   focalLength: ExifNumberValue | null;
+//   aperture: ExifNumberValue | null;
+//   shutterSpeed: ExifNumberValue | null;
+//   iso: number | null;
+// }
+
+// /**
+//  * Local Functions
+//  * */
+
+// function ConvertDMSToDD(
+//   degrees: number,
+//   minutes: number,
+//   seconds: number,
+//   direction: string
+// ) {
+//   var dd = Number(degrees) + Number(minutes) / 60 + Number(seconds) / (60 * 60);
+
+//   if (direction == "S" || direction == "W") {
+//     dd = dd * -1;
+//   } // Don't do anything for N or E
+//   return dd;
+// }
+
+// interface GPS {
+//   lat: number | null;
+//   lng: number | null;
+// }
+
+// const getGPS = (exif: any): GPS => {
+//   try {
+//     // Calculate latitude decimal
+//     const latDegree = exif.GPSLatitude[0];
+//     const latMinute = exif.GPSLatitude[1];
+//     const latSecond = exif.GPSLatitude[2];
+//     const latDirection = exif.GPSLatitudeRef;
+
+//     const latFinal = ConvertDMSToDD(
+//       latDegree,
+//       latMinute,
+//       latSecond,
+//       latDirection
+//     );
+
+//     // Calculate longitude decimal
+//     const lonDegree = exif.GPSLongitude[0];
+//     const lonMinute = exif.GPSLongitude[1];
+//     const lonSecond = exif.GPSLongitude[2];
+//     const lonDirection = exif.GPSLongitudeRef;
+
+//     const lonFinal = ConvertDMSToDD(
+//       lonDegree,
+//       lonMinute,
+//       lonSecond,
+//       lonDirection
+//     );
+
+//     return { lat: latFinal, lng: lonFinal };
+//   } catch (err) {
+//     return { lat: null, lng: null };
+//   }
+// };
+
+// const getValueFromExif = (exif: any, name: string): ExifNumberValue | null => {
+//   try {
+//     const { numerator, denominator } = exif[name];
+//     return { numerator, denominator };
+//   } catch (err) {
+//     return null;
+//   }
+// };
+
+// const getEquipments = (exif: any): Equipment => {
+//   const make = (exif && exif.Make) || "";
+//   const camera = (exif && exif.Model) || "";
+//   const lens =
+//     exif && exif.undefined && typeof exif.undefined === "string"
+//       ? exif.undefined
+//       : "";
+//   const focalLength = getValueFromExif(exif, "FocalLength");
+//   const aperture = getValueFromExif(exif, "FNumber");
+//   const shutterSpeed = getValueFromExif(exif, "ExposureTime");
+//   const iso = exif && exif.ISOSpeedRatings ? exif.ISOSpeedRatings : null;
+
+//   return {
+//     make,
+//     camera,
+//     lens,
+//     focalLength,
+//     aperture,
+//     shutterSpeed,
+//     iso,
+//   };
+// };
+
+// const getDateTaken = (exif: any): string | null => {
+//   try {
+//     if (!exif || !exif.DateTimeOriginal) return null;
+
+//     const dateArr = exif.DateTimeOriginal.split(/[\s:]/g);
+//     const dateStr = `${dateArr[0]}-${dateArr[1]}-${dateArr[2]}.${dateArr[3]}:${dateArr[4]}:${dateArr[5]}`;
+
+//     return dateStr;
+//   } catch (err) {
+//     return null;
+//   }
+// };
+
+// /**
+//  * Public Functions
+//  * */
+
+// export const getMetaDatas = async (
+//   imgElms: HTMLImageElement[]
+// ): Promise<MetaData[]> => {
+//   return new Promise(function (resolve, reject) {
+//     const metaDatas: MetaData[] = [];
+
+//     try {
+//       for (let index = 0; index < imgElms.length; index++) {
+//         EXIF.getData(imgElms[index], function () {
+//           const exifData = EXIF.getAllTags(imgElms[index]);
+
+//           const { lat, lng } = getGPS(exifData);
+//           // const equipments = getEquipments(exifData);
+//           // const dateTaken = getDateTaken(exifData);
+
+//           metaDatas[index] = {
+//             spotLat: lat,
+//             spotLng: lng,
+//           };
+
+//           if (metaDatas.length >= imgElms.length) {
+//             resolve(metaDatas);
+//           }
+//         });
+//       }
+//     } catch (err) {
+//       reject();
+//     }
+//   });
+// };

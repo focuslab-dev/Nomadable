@@ -1,0 +1,79 @@
+{
+  "short_name": "ReaderNote",
+  "name": "ReaderNote",
+  "lang": "en",
+  "description": "Travel Blogging Platform",
+  "start_url": "/?source=pwa",
+  "background_color": "#ffffff",
+  "theme_color": "#ffffff",
+  "dir": "ltr",
+  "display": "standalone",
+  "orientation": "portrait",
+  "icons": [
+    {
+      "src": "/appicons/pwa/android-icon-192x192-dunplab-manifest-21114.png",
+      "type": "image/png",
+      "sizes": "192x192"
+    },
+    {
+      "src": "/appicons/pwa/apple-icon-180x180-dunplab-manifest-21114.png",
+      "type": "image/png",
+      "sizes": "180x180"
+    },
+    {
+      "src": "/appicons/pwa/apple-icon-152x152-dunplab-manifest-21114.png",
+      "type": "image/png",
+      "sizes": "152x152"
+    },
+    {
+      "src": "/appicons/pwa/apple-icon-144x144-dunplab-manifest-21114.png",
+      "type": "image/png",
+      "sizes": "144x144"
+    },
+    {
+      "src": "/appicons/pwa/apple-icon-120x120-dunplab-manifest-21114.png",
+      "type": "image/png",
+      "sizes": "120x120"
+    },
+    {
+      "src": "/appicons/pwa/apple-icon-114x114-dunplab-manifest-21114.png",
+      "type": "image/png",
+      "sizes": "114x114"
+    },
+    {
+      "src": "/appicons/pwa/favicon-96x96-dunplab-manifest-21114.png",
+      "type": "image/png",
+      "sizes": "96x96"
+    },
+    {
+      "src": "/appicons/pwa/apple-icon-76x76-dunplab-manifest-21114.png",
+      "type": "image/png",
+      "sizes": "76x76"
+    },
+    {
+      "src": "/appicons/pwa/apple-icon-72x72-dunplab-manifest-21114.png",
+      "type": "image/png",
+      "sizes": "72x72"
+    },
+    {
+      "src": "/appicons/pwa/apple-icon-60x60-dunplab-manifest-21114.png",
+      "type": "image/png",
+      "sizes": "60x60"
+    },
+    {
+      "src": "/appicons/pwa/apple-icon-57x57-dunplab-manifest-21114.png",
+      "type": "image/png",
+      "sizes": "57x57"
+    },
+    {
+      "src": "/appicons/pwa/favicon-32x32-dunplab-manifest-21114.png",
+      "type": "image/png",
+      "sizes": "32x32"
+    },
+    {
+      "src": "/appicons/pwa/favicon-16x16-dunplab-manifest-21114.png",
+      "type": "image/png",
+      "sizes": "16x16"
+    }
+  ]
+}
