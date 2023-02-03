@@ -283,6 +283,18 @@ export const UAE_DUBAI: City = {
   },
 };
 
+export const INDONESIA_JAKARTA: City = {
+  slug: "indonesia-jakarta",
+  country: "Indonesia",
+  city: "Jakarta",
+  boundary: {
+    latStart: -6.39949082602466,
+    lngStart: 106.60117286073415,
+    latEnd: -5.998266160366967,
+    lngEnd: 107.0449982672169,
+  },
+};
+
 export const CITIES: City[] = [
   /**
    * Eeast Asia
