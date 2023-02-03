@@ -95,6 +95,10 @@ export const getStaticProps: GetStaticProps = async ({}) => {
     const { citiesWithData, totalPlaceCnt } = await callFetchCitiesWithData(
       CITIES
     );
+    console.log(
+      "🚀 ~ file: index.tsx:96 ~ constgetStaticProps:GetStaticProps= ~ citiesWithData",
+      citiesWithData.map((c) => c.city)
+    );
 
     const {
       data: { contributers },
