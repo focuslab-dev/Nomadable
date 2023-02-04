@@ -4,25 +4,13 @@ import { isMobile } from "react-device-detect";
 
 import * as cons from "../../../constants";
 import * as fs from "../../../styles/styled-components/FontSize";
-import {
-  FilterObj,
-  Place,
-  PlaceHeader,
-} from "../../../redux/slices/placeSlice";
-import {
-  ButtonSecondarySmall,
-  ButtonSecondarySmallest,
-} from "../../../styles/styled-components/Buttons";
+import { FilterObj, PlaceHeader } from "../../../redux/slices/placeSlice";
+import { ButtonSecondarySmallest } from "../../../styles/styled-components/Buttons";
 import { ContainerStyleInside } from "../../../styles/styled-components/Layouts";
 import { Contributers } from "./Contributers";
 import { Pagination } from "./Pagination";
-import {
-  Header3,
-  Header4,
-  HeaderSmall,
-} from "../../../styles/styled-components/Texts";
+import { Header3, HeaderSmall } from "../../../styles/styled-components/Texts";
 import { PlaceItem } from "./PlaceItem";
-import { AnimationSlideUp } from "../../../styles/styled-components/Animations";
 import { SectionLoader } from "../../commons/SectionLoader";
 import { useAppDispatch, useAppSelector } from "../../../redux/hooks";
 import {
@@ -30,7 +18,6 @@ import {
   selectApiFetchPlacesStatus,
 } from "../../../redux/slices/api/apiPlaceSlice";
 import { Contributer } from "../../../redux/slices/contributerSlice";
-import { FilterModal } from "./FilterModal";
 import { forMobile } from "../../../styles/Responsive";
 import { selectAuthenticated } from "../../../redux/slices/userSlice";
 import { useRouter } from "next/router";
@@ -45,9 +32,7 @@ interface Props {
   width: number;
   selectedPlace: string;
   contributers: Contributer[];
-  // onChangeFilterObj: (filterObj: FilterObj) => void;
   filterObj: FilterObj;
-  // filterVisible: boolean;
   onChangeFilterVisible: (visible: boolean) => void;
   searchResultTotalCnt: number;
   onHoverPlace: (placeId: string) => void;
@@ -55,13 +40,10 @@ interface Props {
 
 export const SearchResult: React.FC<Props> = ({
   places,
-  onChangePageIndex,
   width,
   selectedPlace,
   contributers,
-  // onChangeFilterObj,
   filterObj,
-  // filterVisible,
   onChangeFilterVisible,
   searchResultTotalCnt,
   onHoverPlace,
@@ -70,7 +52,6 @@ export const SearchResult: React.FC<Props> = ({
   const dispatch = useAppDispatch();
   const apiStatus = useAppSelector(selectApiFetchPlacesStatus);
   const authenticated = useAppSelector(selectAuthenticated);
-  // const [filterVisible, setFilterVisible] = useState(false);
 
   const onClickFilterButton = () => {
     onChangeFilterVisible(true);
@@ -188,6 +169,8 @@ const Wrapper = styled.div`
   ${ContainerStyleInside};
   min-height: 100%;
   position: relative;
+
+  ${forMobile(`padding-bottom: 3rem;`)}
 `;
 
 const Header = styled.div<{ width: number }>`
@@ -217,6 +200,7 @@ const Header = styled.div<{ width: number }>`
 
 const NotFixed = styled.div`
   padding-top: 6rem;
+
   ${forMobile(`
       padding-top: 2rem;
   `)}

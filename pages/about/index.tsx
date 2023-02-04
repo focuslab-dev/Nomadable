@@ -1,15 +1,11 @@
-import { GetStaticProps } from "next";
 import React, { useEffect, useState } from "react";
 import styled from "styled-components";
 import { callDownloadPlacesAsCsv } from "../../calls/downloadCalls";
 
-import { callFetchPlaceLinks } from "../../calls/placeCalls";
 import { Breadcrumb } from "../../components/app-commons/Breadcrumb";
 import HeadSetter from "../../components/commons/HeadSetter";
 import { Layout } from "../../components/commons/Layout";
-import { ListOfLinks } from "../../components/sitemap/ListOfLinks";
 import * as cons from "../../constants";
-import { ARTICLE_LINKS } from "../../data/articles/articles";
 import { useAppDispatch } from "../../redux/hooks";
 import { hideSpinner, showSpinner } from "../../redux/slices/uiSlice";
 import { forMobile } from "../../styles/Responsive";
@@ -91,15 +87,26 @@ const About: React.FC<Props> = ({}) => {
         </SectionWrapper>
 
         <SectionWrapper>
-          <SectionTitle>Download Place Data</SectionTitle>
+          <SectionTitle>Open Data</SectionTitle>
           <SectionBody>
             <p>
               All the place data in Nomadable is freely downloadable as CSV
-              format. Please click the button below and the download will start.
+              format. Please click the button below to download.
             </p>
             <DownloadLink onClick={onClickDownloadCsv}>
               Place Data (CSV)
             </DownloadLink>
+          </SectionBody>
+        </SectionWrapper>
+
+        <SectionWrapper>
+          <SectionTitle>Open Code</SectionTitle>
+          <SectionBody>
+            <p>
+              The source code of Nomadable is open to public on{` `}
+              <a href="https://github.com/uzura89/nomadable">GitHub</a>. Please
+              feel free to copy it or use it for whatever purpose.
+            </p>
           </SectionBody>
         </SectionWrapper>
       </ContentWrapper>
@@ -127,10 +134,13 @@ const Title = styled.h1`
 
 const SectionWrapper = styled.div`
   /* margin: 1rem 0rem; */
+  border-top: 1px solid ${cons.FONT_COLOR_SUPER_LIGHT};
+  margin-top: 3rem;
 `;
 
 const SectionTitle = styled.h2`
   ${Header2};
+  margin-top: 2.4rem;
 `;
 
 const SectionBody = styled.div`

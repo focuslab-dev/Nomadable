@@ -41,6 +41,12 @@ export const Footer: React.FC<Props> = ({ width, height }) => {
               <SnsIcon src="/icon/facebook-black.svg" />
             </LinkA>
           </Link>
+          <Dot>&#x2022;</Dot>
+          <Link href="https://github.com/uzura89/nomadable" passHref>
+            <LinkA target="_blank" rel="noopener noreferrer">
+              <SnsIcon src="/icon/github.png" />
+            </LinkA>
+          </Link>
         </FooterContents>
       </PageContainer>
     </FooterWrapper>

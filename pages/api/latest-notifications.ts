@@ -51,8 +51,8 @@ handler.get(async (req: any, res: any) => {
         return {
           ...notificationItem,
           // user
-          userPicture: user.picture,
-          userSubId: user.id,
+          userPicture: user ? user.picture : "",
+          userSubId: user ? user.id : "",
           // place
           placePictures: place ? place.images : "",
           placeType: place ? place.placeType : "",
