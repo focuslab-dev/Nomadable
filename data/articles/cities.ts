@@ -295,6 +295,18 @@ export const INDONESIA_JAKARTA: City = {
   },
 };
 
+export const SPAIN_BARCELONA: City = {
+  slug: "spain-barcelona",
+  country: "Spain",
+  city: "Barcelona",
+  boundary: {
+    latStart: 41.26111581428441,
+    lngStart: 1.9848526109420845,
+    latEnd: 41.50240708083459,
+    lngEnd: 2.3455995419546127,
+  },
+};
+
 export const CITIES: City[] = [
   /**
    * Eeast Asia
@@ -332,6 +344,7 @@ export const CITIES: City[] = [
    * East Europe
    */
   ITALY_ROME,
+  SPAIN_BARCELONA,
   TURKEY_ISTANBUL,
   /**
    * West Europe
