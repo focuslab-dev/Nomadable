@@ -4,6 +4,8 @@ This is a source code of https://nomadable.net
 
 # Installation Guide
 
+You can run Nomadable on your local machine. Please download the repository and do the following steps.
+
 ## 1. Install Next.js
 
 Install the Next.js.
