@@ -3,12 +3,13 @@ import { addScript } from "./AddScript";
 declare const SomApi: any;
 
 export const doNetSpeedTest = (props: {
+  speedOfMeAccountCode: string;
   onProgressDownload: (mbps: number) => void;
   onProgressUpload: (mbps: number) => void;
   onError: () => void;
   onCompleted: (download: number, upload: number) => void;
 }) => {
-  SomApi.account = "SOM633e746791aae";
+  SomApi.account = props.speedOfMeAccountCode;
   SomApi.domainName = "nomadable.net";
 
   SomApi.config = {

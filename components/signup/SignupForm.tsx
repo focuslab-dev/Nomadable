@@ -17,6 +17,7 @@ import {
   initApiSignupWithEmailState,
   selectApiSignupWithEmailStatus,
 } from "../../redux/slices/api/apiUserSlice";
+import { selectGapiClientId } from "../../redux/slices/envSlice";
 import { updateVisibleModal } from "../../redux/slices/uiSlice";
 
 import {
@@ -31,7 +32,6 @@ import {
   FormLabelStyle,
   InfotipStyle,
   InputFormStyle,
-  RedSpanStyle,
   SignupErrorStyle,
   TermsAndPrivacyStyle,
 } from "../../styles/styled-components/Forms";
@@ -43,6 +43,7 @@ interface Props {}
 export const SignupForm: React.FC<Props> = ({}) => {
   const router = useRouter();
   const apiSignupStatus = useAppSelector(selectApiSignupWithEmailStatus);
+  const gapiClientId = useAppSelector(selectGapiClientId);
   const dispatch = useAppDispatch();
 
   const [email, setEmail] = useState("");
@@ -183,7 +184,10 @@ export const SignupForm: React.FC<Props> = ({}) => {
       <OrLine />
 
       <GoogleLoginWrapper>
-        <GoogleLoginButton loginWithGoogle={loginWithGoogle} />
+        <GoogleLoginButton
+          loginWithGoogle={loginWithGoogle}
+          gapiClientId={gapiClientId}
+        />
       </GoogleLoginWrapper>
 
       <TermsAndPrivacyStyle></TermsAndPrivacyStyle>

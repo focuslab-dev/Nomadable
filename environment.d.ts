@@ -10,14 +10,10 @@ declare global {
       SENDGRID_API_KEY: string;
       JWT_SECRET: string;
       MAPBOX_ACCESS_TOKEN: string;
-      LANG: "JP" | "EN";
-      KPN_CLIENT_ID: string;
-      KPN_CLIENT_SECRET: string;
-      SOM_API_ACCOUNT: string;
-      SOM_API_DOMAIN: string;
       UNSPLASH_ACCESS_KEY: string;
       UNSPLASH_SECRET_KEY: string;
       GOOGLE_TAG_MANAGER_ID: string;
+      SPEED_OF_ME_ACCOUNT_CODE: string;
     }
   }
 }

@@ -1,4 +1,4 @@
-import { callFetchMapBoxAccessToken } from "./../../calls/mapboxCalls";
+import { callFetchEnvVariables } from "../../calls/envCalls";
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 
 import { RootState } from "../store";
@@ -10,7 +10,9 @@ import { ERR_SOMETHING } from "../../modules/ErrorCode";
  */
 
 interface EnvState {
+  gapiClientId: string;
   mapboxAccessToken: string;
+  speedOfMeAccountCode: string;
 }
 
 /**
@@ -18,7 +20,9 @@ interface EnvState {
  */
 
 const initialState: EnvState = {
+  gapiClientId: "",
   mapboxAccessToken: "",
+  speedOfMeAccountCode: "",
 };
 
 const envSlice = createSlice({
@@ -26,8 +30,10 @@ const envSlice = createSlice({
   initialState,
   reducers: {},
   extraReducers: (builder) => {
-    builder.addCase(apiFetchMapboxAccessToken.fulfilled, (state, action) => {
+    builder.addCase(apiFetchEnvVariables.fulfilled, (state, action) => {
+      state.gapiClientId = action.payload.gapiClientId;
       state.mapboxAccessToken = action.payload.mapboxAccessToken;
+      state.speedOfMeAccountCode = action.payload.speedOfMeAccountCode;
     });
   },
 });
@@ -43,17 +49,19 @@ const unknownError = {
   },
 };
 
-export const apiFetchMapboxAccessToken = createAsyncThunk<
+export const apiFetchEnvVariables = createAsyncThunk<
   {
+    gapiClientId: string;
     mapboxAccessToken: string;
+    speedOfMeAccountCode: string;
   }, // Return type of the payload creator
   {}, // First argument to the payload creator
   {
     rejectValue: CallError;
   } // Types for ThunkAPI
->("env/FetchMapboxAccessToken", async ({}, thunkApi) => {
+>("env/FetchEnvVariables", async ({}, thunkApi) => {
   try {
-    const { data } = await callFetchMapBoxAccessToken();
+    const { data } = await callFetchEnvVariables();
     if (!data) throw unknownError;
 
     return data;
@@ -68,6 +76,12 @@ export const apiFetchMapboxAccessToken = createAsyncThunk<
 
 export const selectMapboxAccessToken = (state: RootState): string =>
   state.env.mapboxAccessToken;
+
+export const selectSpeedOfMeAccountCode = (state: RootState): string =>
+  state.env.speedOfMeAccountCode;
+
+export const selectGapiClientId = (state: RootState): string =>
+  state.env.gapiClientId;
 
 /**
  * Export actions & reducer

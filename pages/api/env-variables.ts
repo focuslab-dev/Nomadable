@@ -11,9 +11,11 @@ handler.use(authenticationMiddleware);
 
 handler.get(async (req: any, res: any) => {
   try {
-    return res
-      .status(200)
-      .json({ mapboxAccessToken: process.env.MAPBOX_ACCESS_TOKEN });
+    return res.status(200).json({
+      gapiClientId: process.env.GAPI_CLIENT_ID,
+      mapboxAccessToken: process.env.MAPBOX_ACCESS_TOKEN,
+      speedOfMeAccountCode: process.env.SPEED_OF_ME_ACCOUNT_CODE,
+    });
   } catch (error: any) {
     return res.status(500).json({ message: ERR_SOMETHING });
   }

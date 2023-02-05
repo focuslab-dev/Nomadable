@@ -1,4 +1,3 @@
-import { GAPI_CLIENT_ID } from "./../../constants";
 import nextConnect from "next-connect";
 
 import databaseMiddleware from "../../middleware/database";
@@ -13,7 +12,7 @@ const handler = nextConnect();
 handler.use(databaseMiddleware);
 handler.use(authenticationMiddleware);
 
-const gapiClient = new OAuth2Client(GAPI_CLIENT_ID);
+const gapiClient = new OAuth2Client(process.env.GAPI_CLIENT_ID);
 
 async function getGoogleAccountInfo(
   idToken: string
@@ -21,7 +20,7 @@ async function getGoogleAccountInfo(
   try {
     const ticket = await gapiClient.verifyIdToken({
       idToken: idToken,
-      audience: GAPI_CLIENT_ID, // Specify the CLIENT_ID of the app that accesses the backend
+      audience: process.env.GAPI_CLIENT_ID, // Specify the CLIENT_ID of the app that accesses the backend
       // Or, if multiple clients access the backend:
       // [CLIENT_ID_1, CLIENT_ID_2, CLIENT_ID_3]
     });
@@ -37,7 +36,6 @@ async function getGoogleAccountInfo(
       name: payload.name,
     };
   } catch (error) {
-    console.log("🚀 ~ file: signin-with-google.ts:46 ~ error", error);
     throw Error;
   }
 }

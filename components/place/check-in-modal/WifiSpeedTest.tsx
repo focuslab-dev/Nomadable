@@ -16,18 +16,16 @@ import {
 import { doNetSpeedTest } from "../../../modules/SpeedOfMe";
 import { ClickableStyle } from "../../../styles/styled-components/Interactions";
 import { InfoTip } from "../../commons/InfoTip";
+import { useAppSelector } from "../../../redux/hooks";
+import { selectSpeedOfMeAccountCode } from "../../../redux/slices/envSlice";
 
 interface Props {
   modalVisible: boolean;
   onFinishTest: (speedDown: number, speedUp: number, isPublic: boolean) => void;
 }
 
-// const TEST_COUNT = 0;
-
 export const WifiSpeedTest: React.FC<Props> = (props) => {
-  // const dispatch = useAppDispatch();
-  // const apiStatus = useAppSelector(selectApiGetSpeedStatus);
-  // const { speedDown, speedUp } = useAppSelector(selectSpeedResult);
+  const speedOfMeAccountCode = useAppSelector(selectSpeedOfMeAccountCode);
 
   const [testFinished, setTestFinished] = useState(false);
   const [testStarted, setTestStarted] = useState(false);
@@ -42,7 +40,6 @@ export const WifiSpeedTest: React.FC<Props> = (props) => {
    */
 
   const initializeState = () => {
-    // dispatch(initApiGetSpeedState());
     setTestFinished(false);
     setTestStarted(false);
     setResultSpeedDown(0);
@@ -56,17 +53,10 @@ export const WifiSpeedTest: React.FC<Props> = (props) => {
    */
 
   const onClickStart = () => {
-    // dispatch(apiGetSpeed({}));
     setTestStarted(true);
 
-    // test
-    // setResultSpeedDown(10);
-    // setResultSpeedUp(10);
-    // setTestFinished(true);
-    // setTestStarted(false);
-    // return;
-
     doNetSpeedTest({
+      speedOfMeAccountCode,
       onProgressDownload: (mbps: number) => {
         setResultSpeedDown(Math.round(mbps));
       },
@@ -159,11 +149,7 @@ const Wrapper = styled.div`
 `;
 
 const TestResultWrapper = styled.div<{ testStarted: boolean }>`
-  /* border-top: 1px solid ${cons.FONT_COLOR_SUPER_LIGHT}; */
-
   padding: 1rem 0 2rem 0;
-  /* border-radius: 0.5em; */
-  /* background-color: ${cons.FONT_COLOR_SUPER_LIGHT}; */
 
   display: flex;
   font-size: 2em;

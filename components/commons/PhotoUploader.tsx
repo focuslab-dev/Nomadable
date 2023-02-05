@@ -45,7 +45,6 @@ export const PhotoUploader: React.FC<Props> = ({
   };
 
   const onChangeFileInput = (e: any) => {
-    console.log("up");
     e.preventDefault();
     if (onUploadStart) onUploadStart();
     const files = e.target.files;

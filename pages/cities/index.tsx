@@ -6,13 +6,9 @@ import { callFetchContributersArea } from "../../calls/userCalls";
 import { CitiesSection } from "../../components/cities/CitiesSection";
 import HeadSetter from "../../components/commons/HeadSetter";
 import { Layout } from "../../components/commons/Layout";
-import { Contributers } from "../../components/top-page/search-result/Contributers";
 import {
-  CONTAINER_WIDTH_WIDE,
   APP_NAME,
-  APP_SHORT_DESCRIPTION,
   APP_URL,
-  FONT_COLOR_SUPER_LIGHT,
   PATH_CITIES,
   CONTAINER_WIDTH_NORMAL,
 } from "../../constants";
@@ -72,7 +68,6 @@ const Cities: React.FC<Props> = (props) => {
         pageDescription={generatePageDescription()}
         pagePath={`${APP_URL}/${PATH_CITIES}`}
       />
-      {/* <Breadcrumb breadcrumbs={BREADCRUMBS} /> */}
       <PageWrapper>
         <LeftWrapper>
           <CitiesSection
@@ -80,9 +75,6 @@ const Cities: React.FC<Props> = (props) => {
             totalPlaceCnt={_totalPlaceCnt}
           />
         </LeftWrapper>
-        {/* <RightWrapper>
-          <Contributers contributers={_contributers} />
-        </RightWrapper> */}
       </PageWrapper>
     </Layout>
   );
@@ -95,17 +87,10 @@ export const getStaticProps: GetStaticProps = async ({}) => {
     const { citiesWithData, totalPlaceCnt } = await callFetchCitiesWithData(
       CITIES
     );
-    console.log(
-      "🚀 ~ file: index.tsx:96 ~ constgetStaticProps:GetStaticProps= ~ citiesWithData",
-      citiesWithData.map((c) => c.city)
-    );
 
     const {
       data: { contributers },
     } = await callFetchContributersArea(null, 10);
-    // const totalPlaceCnt = citiesWithData
-    //   .filter((c) => c.boundary !== null)
-    //   .reduce((total, city) => total + city.spotCnt, 0);
 
     return {
       props: {
@@ -138,16 +123,3 @@ const PageWrapper = styled.div`
 `;
 
 const LeftWrapper = styled.div``;
-
-const RightWrapper = styled.div`
-  width: 50rem;
-  padding-top: 10rem;
-  max-width: 100%;
-
-  ${forMobile(`
-    padding-top: 0rem;
-    margin-top: -13rem;
-    border-top: 1px solid ${FONT_COLOR_SUPER_LIGHT};
-    margin-top: 1rem;
-  `)}
-`;

@@ -2,13 +2,17 @@ import axios from "axios";
 
 import { APP_URL } from "../constants";
 
-export const callFetchMapBoxAccessToken = async (): Promise<{
-  data: { mapboxAccessToken: string };
+export const callFetchEnvVariables = async (): Promise<{
+  data: {
+    mapboxAccessToken: string;
+    speedOfMeAccountCode: string;
+    gapiClientId: string;
+  };
 }> => {
   try {
     const response = await axios({
       method: "get",
-      url: `${APP_URL}/api/mapbox-access-token`,
+      url: `${APP_URL}/api/env-variables`,
     });
 
     return { data: response.data };

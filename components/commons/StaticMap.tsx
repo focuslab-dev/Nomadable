@@ -1,11 +1,8 @@
 import React from "react";
 import styled from "styled-components";
 
-import * as cons from "../../constants";
-import mapboxAccessToken from "../../pages/api/mapbox-access-token";
 import { useAppSelector } from "../../redux/hooks";
 import { selectMapboxAccessToken } from "../../redux/slices/envSlice";
-import * as fs from "../../styles/styled-components/FontSize";
 
 interface Props {
   lat: number;

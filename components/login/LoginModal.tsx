@@ -1,4 +1,3 @@
-import Link from "next/link";
 import { useRouter } from "next/router";
 import React, { useEffect, useState } from "react";
 import styled from "styled-components";
@@ -12,10 +11,9 @@ import {
   initLoginUserState,
   apiSigninWithGoogle,
 } from "../../redux/slices/api/apiUserSlice";
+import { selectGapiClientId } from "../../redux/slices/envSlice";
 import {
-  ButtonPrimaryLarge,
   ButtonPrimaryMedium,
-  ButtonPrimarySmall,
   ButtonText,
 } from "../../styles/styled-components/Buttons";
 import {
@@ -23,7 +21,6 @@ import {
   InputFormStyle,
   SignupErrorStyle,
   TermsAndPrivacyStyle,
-  DividerStyle,
   FooterWrapperStyle,
 } from "../../styles/styled-components/Forms";
 import { GoogleLoginButton } from "../commons/GoogleLoginButton";
@@ -39,9 +36,11 @@ interface Props {
 
 export const LoginModal: React.FC<Props> = ({ visible, closeModal }) => {
   const router = useRouter();
+  const dispatch = useAppDispatch();
+
   const apiLoginStatus = useAppSelector(selectApiLoginUserStatus);
   const apiFetchUserStatus = useAppSelector(selectApiFetchUserStatus);
-  const dispatch = useAppDispatch();
+  const gapiClientId = useAppSelector(selectGapiClientId);
 
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
@@ -148,7 +147,10 @@ export const LoginModal: React.FC<Props> = ({ visible, closeModal }) => {
         <OrLine />
 
         <GoogleLoginWrapper>
-          <GoogleLoginButton loginWithGoogle={loginWithGoogle} />
+          <GoogleLoginButton
+            loginWithGoogle={loginWithGoogle}
+            gapiClientId={gapiClientId}
+          />
         </GoogleLoginWrapper>
 
         <TermsAndPrivacyStyle></TermsAndPrivacyStyle>

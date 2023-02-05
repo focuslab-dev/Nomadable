@@ -2,9 +2,9 @@ declare var google: any;
 
 import React, { useEffect, useRef } from "react";
 import styled from "styled-components";
-import { GAPI_CLIENT_ID } from "../../constants";
 
 interface Props {
+  gapiClientId: string;
   loginWithGoogle: (idToken: string) => void;
 }
 
@@ -21,7 +21,7 @@ export const GoogleLoginButton: React.FC<Props> = (props) => {
   const prepareGoogleButton = () => {
     try {
       google.accounts.id.initialize({
-        client_id: GAPI_CLIENT_ID,
+        client_id: props.gapiClientId,
         callback: handleGoogleLogin,
       });
 

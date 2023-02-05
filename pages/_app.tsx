@@ -9,7 +9,7 @@ import { store } from "../redux/store";
 import GlobalStyles from "../styles/GlobalStyles";
 import { GlobalHead } from "../components/global/GlobalHead";
 import { useAppDispatch, useAppSelector } from "../redux/hooks";
-import { API_IDLE, GAPI_CLIENT_ID } from "../constants";
+import { API_IDLE } from "../constants";
 import { GlobalModals } from "../components/global/GlobalModals";
 import {
   apiFetchUser,
@@ -17,11 +17,16 @@ import {
 } from "../redux/slices/api/apiUserSlice";
 import { Notification } from "../components/global/Notification";
 import { GoogleTagManager } from "../components/global/GoogleTagManager";
-import { apiFetchMapboxAccessToken } from "../redux/slices/envSlice";
+import {
+  apiFetchEnvVariables,
+  selectGapiClientId,
+} from "../redux/slices/envSlice";
 
 const App = ({ Component, pageProps }: AppProps) => {
-  const apiFetchUserStatus = useAppSelector(selectApiFetchUserStatus);
   const dispatch = useAppDispatch();
+
+  const apiFetchUserStatus = useAppSelector(selectApiFetchUserStatus);
+  const gapiClientId = useAppSelector(selectGapiClientId);
 
   const registerServiceWorker = () => {
     if ("serviceWorker" in navigator) {
@@ -51,16 +56,12 @@ const App = ({ Component, pageProps }: AppProps) => {
     if (apiFetchUserStatus.status === API_IDLE) {
       // doFetchUser(dispatch);
       dispatch(apiFetchUser({}));
-      dispatch(apiFetchMapboxAccessToken({}));
+      dispatch(apiFetchEnvVariables({}));
     }
   }, [apiFetchUserStatus.status]);
 
   return (
-    <GoogleOAuthProvider
-      clientId={
-        "397305107163-623um4m3q1uefhks3l87ph0sc5qaunf4.apps.googleusercontent.com"
-      }
-    >
+    <GoogleOAuthProvider clientId={gapiClientId}>
       <Provider store={store}>
         <Head>
           <GlobalHead />

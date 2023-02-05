@@ -1,8 +1,5 @@
 const prod = process.env.NODE_ENV === "production";
 
-// console.log("process.env.NODE_ENV", process.env.NODE_ENV);
-// console.log("process.env.NODE_ENV_NEXT", process.env.NODE_ENV_NEXT);
-
 /**
  * Basic
  */
@@ -21,9 +18,6 @@ export const APP_LONG_DESCRIPTION =
   "Find cafes, co-working spaces, hotels with high-speed WiFi access.";
 
 export const MSG_NOT_LOGIN = "Please login to use this feature.";
-
-export const GAPI_CLIENT_ID =
-  "397305107163-623um4m3q1uefhks3l87ph0sc5qaunf4.apps.googleusercontent.com";
 
 /**
  * Colors
@@ -50,11 +44,6 @@ export const FONT_COLOR_SECONDARY = "#444";
 export const FONT_COLOR_LIGHT = "rgba(0,0,0,0.5)";
 export const FONT_COLOR_LIGHTEST = "rgba(0,0,0,0.3)";
 export const FONT_COLOR_SUPER_LIGHT = "rgba(0,0,0,0.08)";
-
-// export const COLOR_PRIMARY_DARK = "rgba(117, 165, 37, 1.000)";
-// export const COLOR_PRIMARY_NORMAL = "rgb(90 180 149);";
-// export const COLOR_PRIMARY_LIGHT = "rgba(151, 198, 74, 0.7)";
-// export const COLOR_PRIMARY_LIGHTEST = "rgba(151, 198, 74, 0.3)";
 
 export const COLOR_PRIMARY_0 = "#048a81";
 export const COLOR_PRIMARY_1 = "#26B5ACff";
