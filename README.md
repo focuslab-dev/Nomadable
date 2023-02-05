@@ -14,11 +14,7 @@ $ npm install next
 
 ## 2. Rename env file
 
-There should be .env.example file in the root directory. Rename it to ".env.local".
-
-```bash
-$ mv .env.example .env.local
-```
+There is a file named ".env.example" in the root directory. Rename it to ".env.local".
 
 ## 3. Add variables to env file
 
