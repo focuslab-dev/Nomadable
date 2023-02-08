@@ -307,6 +307,18 @@ export const SPAIN_BARCELONA: City = {
   },
 };
 
+export const UK_LONDON: City = {
+  slug: "united-kingdom-london",
+  country: "United Kingdom",
+  city: "London",
+  boundary: {
+    latStart: 51.33170321721539,
+    lngStart: -0.43164476256447415,
+    latEnd: 51.689904379458056,
+    lngEnd: 0.21001612629251554,
+  },
+};
+
 export const CITIES: City[] = [
   /**
    * Eeast Asia
@@ -350,6 +362,7 @@ export const CITIES: City[] = [
    * West Europe
    */
   BELGIUM_BRUSSELS,
+  UK_LONDON,
   /**
    * Oceanian
    */
