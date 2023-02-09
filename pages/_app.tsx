@@ -4,6 +4,7 @@ import withRedux from "next-redux-wrapper";
 import Head from "next/head";
 import React, { useEffect } from "react";
 import { GoogleOAuthProvider } from "@react-oauth/google";
+import "mapbox-gl/dist/mapbox-gl.css";
 
 import { store } from "../redux/store";
 import GlobalStyles from "../styles/GlobalStyles";

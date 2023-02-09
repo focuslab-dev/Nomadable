@@ -47,6 +47,7 @@ export const TopPage: React.FC<Props> = ({ places, searchResultTotalCnt }) => {
   const contributers = useAppSelector(selectContributersArea);
   const apiFetchPlacesStatus = useAppSelector(selectApiFetchPlacesStatus);
   const searchResultHistory = useAppSelector(selectPlaceSearchResultHistory);
+
   // ref
   const fetchTimeoutRef = useRef<any>(0);
   // local state
