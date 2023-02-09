@@ -1,13 +1,15 @@
 import Script from "next/script";
 import React, { Fragment } from "react";
 
-interface Props {}
+interface Props {
+  googleId: string;
+}
 
-export const GoogleTagManager: React.FC<Props> = ({}) => {
+export const GoogleTagManager: React.FC<Props> = ({ googleId }) => {
   return (
     <Fragment>
       <Script
-        src={`https://www.googletagmanager.com/gtag/js?id=G-CSH3FHQBZD`}
+        src={`https://www.googletagmanager.com/gtag/js?id=${googleId}`}
         strategy="afterInteractive"
       />
       <Script id="google-analytics" strategy="afterInteractive">
@@ -16,7 +18,7 @@ export const GoogleTagManager: React.FC<Props> = ({}) => {
         function gtag(){dataLayer.push(arguments);}
         gtag('js', new Date());
 
-        gtag('config', 'G-CSH3FHQBZD');
+        gtag('config', '${googleId}');
       `}
       </Script>
     </Fragment>

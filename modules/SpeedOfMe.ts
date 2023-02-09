@@ -1,4 +1,4 @@
-import { addScript } from "./AddScript";
+import { APP_HOST } from "../constants";
 
 declare const SomApi: any;
 
@@ -10,7 +10,7 @@ export const doNetSpeedTest = (props: {
   onCompleted: (download: number, upload: number) => void;
 }) => {
   SomApi.account = props.speedOfMeAccountCode;
-  SomApi.domainName = "nomadable.net";
+  SomApi.domainName = APP_HOST;
 
   SomApi.config = {
     sustainTime: 4,

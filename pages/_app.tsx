@@ -19,6 +19,7 @@ import { Notification } from "../components/global/Notification";
 import { GoogleTagManager } from "../components/global/GoogleTagManager";
 import {
   apiFetchEnvVariables,
+  selectGaMeasurementId,
   selectGapiClientId,
 } from "../redux/slices/envSlice";
 
@@ -27,6 +28,7 @@ const App = ({ Component, pageProps }: AppProps) => {
 
   const apiFetchUserStatus = useAppSelector(selectApiFetchUserStatus);
   const gapiClientId = useAppSelector(selectGapiClientId);
+  const gaMeasurementId = useAppSelector(selectGaMeasurementId);
 
   const registerServiceWorker = () => {
     if ("serviceWorker" in navigator) {
@@ -67,7 +69,7 @@ const App = ({ Component, pageProps }: AppProps) => {
           <GlobalHead />
         </Head>
         {/* Google tag (gtag.js) */}
-        <GoogleTagManager />
+        <GoogleTagManager googleId={gaMeasurementId} />
         <GlobalStyles />
         <Notification />
         <Component {...pageProps} />

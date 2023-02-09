@@ -90,13 +90,6 @@ export const GlobalHead = () => (
       rel="stylesheet"
     />
 
-    {/* Plausible Analytics */}
-    <script
-      defer
-      data-domain="nomadable.net"
-      src="https://plausible.io/js/plausible.js"
-    ></script>
-
     {/* Speed Test */}
     <script src="//speedof.me/api/api.js" type="text/javascript" async />
   </Fragment>

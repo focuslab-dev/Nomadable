@@ -7,6 +7,7 @@ declare global {
       GAPI_CLIENT_ID: string;
       GAPI_CLIENT_SECRET: string;
       GAPI_KEY: string;
+      GA_MEASUREMENT_ID: string;
       SENDGRID_API_KEY: string;
       JWT_SECRET: string;
       MAPBOX_ACCESS_TOKEN: string;

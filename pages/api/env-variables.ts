@@ -15,6 +15,7 @@ handler.get(async (req: any, res: any) => {
       gapiClientId: process.env.GAPI_CLIENT_ID,
       mapboxAccessToken: process.env.MAPBOX_ACCESS_TOKEN,
       speedOfMeAccountCode: process.env.SPEED_OF_ME_ACCOUNT_CODE,
+      gaMeasurementId: process.env.GA_MEASUREMENT_ID,
     });
   } catch (error: any) {
     return res.status(500).json({ message: ERR_SOMETHING });

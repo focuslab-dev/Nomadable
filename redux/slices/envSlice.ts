@@ -13,6 +13,7 @@ interface EnvState {
   gapiClientId: string;
   mapboxAccessToken: string;
   speedOfMeAccountCode: string;
+  gaMeasurementId: string;
 }
 
 /**
@@ -23,6 +24,7 @@ const initialState: EnvState = {
   gapiClientId: "",
   mapboxAccessToken: "",
   speedOfMeAccountCode: "",
+  gaMeasurementId: "",
 };
 
 const envSlice = createSlice({
@@ -34,6 +36,7 @@ const envSlice = createSlice({
       state.gapiClientId = action.payload.gapiClientId;
       state.mapboxAccessToken = action.payload.mapboxAccessToken;
       state.speedOfMeAccountCode = action.payload.speedOfMeAccountCode;
+      state.gaMeasurementId = action.payload.gaMeasurementId;
     });
   },
 });
@@ -54,6 +57,7 @@ export const apiFetchEnvVariables = createAsyncThunk<
     gapiClientId: string;
     mapboxAccessToken: string;
     speedOfMeAccountCode: string;
+    gaMeasurementId: string;
   }, // Return type of the payload creator
   {}, // First argument to the payload creator
   {
@@ -82,6 +86,9 @@ export const selectSpeedOfMeAccountCode = (state: RootState): string =>
 
 export const selectGapiClientId = (state: RootState): string =>
   state.env.gapiClientId;
+
+export const selectGaMeasurementId = (state: RootState): string =>
+  state.env.gaMeasurementId;
 
 /**
  * Export actions & reducer

@@ -2,7 +2,6 @@ import React, { Fragment } from "react";
 import styled from "styled-components";
 
 import * as cons from "../../constants";
-import newPlace from "../../pages/new-place";
 import { AnimationSlideLeft } from "../../styles/styled-components/Animations";
 import * as fs from "../../styles/styled-components/FontSize";
 import { PlaceTypeForm } from "../new-place/detail-form/PlaceTypeForm";
