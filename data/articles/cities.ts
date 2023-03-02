@@ -319,6 +319,18 @@ export const UK_LONDON: City = {
   },
 };
 
+export const SWITZERLAND_ZURICH: City = {
+  slug: "switzerland-zurich",
+  country: "Switzerland",
+  city: "Zurich",
+  boundary: {
+    latStart: 47.3039155001768,
+    lngStart: 8.415848876070925,
+    latEnd: 47.442958867343805,
+    lngEnd: 8.647291739323549,
+  },
+};
+
 export const CITIES: City[] = [
   /**
    * Eeast Asia
@@ -358,6 +370,7 @@ export const CITIES: City[] = [
   ITALY_ROME,
   SPAIN_BARCELONA,
   TURKEY_ISTANBUL,
+  SWITZERLAND_ZURICH,
   /**
    * West Europe
    */
