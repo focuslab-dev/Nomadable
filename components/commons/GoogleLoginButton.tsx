@@ -44,7 +44,7 @@ export const GoogleLoginButton: React.FC<Props> = (props) => {
 
   useEffect(() => {
     prepareGoogleButton();
-  });
+  }, [null]);
 
   return (
     <LoginButtonWrapper ref={buttonWrapperRef}>
