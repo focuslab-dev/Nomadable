@@ -331,6 +331,18 @@ export const SWITZERLAND_ZURICH: City = {
   },
 };
 
+export const AUSTRIA_VIENNA: City = {
+  slug: "austria-vienna",
+  country: "Austria",
+  city: "Vienna",
+  boundary: {
+    latStart: 48.078330653069855,
+    lngStart: 16.161994240699045,
+    latEnd: 48.319951148652876,
+    lngEnd: 16.562865412550735,
+  },
+};
+
 export const CITIES: City[] = [
   /**
    * Eeast Asia
@@ -367,15 +379,16 @@ export const CITIES: City[] = [
   /**
    * East Europe
    */
-  ITALY_ROME,
-  SPAIN_BARCELONA,
   TURKEY_ISTANBUL,
-  SWITZERLAND_ZURICH,
+  AUSTRIA_VIENNA,
   /**
    * West Europe
    */
   BELGIUM_BRUSSELS,
   UK_LONDON,
+  SPAIN_BARCELONA,
+  ITALY_ROME,
+  SWITZERLAND_ZURICH,
   /**
    * Oceanian
    */
