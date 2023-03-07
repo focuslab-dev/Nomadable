@@ -30,8 +30,8 @@ const SizeLarge = css`
 
 const SizeMedium = css`
   ${FontSizeSemiSmall}
-  height: 3.2rem;
-  border-radius: 0.2rem;
+  height: 3rem;
+  border-radius: 0.3rem;
   padding: 0 1.2rem;
   min-width: 7.5rem;
 `;

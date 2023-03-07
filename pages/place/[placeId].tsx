@@ -66,7 +66,11 @@ const PlaceContainer: React.FC<Props> = (props) => {
     <Layout width={cons.CONTAINER_WIDTH_NARROW}>
       <HeadSetter
         pageTitle={`WiFi Speed of ${pd.spotName} | ${cons.APP_NAME}`}
-        pageDescription={generateDescription()}
+        pageDescription={
+          pd.reviewsWithData.length > 0
+            ? pd.reviewsWithData[0].comment
+            : generateDescription()
+        }
         pagePath={`${cons.APP_URL}/place/${pd.id}`}
         pageImg={pd.images[0]}
       />
