@@ -343,6 +343,18 @@ export const AUSTRIA_VIENNA: City = {
   },
 };
 
+export const GREECE_ATHENS: City = {
+  slug: "greece-athens",
+  country: "Greece",
+  city: "Athens",
+  boundary: {
+    latStart: 37.83812168821592,
+    lngStart: 23.52552238413466,
+    latEnd: 38.11123581227761,
+    lngEnd: 23.896570810617362,
+  },
+};
+
 export const CITIES: City[] = [
   /**
    * Eeast Asia
@@ -389,6 +401,7 @@ export const CITIES: City[] = [
   SPAIN_BARCELONA,
   ITALY_ROME,
   SWITZERLAND_ZURICH,
+  GREECE_ATHENS,
   /**
    * Oceanian
    */
