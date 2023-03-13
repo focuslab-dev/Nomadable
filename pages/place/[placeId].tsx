@@ -38,7 +38,7 @@ const PlaceContainer: React.FC<Props> = (props) => {
     : props.placeWithData || initialPlaceWithData;
 
   const generateDescription = () => {
-    return `Is ${props.placeWithData?.spotName} a good place to work from? Find out their wifi speed, power outlets, and more, and read reviews by other digital nomads.`;
+    return `${props.placeWithData?.spotName} - ${props.placeWithData?.spotAddress}. Is it a good place to work from? Find out the WiFi speed, facilities, reviews and more.`;
   };
 
   /**
@@ -66,11 +66,7 @@ const PlaceContainer: React.FC<Props> = (props) => {
     <Layout width={cons.CONTAINER_WIDTH_NARROW}>
       <HeadSetter
         pageTitle={`WiFi Speed of ${pd.spotName} | ${cons.APP_NAME}`}
-        pageDescription={
-          pd.reviewsWithData.length > 0
-            ? pd.reviewsWithData[0].comment
-            : generateDescription()
-        }
+        pageDescription={generateDescription()}
         pagePath={`${cons.APP_URL}/place/${pd.id}`}
         pageImg={pd.images[0]}
       />
