@@ -1,3 +1,4 @@
+import { SWITZERLAND_ZURICH } from "./cities";
 /**
  * Type
  */
@@ -355,6 +356,18 @@ export const GREECE_ATHENS: City = {
   },
 };
 
+export const SWITZERLAND_GENEVA: City = {
+  slug: "switzerland-geneva",
+  country: "Switzerland",
+  city: "Geneva",
+  boundary: {
+    latStart: 46.11950308350393,
+    lngStart: 6.018235698546164,
+    latEnd: 46.27849296664036,
+    lngEnd: 6.2787206133144196,
+  },
+};
+
 export const CITIES: City[] = [
   /**
    * Eeast Asia
@@ -401,6 +414,7 @@ export const CITIES: City[] = [
   SPAIN_BARCELONA,
   ITALY_ROME,
   SWITZERLAND_ZURICH,
+  SWITZERLAND_GENEVA,
   GREECE_ATHENS,
   /**
    * Oceanian
