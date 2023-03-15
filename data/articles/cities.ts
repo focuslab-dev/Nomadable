@@ -1,4 +1,3 @@
-import { SWITZERLAND_ZURICH } from "./cities";
 /**
  * Type
  */
