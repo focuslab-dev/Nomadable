@@ -367,6 +367,18 @@ export const SWITZERLAND_GENEVA: City = {
   },
 };
 
+export const JAPAN_KYOTO: City = {
+  slug: "japan-kyoto",
+  country: "Japan",
+  city: "Kyoto",
+  boundary: {
+    latStart: 34.88247564617325,
+    lngStart: 135.60620144498517,
+    latEnd: 35.125139913320524,
+    lngEnd: 135.9314787887489,
+  },
+};
+
 export const CITIES: City[] = [
   /**
    * Eeast Asia
@@ -374,6 +386,7 @@ export const CITIES: City[] = [
   SOUTH_KOREA_SEOUL,
   JAPAN_TOKYO,
   JAPAN_KARUIZAWA,
+  JAPAN_KYOTO,
   /**
    * South East Asia
    */
