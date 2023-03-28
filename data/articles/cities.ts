@@ -132,10 +132,10 @@ export const JAPAN_TOKYO: City = {
   country: "Japan",
   city: "Tokyo",
   boundary: {
-    latStart: 35.601898825977486,
-    lngStart: 139.64312141126504,
-    latEnd: 35.756014725290996,
-    lngEnd: 139.8549962528498,
+    latStart: 35.52216882517227,
+    lngStart: 139.4753943886995,
+    latEnd: 35.83167649546256,
+    lngEnd: 139.91519623249354,
   },
 };
 
