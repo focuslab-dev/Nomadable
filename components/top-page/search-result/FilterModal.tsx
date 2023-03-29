@@ -11,6 +11,7 @@ import {
   ButtonBlackSmall,
   ButtonText,
 } from "../../../styles/styled-components/Buttons";
+import { FontSizeNormal } from "../../../styles/styled-components/FontSize";
 import { FormLabelStyle } from "../../../styles/styled-components/Forms";
 import { ContainerStyleInside } from "../../../styles/styled-components/Layouts";
 import { HeaderSmall } from "../../../styles/styled-components/Texts";
@@ -121,7 +122,7 @@ export const FilterModal: React.FC<Props> = ({
    */
 
   return (
-    <Modal visible={visible} closeModal={onCloseModal} width="32rem" alignTop>
+    <Modal visible={visible} closeModal={onCloseModal} width="28rem" alignTop>
       <ModalHeader title="Filter" onClickClose={onCloseModal} />
       <ModalBody>
         <Label>Place Types</Label>
@@ -220,7 +221,11 @@ const ModalBody = styled.div`
 `;
 
 const Label = styled.div`
-  ${HeaderSmall}
+  ${FontSizeNormal}
+  margin-bottom: 1rem;
+  margin-top: 0.2rem;
+  font-weight: bold;
+  color: ${cons.FONT_COLOR_NORMAL};
 `;
 
 const Footer = styled.div`
@@ -248,5 +253,5 @@ const SubmitButton = styled.button`
 
 const SpecificForms = styled.div`
   ${AnimationSlideLeft};
-  margin-top: 1rem;
+  margin-top: 0rem;
 `;

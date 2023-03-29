@@ -65,7 +65,7 @@ const PlaceTypeFormWrapper = styled.div`
 
 const PlaceTypeItem = styled.div<{ active: boolean }>`
   ${ClickableStyle}
-  padding: 0.6rem 1.2rem;
+  padding: 0.4rem 0.75rem;
   border: 0.1rem solid ${cons.FONT_COLOR_LIGHTEST};
   border-radius: 0.3rem;
   font-weight: 500;

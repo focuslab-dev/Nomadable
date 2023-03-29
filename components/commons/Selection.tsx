@@ -42,7 +42,8 @@ const SelectionWrapper = styled.select<{ small?: boolean }>`
   ${FormStyle}
   width: auto;
   /* height: 3rem; */
-  padding: 0.7rem 0.7rem;
+  padding: 0.6rem 0.6rem;
+  ${fs.FontSizeSemiSmall}
 
   ${(props) =>
     props.small &&
