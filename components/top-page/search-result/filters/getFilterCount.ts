@@ -8,6 +8,7 @@ export const getFilterCount = (filterObj: FilterObj) => {
   if (filterObj.availability.length > 0) filterCnt += 1;
   if (filterObj.saved) filterCnt += 1;
   if (filterObj.sortBy !== SORT_BY_REVIEW) filterCnt += 1;
+  if (filterObj.wifiSpeed > 0) filterCnt += 1;
 
   return filterCnt;
 };
