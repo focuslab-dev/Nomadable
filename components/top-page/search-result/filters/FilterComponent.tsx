@@ -61,6 +61,7 @@ export const FilterComponent: React.FC<Props> = ({
 const PlaceTypeFormWrapper = styled.div`
   display: flex;
   flex-wrap: wrap;
+  gap: 0.8rem;
 `;
 
 const PlaceTypeItem = styled.div<{ active: boolean }>`
@@ -70,8 +71,8 @@ const PlaceTypeItem = styled.div<{ active: boolean }>`
   border-radius: 0.3rem;
   font-weight: 500;
   color: ${cons.FONT_COLOR_LIGHT};
-  margin-right: 0.8rem;
-  margin-bottom: 0.8rem;
+  /* margin-right: 0.8rem; */
+  /* margin-bottom: 0.8rem; */
   display: flex;
   align-items: center;
   ${fs.FontSizeSemiSmall}

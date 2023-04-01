@@ -3,7 +3,6 @@ import styled from "styled-components";
 
 import * as cons from "../../../constants";
 import { getCurrentLocation } from "../../../modules/Location";
-import newPlace from "../../../pages/new-place";
 import { FilterObj, initialFilterObj } from "../../../redux/slices/placeSlice";
 import { forMobile } from "../../../styles/Responsive";
 import { AnimationSlideLeft } from "../../../styles/styled-components/Animations";
@@ -12,15 +11,16 @@ import {
   ButtonText,
 } from "../../../styles/styled-components/Buttons";
 import { FontSizeNormal } from "../../../styles/styled-components/FontSize";
-import { FormLabelStyle } from "../../../styles/styled-components/Forms";
+import {
+  FormSmallStyle,
+  FormStyle,
+} from "../../../styles/styled-components/Forms";
 import { ContainerStyleInside } from "../../../styles/styled-components/Layouts";
-import { HeaderSmall } from "../../../styles/styled-components/Texts";
 import { Modal } from "../../commons/Modal";
 import { ModalHeader } from "../../commons/ModalHeader";
 import { Selection } from "../../commons/Selection";
-import { ToggleForm } from "../../new-place/detail-form/ToggleForm";
-// import { FilterForCafe } from "./filters/FilterForCafe";
 import { FilterComponent } from "./filters/FilterComponent";
+import { SwitchForm } from "../../commons/SwitchForm";
 
 interface Props {
   visible: boolean;
@@ -58,13 +58,6 @@ export const FilterModal: React.FC<Props> = ({
 
   const onChangeAvailability = (availability: string[]) => {
     setFilterObj({ ...localFilterObj, availability });
-  };
-
-  const onChangeOthers = (others: string[]) => {
-    setFilterObj({
-      ...localFilterObj,
-      saved: others.includes(cons.OTHERS_SAVED),
-    });
   };
 
   const onDistanceSortSelected = async () => {
@@ -106,6 +99,18 @@ export const FilterModal: React.FC<Props> = ({
     closeModal();
   };
 
+  const onChangeWifiSpeed = (e: any) => {
+    const wifiSpeed = parseInt(e.target.value);
+    setFilterObj({ ...localFilterObj, wifiSpeed });
+  };
+
+  const onClickSaved = () => {
+    setFilterObj({
+      ...localFilterObj,
+      saved: !localFilterObj.saved,
+    });
+  };
+
   /**
    * Effect
    */
@@ -135,7 +140,7 @@ export const FilterModal: React.FC<Props> = ({
         {localFilterObj.placeTypes.length === 1 &&
           localFilterObj.placeTypes[0] === cons.PLACE_TYPE_CAFE && (
             <SpecificForms>
-              <Label>Filter for Cafes</Label>
+              <SubLabel>Filter for Cafes</SubLabel>
               <FilterComponent
                 onChangeFilterItems={onChangeAvailability}
                 filterItems={localFilterObj.availability}
@@ -148,7 +153,7 @@ export const FilterModal: React.FC<Props> = ({
         {localFilterObj.placeTypes.length === 1 &&
           localFilterObj.placeTypes[0] === cons.PLACE_TYPE_WORKSPACE && (
             <SpecificForms>
-              <Label>Filter for Work Spaces</Label>
+              <SubLabel>Filter for Work Spaces</SubLabel>
               <FilterComponent
                 onChangeFilterItems={onChangeAvailability}
                 filterItems={localFilterObj.availability}
@@ -161,7 +166,7 @@ export const FilterModal: React.FC<Props> = ({
         {localFilterObj.placeTypes.length === 1 &&
           localFilterObj.placeTypes[0] === cons.PLACE_TYPE_PUBLIC && (
             <SpecificForms>
-              <Label>Filter for Public Spaces</Label>
+              <SubLabel>Filter for Public Spaces</SubLabel>
               <FilterComponent
                 onChangeFilterItems={onChangeAvailability}
                 filterItems={localFilterObj.availability}
@@ -174,7 +179,7 @@ export const FilterModal: React.FC<Props> = ({
         {localFilterObj.placeTypes.length === 1 &&
           localFilterObj.placeTypes[0] === cons.PLACE_TYPE_HOTEL && (
             <SpecificForms>
-              <Label>Filter for Hotels</Label>
+              <SubLabel>Filter for Hotels</SubLabel>
               <FilterComponent
                 onChangeFilterItems={onChangeAvailability}
                 filterItems={localFilterObj.availability}
@@ -184,15 +189,33 @@ export const FilterModal: React.FC<Props> = ({
             </SpecificForms>
           )}
 
+        <Line />
+
         <SpecificForms>
-          <Label>Others</Label>
-          <FilterComponent
-            onChangeFilterItems={onChangeOthers}
-            filterItems={localFilterObj.saved ? [cons.OTHERS_SAVED] : []}
-            typeDict={cons.OTHERS_LIST}
-            allowAllSelect
-          />
+          <Label>Advanced</Label>
+          <FilterWrapper>
+            <FilterLabel>WiFi Speed</FilterLabel>
+            <WiFiFormWrapper>
+              <NumberForm
+                value={localFilterObj.wifiSpeed}
+                onChange={onChangeWifiSpeed}
+                type="number"
+              />
+              <Unit>mbps</Unit>
+            </WiFiFormWrapper>
+          </FilterWrapper>
+          <FilterWrapper>
+            <FilterLabel>Only Saved Places</FilterLabel>
+            <SwitchForm
+              active={localFilterObj.saved}
+              onClick={onClickSaved}
+              activeText="On"
+              inactiveText="Off"
+            />
+          </FilterWrapper>
         </SpecificForms>
+
+        <Line />
 
         <SpecificForms>
           <Label>Sort By</Label>
@@ -216,14 +239,14 @@ export const FilterModal: React.FC<Props> = ({
 
 const ModalBody = styled.div`
   ${ContainerStyleInside};
-  padding-top: 1rem;
-  padding-bottom: 1.5rem;
+  padding-top: 1.5rem;
+  padding-bottom: 1.6rem;
 `;
 
 const Label = styled.div`
   ${FontSizeNormal}
   margin-bottom: 1rem;
-  margin-top: 0.2rem;
+  /* margin-top: 1rem; */
   font-weight: bold;
   color: ${cons.FONT_COLOR_NORMAL};
 `;
@@ -254,4 +277,50 @@ const SubmitButton = styled.button`
 const SpecificForms = styled.div`
   ${AnimationSlideLeft};
   margin-top: 0rem;
+`;
+
+const FilterWrapper = styled.div`
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 1.4rem;
+`;
+
+const FilterLabel = styled.div`
+  /* font-weight: bold; */
+  font-weight: 500;
+  color: ${cons.FONT_COLOR_SECONDARY};
+  color: ${cons.FONT_COLOR_LIGHT};
+`;
+
+const NumberForm = styled.input`
+  ${FormStyle}
+  ${FormSmallStyle}
+  width: 5rem;
+`;
+
+const WiFiFormWrapper = styled.div`
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-end;
+  align-items: center;
+`;
+
+const Unit = styled.div`
+  margin-left: 0.5rem;
+  color: ${cons.FONT_COLOR_SECONDARY};
+  font-weight: 400;
+`;
+
+const Line = styled.div`
+  height: 1px;
+  width: 100%;
+  background-color: ${cons.FONT_COLOR_SUPER_LIGHT};
+  margin-top: 1.8rem;
+  margin-bottom: 1.5rem;
+`;
+
+const SubLabel = styled(Label)`
+  margin-top: 1.4rem;
 `;

@@ -41,6 +41,9 @@ const SwitchWindow = styled.div<{ active: boolean }>`
   background-color: ${cons.FONT_COLOR_LIGHTEST};
   position: relative;
 
+  height: 1.8rem;
+  width: 3.5rem;
+
   transition: 0.3s all cubic-bezier(0, 0.93, 0.59, 0.87);
   ${(props) =>
     props.active &&
@@ -53,16 +56,20 @@ const SwitchCircle = styled.div<{ active: boolean }>`
   position: absolute;
   height: 1.78rem;
   width: 1.78rem;
+
+  height: 1.5rem;
+  width: 1.5rem;
+
   background-color: white;
   border-radius: 100%;
-  left: 0.4rem;
-  top: 0.25rem;
+  left: 0.2rem;
+  top: 0.14rem;
   transition: 0.3s all cubic-bezier(0, 0.93, 0.59, 0.87);
 
   ${(props) =>
     props.active &&
     `
-    left: calc(100% - 2.1rem);
+    left: calc(100% - 1.7rem);
   `};
 `;
 

@@ -8,8 +8,6 @@ import {
 } from "./../../constants";
 import { Boundary } from "../../data/articles/cities";
 import { FilterObj, PlaceHeader } from "../../redux/slices/placeSlice";
-import places from "../../pages/api/places";
-import { pipeline } from "stream";
 
 const makeCondition = async (
   mongoose: any,
@@ -17,8 +15,6 @@ const makeCondition = async (
   boundary: Boundary | null,
   savedPlaceIds: string[]
 ) => {
-  const SavedPlace = mongoose.model("SavedPlace");
-
   const placeTypeFilter =
     filterObj.placeTypes.length > 0
       ? { $in: filterObj.placeTypes }
@@ -40,14 +36,13 @@ const makeCondition = async (
       }
     : { $exists: true };
 
-  // }
-
   const condition = {
     placeType: placeTypeFilter,
     availability: availabilityFilter,
     status: { $in: [STATUS_OPEN, STATUS_TEMP_CLOSE] },
     id: filterObj.saved ? { $in: savedPlaceIds } : { $exists: true },
     location: boundaryCondition,
+    speedDown: { $gte: filterObj.wifiSpeed },
   };
 
   return condition;

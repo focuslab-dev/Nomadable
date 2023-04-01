@@ -86,6 +86,7 @@ export interface FilterObj {
   placeTypes: string[];
   availability: string[];
   saved: boolean;
+  wifiSpeed: number;
   sortBy: string;
 }
 
@@ -142,6 +143,7 @@ export const initialFilterObj: FilterObj = {
   placeTypes: [],
   availability: [],
   saved: false,
+  wifiSpeed: 0,
   sortBy: cons.SORT_BY_REVIEW,
 };
 

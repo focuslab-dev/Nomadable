@@ -124,4 +124,8 @@ export const SignupErrorStyle = styled.div`
   margin-bottom: -1em;
 `;
 
+export const FormSmallStyle = css`
+  padding: 0.4rem 0.6rem;
+`;
+
 export const TermsAndPrivacyStyle = styled.div``;
