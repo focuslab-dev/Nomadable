@@ -1,9 +1,13 @@
+declare var document: any;
+
 export const createCookie = (
   name: string,
   value: string,
   days: number,
   path: string
 ): void => {
+  if (typeof document === "undefined") return;
+
   let expires = "";
   if (days) {
     const date = new Date();
@@ -14,7 +18,7 @@ export const createCookie = (
 };
 
 export const readCookie = (name: string): string | null => {
-  if (!document) return null;
+  if (typeof document === "undefined") return null;
   const nameEQ = `${name}=`;
   const ca = document.cookie.split(";");
   for (let i = 0; i < ca.length; i++) {

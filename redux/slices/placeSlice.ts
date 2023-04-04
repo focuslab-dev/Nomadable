@@ -190,6 +190,13 @@ const initialState: PlaceState = {
   placeForPage: initialPlaceWithData,
 };
 
+export const initialMapArea: MapArea = {
+  latStart: -90,
+  latEnd: 90,
+  lngStart: -180,
+  lngEnd: 180,
+};
+
 const placeSlice = createSlice({
   name: "place",
   initialState,

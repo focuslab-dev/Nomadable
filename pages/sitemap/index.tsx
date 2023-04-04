@@ -11,6 +11,7 @@ import * as cons from "../../constants";
 import { ARTICLE_LINKS } from "../../data/articles/articles";
 import { forMobile } from "../../styles/Responsive";
 import { Header1, Header2 } from "../../styles/styled-components/Texts";
+import { CITY_LINKS } from "../../data/articles/cities";
 
 interface Link {
   url: string;
@@ -20,11 +21,13 @@ interface Link {
 interface Props {
   articleLinks: Link[];
   placeLinks: Link[];
+  cityLinks: Link[];
 }
 
-const Sitemap: React.FC<Props> = ({ articleLinks, placeLinks }) => {
+const Sitemap: React.FC<Props> = ({ articleLinks, placeLinks, cityLinks }) => {
   const [_articleLinks, setArticleLinks] = useState(articleLinks || []);
   const [_placeLinks, setPlaceLinks] = useState(placeLinks || []);
+  const [_cityLinks, setCityLinks] = useState(cityLinks || []);
 
   //   const fetchPlaceLinks = async () => {
   //     const { placeLinks } = await callFetchPlaceLinks();
@@ -53,6 +56,11 @@ const Sitemap: React.FC<Props> = ({ articleLinks, placeLinks }) => {
         <SectionWrapper>
           <SectionTitle>Articles</SectionTitle>
           <ListOfLinks links={_articleLinks || []} />
+        </SectionWrapper>
+
+        <SectionWrapper>
+          <SectionTitle>Cities</SectionTitle>
+          <ListOfLinks links={_cityLinks || []} />
         </SectionWrapper>
 
         <SectionWrapper>
@@ -93,6 +101,7 @@ export const getStaticProps: GetStaticProps = async ({}) => {
       props: {
         articleLinks: ARTICLE_LINKS,
         placeLinks,
+        cityLinks: CITY_LINKS,
       },
       revalidate: 1, // regenerate the static page on the access after 1 second later from the previous access
     };
@@ -101,6 +110,7 @@ export const getStaticProps: GetStaticProps = async ({}) => {
       props: {
         articleLinks: [],
         placeLinks: [],
+        cityLinks: [],
       },
     };
   }

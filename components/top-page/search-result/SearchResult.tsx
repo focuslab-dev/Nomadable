@@ -36,6 +36,7 @@ interface Props {
   onChangeFilterVisible: (visible: boolean) => void;
   searchResultTotalCnt: number;
   onHoverPlace: (placeId: string) => void;
+  resultTitle: string;
 }
 
 export const SearchResult: React.FC<Props> = ({
@@ -47,6 +48,7 @@ export const SearchResult: React.FC<Props> = ({
   onChangeFilterVisible,
   searchResultTotalCnt,
   onHoverPlace,
+  resultTitle,
 }) => {
   const router = useRouter();
   const dispatch = useAppDispatch();
@@ -98,7 +100,7 @@ export const SearchResult: React.FC<Props> = ({
     <Wrapper>
       <SectionLoader visible={apiStatus.status === cons.API_LOADING} />
       <Header width={width}>
-        <PageTitle>{searchResultTotalCnt} Places to Work From</PageTitle>
+        <PageTitle>{resultTitle}</PageTitle>
         <FilterButton onClick={onClickFilterButton}>
           <FilterIcon src="/icon/filter-black3.svg" />
           Filter
@@ -209,6 +211,8 @@ const NotFixed = styled.div`
 const PageTitle = styled.div`
   ${HeaderSmall};
   margin: 0;
+
+  /* ${fs.FontSizeNormal} */
 `;
 
 const FilterButton = styled.button`

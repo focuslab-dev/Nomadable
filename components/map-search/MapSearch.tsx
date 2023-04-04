@@ -3,7 +3,7 @@ import styled from "styled-components";
 import mapboxgl from "mapbox-gl";
 
 import * as cons from "../../constants";
-import { Place } from "../../redux/slices/placeSlice";
+import { MapArea, Place } from "../../redux/slices/placeSlice";
 import { useRouter } from "next/router";
 import { convertPlacesToPins, makeIcon } from "./MapSearchModules";
 import { useAppSelector } from "../../redux/hooks";
@@ -25,6 +25,7 @@ interface Props {
   selectedPlace: string;
   viewHeight: number;
   hoveredPlace: string;
+  mapAreaOfCity?: MapArea;
 }
 
 const MAP_STYLE_STREET = "mapbox://styles/mapbox/streets-v11";
@@ -194,6 +195,8 @@ export const MapSearch: React.FC<Props> = (props) => {
     if (router.query.latStart && router.query.lngStart) {
       updateMapArea(router.query);
       // setQueryLoaded(true);
+    } else if (props.mapAreaOfCity) {
+      updateMapArea(props.mapAreaOfCity);
     } else {
       onViewportUpdate();
     }

@@ -34,13 +34,19 @@ import { SearchResult } from "./search-result/SearchResult";
 import { getFilterCount } from "./search-result/filters/getFilterCount";
 import { PageLoader } from "../commons/PageLoader";
 import { CheckInButton } from "../map-search/CheckInButton";
+import { Boundary, City } from "../../data/articles/cities";
 
 interface Props {
   places: PlaceHeader[];
   searchResultTotalCnt: number;
+  city?: City;
 }
 
-export const TopPage: React.FC<Props> = ({ places, searchResultTotalCnt }) => {
+export const TopPage: React.FC<Props> = ({
+  places,
+  searchResultTotalCnt,
+  city,
+}) => {
   const dispatch = useAppDispatch();
   const router = useRouter();
   // store
@@ -102,6 +108,18 @@ export const TopPage: React.FC<Props> = ({ places, searchResultTotalCnt }) => {
     ev.preventDefault();
     ev.stopPropagation();
     setFilterVisible(visible);
+  };
+
+  const updatePathname = (mapArea: MapArea, shallow: boolean) => {
+    const { latStart, lngStart, latEnd, lngEnd } = mapArea;
+    router.push(
+      {
+        pathname: cons.PATH_HOME,
+        query: { latStart, lngStart, latEnd, lngEnd },
+      },
+      undefined,
+      { shallow }
+    );
   };
 
   /**
@@ -179,20 +197,16 @@ export const TopPage: React.FC<Props> = ({ places, searchResultTotalCnt }) => {
    */
 
   useEffect(() => {
+    // mapAreaChangedCnt.current += 1;
     if (!mapArea) return;
-    const { latStart, lngStart, latEnd, lngEnd } = mapArea;
-    router.push(
-      {
-        pathname: cons.PATH_HOME,
-        query: { latStart, lngStart, latEnd, lngEnd },
-      },
-      undefined,
-      { shallow: true }
-    );
+    if (city) return;
+
+    updatePathname(mapArea, true);
   }, [mapArea]);
 
   useEffect(() => {
     if (!mapArea) return;
+
     searchPlaces(
       mapArea,
       pageIndex,
@@ -230,7 +244,28 @@ export const TopPage: React.FC<Props> = ({ places, searchResultTotalCnt }) => {
     return <FilterCnt>{filterCnt}</FilterCnt>;
   };
 
-  //
+  const isOverwrapping = (boundary: Boundary, mapArea: MapArea | null) => {
+    // if boundary is too far from mapArea, return false
+    if (!mapArea) return false;
+
+    const latStartDiff = Math.abs(boundary.latStart - mapArea.latStart);
+    const latEndDiff = Math.abs(boundary.latEnd - mapArea.latEnd);
+    const lngStartDiff = Math.abs(boundary.lngStart - mapArea.lngStart);
+    const lngEndDiff = Math.abs(boundary.lngEnd - mapArea.lngEnd);
+
+    const allDiff = latStartDiff + latEndDiff + lngStartDiff + lngEndDiff;
+
+    const TOO_FAR = 0.5;
+
+    return allDiff < TOO_FAR;
+  };
+
+  const renderResultTitle = (resultCnt: number, city: City | undefined) => {
+    if (city && city.boundary && isOverwrapping(city.boundary, mapArea)) {
+      return `${resultCnt} places to work from in ${city.city}, ${city.country}`;
+    }
+    return `${resultCnt} places to work from`;
+  };
 
   return (
     <TopPageWrapper>
@@ -242,7 +277,7 @@ export const TopPage: React.FC<Props> = ({ places, searchResultTotalCnt }) => {
           />
           <TabTitle>
             {apiFetchPlacesStatus.status !== cons.API_LOADING &&
-              `${searchResultTotalCnt} Places to Work From`}
+              renderResultTitle(searchResultTotalCnt, city)}
           </TabTitle>
           <FilterButtonForMobile
             onClick={(ev: any) => changeFilterVisible(ev, true)}
@@ -263,17 +298,19 @@ export const TopPage: React.FC<Props> = ({ places, searchResultTotalCnt }) => {
           onChangeFilterVisible={onChangeFilterVisible}
           searchResultTotalCnt={searchResultTotalCnt}
           onHoverPlace={onHoverPlace}
+          resultTitle={renderResultTitle(searchResultTotalCnt, city)}
         />
       </SearchResultSection>
       <MapSection viewHeight={viewHeight}>
         <MapSearch
           mapId="search-places"
-          places={searchResultHistory}
+          places={city ? places : searchResultHistory}
           onChange={onChangeMapArea}
           onClickMarker={onClickMarker}
           selectedPlace={selectedPlace}
           viewHeight={viewHeight}
           hoveredPlace={hoveredPlace}
+          mapAreaOfCity={city && city.boundary ? city.boundary : undefined}
         />
       </MapSection>
 
@@ -340,7 +377,7 @@ const SearchResultSection = styled.div<{ viewHeight: number }>`
 
 const PullTabForMobile = styled.div`
   ${ClickableStyle}
-  height: 1rem;
+  height: 1.6rem;
   padding: 1rem;
   justify-content: center;
   align-items: center;
@@ -355,7 +392,10 @@ const PullTabForMobile = styled.div`
  `)}
 `;
 
-export const TabTitle = styled.div``;
+export const TabTitle = styled.div`
+  max-width: 75%;
+  text-align: center;
+`;
 
 const MapSection = styled.div<{ viewHeight: number }>`
   width: calc(100% - ${RESULT_WIDTH}rem);

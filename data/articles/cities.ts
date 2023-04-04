@@ -2,6 +2,8 @@
  * Type
  */
 
+import { APP_URL } from "../../constants";
+
 export interface Boundary {
   latStart: number;
   lngStart: number;
@@ -442,3 +444,10 @@ export const CITIES: City[] = [
    */
   UAE_DUBAI,
 ];
+
+export const CITY_LINKS = CITIES.map((city) => {
+  return {
+    url: `${APP_URL}/${city.slug}`,
+    text: `${city.city}, ${city.country}`,
+  };
+});
