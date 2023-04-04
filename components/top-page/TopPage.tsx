@@ -374,7 +374,10 @@ const SearchResultSection = styled.div<{ viewHeight: number }>`
 
     left: 1.3rem;
     width: calc(100% - 1.3rem);
-    top: calc(${(props) => props.viewHeight}px - 10rem);
+    top: calc(
+      ${(props) => `${props.viewHeight ? `${props.viewHeight}px` : "100vh"}`} -
+        10rem
+    );
     border-top-right-radius: 0.8rem;
     border-top-left-radius: 0.8rem;
     min-height: 10rem;
