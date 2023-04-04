@@ -41,10 +41,10 @@ export default function TopPageContainer(props: TopPageProps) {
 
   return (
     <Fragment>
-      {/* <SplashPage
+      <SplashPage
         visible={apiStatus.status === API_IDLE}
         message="Loading map..."
-      /> */}
+      />
       <Layout width={"100%"} fixed>
         <HeadSetter
           pageTitle={`${APP_NAME}: ${APP_SHORT_DESCRIPTION}`}
