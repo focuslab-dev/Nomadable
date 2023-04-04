@@ -74,6 +74,7 @@ export const TopPage: React.FC<Props> = ({
   >(undefined);
   const [loadingLocation, setLoadingLocation] = useState(false);
   const lastFilterRef = useRef<FilterObj>(initialFilterObj);
+  const [pageTitle, setPageTitle] = useState("");
 
   /**
    * Modules
@@ -263,6 +264,9 @@ export const TopPage: React.FC<Props> = ({
   };
 
   const renderResultTitle = (resultCnt: number, city: City | undefined) => {
+    if (!mapArea && city)
+      return `${resultCnt} places to work from in ${city.city}, ${city.country}`;
+
     if (city && city.boundary && isOverwrapping(city.boundary, mapArea)) {
       return `${resultCnt} places to work from in ${city.city}, ${city.country}`;
     }
