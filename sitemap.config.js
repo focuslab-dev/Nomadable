@@ -32,14 +32,14 @@ module.exports = {
     if (path === "/articles") {
       return {
         loc: path,
-        priority: 0.7,
+        priority: 0.5,
       };
     }
 
     if (path.startsWith("/article")) {
       return {
         loc: path,
-        priority: 0.7,
+        priority: 0.5,
       };
     }
 
