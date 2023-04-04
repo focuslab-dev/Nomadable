@@ -208,7 +208,7 @@ const NotFixed = styled.div`
   `)}
 `;
 
-const PageTitle = styled.div`
+const PageTitle = styled.h1`
   ${HeaderSmall};
   margin: 0;
 

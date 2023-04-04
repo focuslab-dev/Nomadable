@@ -23,6 +23,7 @@ import {
 import { forMobile } from "../../styles/Responsive";
 import { AnimationSlideUp } from "../../styles/styled-components/Animations";
 import {
+  FontSizeNormal,
   FontSizeSemiSmall,
   FontSizeSmall,
 } from "../../styles/styled-components/FontSize";
@@ -35,6 +36,7 @@ import { getFilterCount } from "./search-result/filters/getFilterCount";
 import { PageLoader } from "../commons/PageLoader";
 import { CheckInButton } from "../map-search/CheckInButton";
 import { Boundary, City } from "../../data/articles/cities";
+import { HeaderSmall } from "../../styles/styled-components/Texts";
 
 interface Props {
   places: PlaceHeader[];
@@ -392,9 +394,12 @@ const PullTabForMobile = styled.div`
  `)}
 `;
 
-export const TabTitle = styled.div`
+export const TabTitle = styled.h1`
   max-width: 75%;
   text-align: center;
+  font-weight: bold;
+
+  ${FontSizeSemiSmall};
 `;
 
 const MapSection = styled.div<{ viewHeight: number }>`
