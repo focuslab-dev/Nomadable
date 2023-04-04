@@ -38,6 +38,15 @@ export default function TopPageContainer(props: TopPageProps) {
   const searchResultTotalCnt = useAppSelector(selectSearchResultTotalCnt);
   const apiStatus = useAppSelector(selectApiFetchPlacesStatus);
 
+  const generatePageDescription = () => {
+    return `
+      Best cafes & co-working spaces in ${
+        props.city?.city
+      } (with WiFi speed information): 
+      ${places.map((p, index) => ` ${index + 1}. ${p.spotName}`).join(" · ")}.
+    `;
+  };
+
   useEffect(() => {
     return () => {
       dispatch(initApiFetchPlacesState());
@@ -52,9 +61,11 @@ export default function TopPageContainer(props: TopPageProps) {
       /> */}
       <Layout width={"100%"} fixed>
         <HeadSetter
-          pageTitle={`${APP_NAME}: ${APP_SHORT_DESCRIPTION}`}
-          pageDescription={APP_LONG_DESCRIPTION}
-          pagePath={`${APP_URL}`}
+          pageTitle={`${
+            props.totalPlaceCnt > 10 && `${props.totalPlaceCnt} `
+          }Best Work Cafes & Co-working Spaces in ${props.city?.city}`}
+          pageDescription={generatePageDescription()}
+          pagePath={`${APP_URL}/${props.city?.slug}`}
         />
         <TopPage
           places={places && places.length > 0 ? places : props.places || []}
