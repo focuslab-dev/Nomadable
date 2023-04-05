@@ -46,10 +46,9 @@ export default function TopPageContainer(props: TopPageProps) {
   const _city = city || props.city;
 
   const generatePageDescription = () => {
-    return `
-      Best cafes & co-working spaces in ${
-        props.city?.city
-      } (with WiFi speed information): 
+    return `Best cafes & co-working spaces in ${
+      _city ? _city.city : ""
+    } (with WiFi speed information): 
       ${places.map((p, index) => ` ${index + 1}. ${p.spotName}`).join(" · ")}.
     `;
   };
@@ -76,7 +75,7 @@ export default function TopPageContainer(props: TopPageProps) {
       <Layout width={"100%"} fixed>
         <HeadSetter
           pageTitle={`${
-            props.totalPlaceCnt > 10 && `${props.totalPlaceCnt} `
+            props.totalPlaceCnt > 10 ? `${props.totalPlaceCnt} ` : ""
           }Best Work Cafes & Co-working Spaces in ${props.city?.city}`}
           pageDescription={generatePageDescription()}
           pagePath={`${APP_URL}/${props.city?.slug}`}
