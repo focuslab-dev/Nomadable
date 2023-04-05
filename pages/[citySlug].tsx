@@ -1,4 +1,4 @@
-import React, { Fragment, useEffect } from "react";
+import React, { Fragment, useEffect, useState } from "react";
 import { GetStaticPaths, GetStaticProps } from "next";
 import HeadSetter from "../components/commons/HeadSetter";
 import { Layout } from "../components/commons/Layout";
@@ -25,6 +25,7 @@ import { callFetchPlaces } from "../calls/placeCalls";
 import { CITIES, City } from "../data/articles/cities";
 import { initialFilterObj } from "../redux/slices/placeSlice";
 import { initialMapArea } from "../redux/slices/placeSlice";
+import { useRouter } from "next/router";
 
 interface TopPageProps {
   places: PlaceHeader[];
@@ -34,9 +35,15 @@ interface TopPageProps {
 
 export default function TopPageContainer(props: TopPageProps) {
   const dispatch = useAppDispatch();
+  const router = useRouter();
+  // from store
   const places = useAppSelector(selectPlaceSearchResult);
   const searchResultTotalCnt = useAppSelector(selectSearchResultTotalCnt);
   const apiStatus = useAppSelector(selectApiFetchPlacesStatus);
+  // local state
+  const [city, setCity] = useState<City | undefined>(undefined);
+  // decide which deta to use
+  const _city = city || props.city;
 
   const generatePageDescription = () => {
     return `
@@ -52,6 +59,13 @@ export default function TopPageContainer(props: TopPageProps) {
       dispatch(initApiFetchPlacesState());
     };
   }, [null]);
+
+  useEffect(() => {
+    if (!router.query.citySlug) return;
+    const city = CITIES.find((ct) => ct.slug === router.query.citySlug);
+    if (!city) return;
+    setCity(city);
+  }, [router.query.citySlug]);
 
   return (
     <Fragment>
@@ -74,7 +88,7 @@ export default function TopPageContainer(props: TopPageProps) {
               ? searchResultTotalCnt
               : props.totalPlaceCnt || 0
           }
-          city={props.city}
+          city={_city}
         />
       </Layout>
     </Fragment>

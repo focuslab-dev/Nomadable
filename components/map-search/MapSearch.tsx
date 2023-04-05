@@ -200,7 +200,7 @@ export const MapSearch: React.FC<Props> = (props) => {
     } else {
       onViewportUpdate();
     }
-  }, [mapRef.current]);
+  }, [mapRef.current, props.mapAreaOfCity]);
 
   useEffect(() => {
     setPins(convertPlacesToPins(props.places));

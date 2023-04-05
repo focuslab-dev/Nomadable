@@ -15,6 +15,11 @@ import {
 import { CityWithData, CITIES } from "../../data/articles/cities";
 import { Contributer } from "../../redux/slices/contributerSlice";
 import { forMobile } from "../../styles/Responsive";
+import { useAppSelector } from "../../redux/hooks";
+import {
+  selectCitiesWithData,
+  selectTotalPlaceCnt,
+} from "../../redux/slices/citySlice";
 
 interface Props {
   citiesWithData: CityWithData[];
@@ -23,13 +28,22 @@ interface Props {
 }
 
 const Cities: React.FC<Props> = (props) => {
-  const [_citiesWithData, setCitiesWithData] = useState<CityWithData[]>(
-    props.citiesWithData || []
-  );
-  const [_totalPlaceCnt, setTotalPlaceCnt] = useState<number>(
-    props.totalPlaceCnt || 0
-  );
-  const [_contributers, setContributers] = useState(props.contributers || []);
+  // from store
+  const citiesWithData = useAppSelector(selectCitiesWithData);
+  const totalPlaceCnt = useAppSelector(selectTotalPlaceCnt);
+
+  // decide which data to use
+  const _citiesWithData =
+    citiesWithData && citiesWithData.length > 0
+      ? citiesWithData
+      : props.citiesWithData;
+
+  const _totalPlaceCnt =
+    totalPlaceCnt && totalPlaceCnt > 0 ? totalPlaceCnt : props.totalPlaceCnt;
+
+  /**
+   * Render
+   */
 
   const generatePageDescription = () => {
     return `
@@ -39,27 +53,6 @@ const Cities: React.FC<Props> = (props) => {
         .join(" · ")}.
     `;
   };
-
-  const fetchData = async () => {
-    const { citiesWithData, totalPlaceCnt } = await callFetchCitiesWithData(
-      CITIES
-    );
-    setCitiesWithData(citiesWithData);
-    setTotalPlaceCnt(totalPlaceCnt);
-  };
-
-  const fetchContributers = async () => {
-    const {
-      data: { contributers },
-    } = await callFetchContributersArea(null, 10);
-
-    setContributers(contributers);
-  };
-
-  useEffect(() => {
-    fetchData();
-    fetchContributers();
-  }, [null]);
 
   return (
     <Layout width={CONTAINER_WIDTH_NORMAL} fixed>

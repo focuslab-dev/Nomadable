@@ -8,6 +8,7 @@ import {
   FONT_COLOR_LIGHT,
   FONT_COLOR_LIGHTEST,
   FONT_COLOR_SUPER_LIGHT,
+  MODAL_PLACE_SEARCH,
   PATH_NEW_PLACE,
   PATH_SIGNUP,
   SHADOW_0,
@@ -23,6 +24,8 @@ import { ClickableStyle } from "../../styles/styled-components/Interactions";
 import { ContainerStyle } from "../../styles/styled-components/Layouts";
 import { NotificationMarkCss } from "../../styles/styled-components/UIs";
 import { MenuDropdown } from "./MenuDropdown";
+import { useDispatch } from "react-redux";
+import { updateVisibleModal } from "../../redux/slices/uiSlice";
 
 interface Props {
   user: User;
@@ -37,6 +40,7 @@ export const Header: React.FC<Props> = ({
   authenticated,
   fixed,
 }) => {
+  const dispatch = useDispatch();
   const router = useRouter();
   const wrapperRef = useRef(null);
   const [dropdownVisible, setDropdownVisible] = useState(false);
@@ -60,6 +64,10 @@ export const Header: React.FC<Props> = ({
     }
   };
 
+  const showSearchModal = () => {
+    dispatch(updateVisibleModal({ id: MODAL_PLACE_SEARCH }));
+  };
+
   useClickOutsideEffect(wrapperRef, hideDropdown);
 
   return (
@@ -71,6 +79,10 @@ export const Header: React.FC<Props> = ({
           </a>
         </Link>
         <HeaderLeft>
+          <SearchButton onClick={showSearchModal}>
+            <SearchIcon src="/icon/search-black.png" />
+          </SearchButton>
+
           {router.pathname !== PATH_NEW_PLACE && (
             <SubmitNewButton onClick={handleClickNewPlace}>
               + New Place
@@ -176,4 +188,28 @@ const UserIcon = styled.img`
 
 const NotificationMark = styled.div<{ visible: boolean }>`
   ${NotificationMarkCss}
+`;
+
+const SearchButton = styled.div`
+  ${ClickableStyle}
+  /* border: 1px solid ${FONT_COLOR_LIGHTEST}; */
+  width: 2.5rem;
+  height: 2.5rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50%;
+  margin-right: 1.5rem;
+
+  &:hover {
+    background-color: #f5f5f5;
+    & > img {
+      opacity: 0.8;
+    }
+  }
+`;
+
+const SearchIcon = styled.img`
+  width: 1.3rem;
+  opacity: 0.5;
 `;

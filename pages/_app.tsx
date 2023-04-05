@@ -10,7 +10,7 @@ import { store } from "../redux/store";
 import GlobalStyles from "../styles/GlobalStyles";
 import { GlobalHead } from "../components/global/GlobalHead";
 import { useAppDispatch, useAppSelector } from "../redux/hooks";
-import { API_IDLE } from "../constants";
+import { API_IDLE, API_SUCCEEDED } from "../constants";
 import { GlobalModals } from "../components/global/GlobalModals";
 import {
   apiFetchUser,
@@ -23,6 +23,7 @@ import {
   selectGaMeasurementId,
   selectGapiClientId,
 } from "../redux/slices/envSlice";
+import { apiFetchCitiesWithData } from "../redux/slices/api/apiCitySlice";
 
 const App = ({ Component, pageProps }: AppProps) => {
   const dispatch = useAppDispatch();
@@ -60,6 +61,7 @@ const App = ({ Component, pageProps }: AppProps) => {
       // doFetchUser(dispatch);
       dispatch(apiFetchUser({}));
       dispatch(apiFetchEnvVariables({}));
+      dispatch(apiFetchCitiesWithData({}));
     }
   }, [apiFetchUserStatus.status]);
 

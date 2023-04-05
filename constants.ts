@@ -126,6 +126,7 @@ export const CONTAINER_WIDTH_SO_NARROW = "880px";
  */
 export const MODAL_LOGIN = "login";
 export const MODAL_USER_INFO = "user";
+export const MODAL_PLACE_SEARCH = "place_search";
 
 /**
  * Notificatoin Type
