@@ -75,7 +75,7 @@ export default function TopPageContainer(props: TopPageProps) {
       <Layout width={"100%"} fixed>
         <HeadSetter
           pageTitle={`${
-            props.totalPlaceCnt > 10 ? `${props.totalPlaceCnt} ` : ""
+            props.totalPlaceCnt >= 10 ? `${props.totalPlaceCnt} ` : ""
           }Best Work Cafes & Co-working Spaces in ${props.city?.city}`}
           pageDescription={generatePageDescription()}
           pagePath={`${APP_URL}/${props.city?.slug}`}
