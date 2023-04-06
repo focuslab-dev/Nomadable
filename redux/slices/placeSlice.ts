@@ -128,7 +128,7 @@ export interface Availability {
 
 interface PlaceState {
   totalPlaceCnt: number;
-  searchResult: PlaceHeader[];
+  searchResult: PlaceHeader[] | null;
   searchResultHistory: PlaceHeader[];
   searchResultTotalCnt: number;
   recentCheckIns: Place[];
@@ -183,7 +183,7 @@ export const initialPlaceWithData: PlaceWithData = {
 
 const initialState: PlaceState = {
   totalPlaceCnt: 0,
-  searchResult: [],
+  searchResult: null,
   searchResultHistory: [],
   searchResultTotalCnt: 0,
   recentCheckIns: [],
@@ -309,11 +309,13 @@ const placeSlice = createSlice({
     });
     builder.addCase(apiSavePlace.pending, (state, action) => {
       state.placeForPage.savedByUser = action.meta.arg.saved;
-      state.searchResult = state.searchResult.map((place) => {
-        if (place.id !== action.meta.arg.placeId) return place;
-        place.savedByUser = action.meta.arg.saved;
-        return place;
-      });
+      state.searchResult = !state.searchResult
+        ? []
+        : state.searchResult.map((place) => {
+            if (place.id !== action.meta.arg.placeId) return place;
+            place.savedByUser = action.meta.arg.saved;
+            return place;
+          });
     });
     builder.addCase(apiChangeStatusOfPlace.fulfilled, (state, action) => {
       state.placeForPage.status = action.payload.status;
@@ -330,8 +332,9 @@ export const { initPlaceForPage } = placeSlice.actions;
 export const selectPlaceForPage = (state: RootState): PlaceWithData =>
   state.place.placeForPage;
 
-export const selectPlaceSearchResult = (state: RootState): PlaceHeader[] =>
-  state.place.searchResult;
+export const selectPlaceSearchResult = (
+  state: RootState
+): PlaceHeader[] | null => state.place.searchResult;
 
 export const selectPlaceSearchResultHistory = (
   state: RootState

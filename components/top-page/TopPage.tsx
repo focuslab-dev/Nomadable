@@ -223,6 +223,7 @@ export const TopPage: React.FC<Props> = ({
 
   useEffect(() => {
     // if (places.length > 0) {
+    if (!places) return;
     const placeIds = places.map((place) => place.id);
     fetchContributersArea(placeIds);
     // }
@@ -293,7 +294,7 @@ export const TopPage: React.FC<Props> = ({
           </FilterButtonForMobile>
         </PullTabForMobile>
         <SearchResult
-          places={places}
+          places={places || []}
           onChangePageIndex={onChangePageIndex}
           width={RESULT_WIDTH}
           selectedPlace={selectedPlace}
@@ -310,7 +311,7 @@ export const TopPage: React.FC<Props> = ({
       <MapSection viewHeight={viewHeight}>
         <MapSearch
           mapId="search-places"
-          places={city ? places : searchResultHistory}
+          places={searchResultHistory}
           onChange={onChangeMapArea}
           onClickMarker={onClickMarker}
           selectedPlace={selectedPlace}

@@ -49,7 +49,11 @@ export default function TopPageContainer(props: TopPageProps) {
     return `Best cafes & co-working spaces in ${
       _city ? _city.city : ""
     } (with WiFi speed information): 
-      ${places.map((p, index) => ` ${index + 1}. ${p.spotName}`).join(" · ")}.
+      ${
+        !places
+          ? ""
+          : places.map((p, index) => ` ${index + 1}. ${p.spotName}`).join(" · ")
+      }.
     `;
   };
 
@@ -81,7 +85,7 @@ export default function TopPageContainer(props: TopPageProps) {
           pagePath={`${APP_URL}/${props.city?.slug}`}
         />
         <TopPage
-          places={places && places.length > 0 ? places : props.places || []}
+          places={places ? places : props.places || []}
           searchResultTotalCnt={
             searchResultTotalCnt && searchResultTotalCnt > 0
               ? searchResultTotalCnt
