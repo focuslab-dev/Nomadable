@@ -51,7 +51,10 @@ export default function TopPageContainer(props: TopPageProps) {
           pageDescription={APP_LONG_DESCRIPTION}
           pagePath={`${APP_URL}`}
         />
-        <TopPage places={places} searchResultTotalCnt={searchResultTotalCnt} />
+        <TopPage
+          places={places || []}
+          searchResultTotalCnt={searchResultTotalCnt}
+        />
       </Layout>
     </Fragment>
   );
