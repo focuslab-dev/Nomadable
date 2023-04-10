@@ -84,7 +84,6 @@ handler.post(async (req: any, res: any) => {
 
     return res.status(200).json({ reviewWithData });
   } catch (error: any) {
-    console.log("error", error);
     return res.status(500).json({ message: ERR_SOMETHING, placeId: "" });
   }
 });

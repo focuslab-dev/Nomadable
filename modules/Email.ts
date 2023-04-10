@@ -22,7 +22,5 @@ export const sendMailUserVerify = async (
       }Thank you for joining Nomadable community! \nHere is the verification link to sign you up completely: \n\n ${APP_URL}/verify-account/${verificationCode} \n\nThanks,\nYuya Uzu from Nomadable`,
     };
     await sgMail.send(msg);
-  } catch (err) {
-    console.log(err);
-  }
+  } catch (err) {}
 };

@@ -27,7 +27,6 @@ export const UserInfoModal: React.FC<Props> = ({}) => {
   const userId = visibleModal.referenceId;
 
   const closeModal = () => {
-    console.log("close");
     dispatch(closeModalGlobal());
   };
 

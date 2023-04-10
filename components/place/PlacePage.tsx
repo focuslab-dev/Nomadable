@@ -109,7 +109,6 @@ export const PlacePage: React.FC<Props> = ({ placeWithData }) => {
   };
 
   const onChangeStatus = (status: string) => {
-    console.log(status);
     dispatch(apiChangeStatusOfPlace({ placeId: pd.id, status: status }));
   };
 

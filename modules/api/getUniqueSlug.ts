@@ -3,28 +3,32 @@ export const getUniqueSlug = async (
   text: string,
   collectionId: string
 ): Promise<string> => {
-  let count = 0;
-  let finalCandidate = "";
+  try {
+    let count = 0;
+    let finalCandidate = "";
 
-  while (finalCandidate === "") {
-    const candidate = text
-      .toLowerCase()
-      .replace(/ /g, "-")
-      .replace(/[^\w-]+/g, "")
-      .replace(/(-)\1+/g, "-");
+    while (finalCandidate === "") {
+      const candidate = text
+        .toLowerCase()
+        .replace(/ /g, "-")
+        // .replace(/[^\w-]+/g, "")
+        .replace(/(-)\1+/g, "-");
 
-    const candidateWithCount = `${candidate}${count > 0 ? `-${count}` : ""}`;
+      const candidateWithCount = `${candidate}${count > 0 ? `-${count}` : ""}`;
 
-    const existing = await Collection.findOne({
-      [collectionId]: candidateWithCount,
-    }).lean();
+      const existing = await Collection.findOne({
+        [collectionId]: candidateWithCount,
+      }).lean();
 
-    if (!existing) {
-      finalCandidate = candidateWithCount;
-    } else {
-      count += 1;
+      if (!existing) {
+        finalCandidate = candidateWithCount;
+      } else {
+        count += 1;
+      }
     }
+    return finalCandidate;
+  } catch (err) {
+    console.error(err);
+    throw err;
   }
-
-  return finalCandidate;
 };
