@@ -1,16 +1,14 @@
-import { ERR_PLACE_EXISTS } from "./../../modules/ErrorCode";
 import nextConnect from "next-connect";
 
+import { ERR_PLACE_EXISTS } from "./../../modules/ErrorCode";
 import { ERR_SOMETHING } from "../../modules/ErrorCode";
 import databaseMiddleware from "../../middleware/database";
 import authenticationMiddleware from "../../middleware/authentication";
-import axios from "axios";
-import { getPlacePhotos } from "../../modules/api/getPlacePhotos";
 import { Place } from "../../redux/slices/placeSlice";
 import { getUniqueSlug } from "../../modules/api/getUniqueSlug";
 import { addNewEvent } from "../../modules/api/addNewEvent";
 import { distributePointsGeneral } from "../../modules/api/addPoint";
-import { getPointPlan, POINT_TYPE_ADD_PLACE } from "../../constants";
+import { POINT_TYPE_ADD_PLACE } from "../../constants";
 import { getImagesOfPlace } from "../../modules/api/getImagesOfPlace";
 
 const PLACE_ID = "place_id";

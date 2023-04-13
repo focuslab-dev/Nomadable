@@ -8,6 +8,7 @@ export const callFetchEnvVariables = async (): Promise<{
     speedOfMeAccountCode: string;
     gapiClientId: string;
     gaMeasurementId: string;
+    mapboxStyleUrl: string;
   };
 }> => {
   try {

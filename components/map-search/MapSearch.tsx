@@ -7,7 +7,10 @@ import { MapArea, Place } from "../../redux/slices/placeSlice";
 import { useRouter } from "next/router";
 import { convertPlacesToPins, makeIcon } from "./MapSearchModules";
 import { useAppSelector } from "../../redux/hooks";
-import { selectMapboxAccessToken } from "../../redux/slices/envSlice";
+import {
+  selectMapboxAccessToken,
+  selectMapboxStyleUrl,
+} from "../../redux/slices/envSlice";
 
 interface Props {
   mapId: string;
@@ -27,9 +30,6 @@ interface Props {
   hoveredPlace: string;
   mapAreaOfCity?: MapArea;
 }
-
-const MAP_STYLE_STREET = "mapbox://styles/mapbox/streets-v11";
-const MAP_STYLE_LIGHT = "mapbox://styles/mapbox/light-v10";
 
 interface Pin {
   id: string;
@@ -52,6 +52,7 @@ export const MapSearch: React.FC<Props> = (props) => {
   // const [queryLoaded, setQueryLoaded] = useState(false);
   // const geoControlRef = useRef();
   const mapboxAccessToken = useAppSelector(selectMapboxAccessToken);
+  const mapboxStyleUrl = useAppSelector(selectMapboxStyleUrl);
 
   /**
    * Modules
@@ -77,7 +78,7 @@ export const MapSearch: React.FC<Props> = (props) => {
     mapRef.current = new mapboxgl.Map({
       container: mapId,
       // Choose from Mapbox's core styles, or make your own style with Mapbox Studio
-      style: MAP_STYLE_LIGHT,
+      style: mapboxStyleUrl,
       center: [0, 0],
       zoom: 0.1,
       interactive: true,

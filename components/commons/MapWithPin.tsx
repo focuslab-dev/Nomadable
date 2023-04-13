@@ -4,7 +4,10 @@ import mapboxgl from "mapbox-gl";
 
 import * as cons from "../../constants";
 import { useAppSelector } from "../../redux/hooks";
-import { selectMapboxAccessToken } from "../../redux/slices/envSlice";
+import {
+  selectMapboxAccessToken,
+  selectMapboxStyleUrl,
+} from "../../redux/slices/envSlice";
 
 interface Props {
   mapId: string;
@@ -17,6 +20,7 @@ interface Props {
 export const MapWithPin: React.FC<Props> = (props) => {
   const mapId = `mapbox-${props.mapId}`;
   const mapboxAccessToken = useAppSelector(selectMapboxAccessToken);
+  const mapboxStyleUrl = useAppSelector(selectMapboxStyleUrl);
 
   /**
    * On Load
@@ -32,7 +36,7 @@ export const MapWithPin: React.FC<Props> = (props) => {
     const map = new mapboxgl.Map({
       container: mapId,
       // Choose from Mapbox's core styles, or make your own style with Mapbox Studio
-      style: "mapbox://styles/mapbox/light-v10",
+      style: mapboxStyleUrl,
       center: [lng || 0, lat || 0],
       zoom: lng ? 10 : 0.1,
       interactive,
