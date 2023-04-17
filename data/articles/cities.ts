@@ -381,6 +381,18 @@ export const JAPAN_KYOTO: City = {
   },
 };
 
+export const JAPAN_FUKUOKA: City = {
+  slug: "japan-fukuoka",
+  country: "Japan",
+  city: "Fukuoka",
+  boundary: {
+    latStart: 33.391940030067786,
+    lngStart: 130.1311880401468,
+    latEnd: 33.78603282095139,
+    lngEnd: 130.6479711386686,
+  },
+};
+
 export const CITIES: City[] = [
   /**
    * Eeast Asia
@@ -389,6 +401,7 @@ export const CITIES: City[] = [
   JAPAN_TOKYO,
   JAPAN_KARUIZAWA,
   JAPAN_KYOTO,
+  JAPAN_FUKUOKA,
   /**
    * South East Asia
    */
