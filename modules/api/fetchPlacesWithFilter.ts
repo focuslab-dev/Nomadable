@@ -1,13 +1,68 @@
-import {
-  SORT_BY_CHECK_INS,
-  SORT_BY_DISTANCE,
-  SORT_BY_REVIEW,
-  SORT_BY_SPEED,
-  STATUS_OPEN,
-  STATUS_TEMP_CLOSE,
-} from "./../../constants";
+import * as cons from "./../../constants";
 import { Boundary } from "../../data/articles/cities";
 import { FilterObj, PlaceHeader } from "../../redux/slices/placeSlice";
+import { group } from "console";
+
+const getAvailabilitiesOfPlaceType = (placeType: string) => {
+  switch (placeType) {
+    case cons.PLACE_TYPE_CAFE:
+      return Object.keys(cons.AVL_CAFE_LIST);
+    case cons.PLACE_TYPE_HOTEL:
+      return Object.keys(cons.AVL_HOTEL_LIST);
+    case cons.PLACE_TYPE_PUBLIC:
+      return Object.keys(cons.AVL_PUBLICSPACE_LIST);
+    case cons.PLACE_TYPE_WORKSPACE:
+      return Object.keys(cons.AVL_WORKSPACE_LIST);
+    default:
+      return [];
+  }
+};
+
+const extractAvailabilities = (
+  availabilitiesInFilter: string[],
+  placeType: string
+) => {
+  const availabilitiesOfPlaceType = getAvailabilitiesOfPlaceType(placeType);
+  const availabilities = availabilitiesInFilter.filter((avl) =>
+    availabilitiesOfPlaceType.includes(avl)
+  );
+  return availabilities;
+};
+
+// const getAvailabilityGroups = (availabilities: string[], LISTS: object[]) => {
+//   const availabilityGroups = LISTS.map((LIST) => {
+//     const availabilitiesOfList = extractAvailabilities(availabilities, LIST);
+//     return availabilitiesOfList;
+//   });
+
+//   const availabilityGroupsFiltered = availabilityGroups.filter(
+//     (group) => group.length > 0
+//   );
+
+//   return availabilityGroupsFiltered;
+// };
+
+const makeAvailabilityFilter = (
+  placeTypes: string[],
+  availavilities: string[]
+) => {
+  const availabilityFilters = placeTypes.map((placeType) => {
+    const availabilitiesOfPlaceType = extractAvailabilities(
+      availavilities,
+      placeType
+    );
+
+    return {
+      placeType,
+      availability:
+        availabilitiesOfPlaceType.length > 0
+          ? { $all: availabilitiesOfPlaceType }
+          : { $exists: true },
+    };
+  });
+
+  return availabilityFilters;
+};
 
 const makeCondition = async (
   mongoose: any,
@@ -15,15 +70,10 @@ const makeCondition = async (
   boundary: Boundary | null,
   savedPlaceIds: string[]
 ) => {
-  const placeTypeFilter =
-    filterObj.placeTypes.length > 0
-      ? { $in: filterObj.placeTypes }
-      : { $exists: true };
-
-  const availabilityFilter =
-    filterObj.availability.length > 0
-      ? { $all: filterObj.availability }
-      : { $exists: true };
+  const placeAndAvailabilityFilters = makeAvailabilityFilter(
+    filterObj.placeTypes,
+    filterObj.availability
+  );
 
   const boundaryCondition = boundary
     ? {
@@ -36,25 +86,27 @@ const makeCondition = async (
       }
     : { $exists: true };
 
-  const condition = {
-    placeType: placeTypeFilter,
-    availability: availabilityFilter,
-    status: { $in: [STATUS_OPEN, STATUS_TEMP_CLOSE] },
+  let condition: any = {
+    status: { $in: [cons.STATUS_OPEN, cons.STATUS_TEMP_CLOSE] },
     id: filterObj.saved ? { $in: savedPlaceIds } : { $exists: true },
     location: boundaryCondition,
     speedDown: { $gte: filterObj.wifiSpeed },
   };
+
+  if (placeAndAvailabilityFilters.length > 0) {
+    condition["$or"] = placeAndAvailabilityFilters;
+  }
 
   return condition;
 };
 
 const makeSortCondition = (sortBy: string) => {
   switch (sortBy) {
-    case SORT_BY_REVIEW:
+    case cons.SORT_BY_REVIEW:
       return { reviewStars: -1, testCnt: -1 };
-    case SORT_BY_CHECK_INS:
+    case cons.SORT_BY_CHECK_INS:
       return { testCnt: -1, reviewStars: -1 };
-    case SORT_BY_SPEED:
+    case cons.SORT_BY_SPEED:
       return { speedDown: -1 };
     default:
       return { reviewStars: -1, testCnt: -1 };
@@ -70,7 +122,7 @@ const makePipeline = (
 ) => {
   const pipeline: any[] = [];
 
-  if (userLng && userLat && filterObj.sortBy === SORT_BY_DISTANCE) {
+  if (userLng && userLat && filterObj.sortBy === cons.SORT_BY_DISTANCE) {
     pipeline.push({
       $geoNear: {
         near: { type: "Point", coordinates: [userLng, userLat] },
@@ -83,7 +135,7 @@ const makePipeline = (
 
   pipeline.push({ $match: condition });
 
-  if (filterObj.sortBy !== SORT_BY_DISTANCE) {
+  if (filterObj.sortBy !== cons.SORT_BY_DISTANCE) {
     pipeline.push({
       $sort: makeSortCondition(filterObj.sortBy),
     });

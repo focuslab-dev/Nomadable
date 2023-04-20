@@ -118,7 +118,7 @@ export const FilterModal: React.FC<Props> = ({
   useEffect(() => {
     setFilterObj({
       ...localFilterObj,
-      availability: [],
+      // availability: [],
     });
   }, [localFilterObj.placeTypes]);
 
@@ -137,57 +137,53 @@ export const FilterModal: React.FC<Props> = ({
           typeDict={cons.PLACE_TYPE_LIST}
         />
 
-        {localFilterObj.placeTypes.length === 1 &&
-          localFilterObj.placeTypes[0] === cons.PLACE_TYPE_CAFE && (
-            <SpecificForms>
-              <SubLabel>Filter for Cafes</SubLabel>
-              <FilterComponent
-                onChangeFilterItems={onChangeAvailability}
-                filterItems={localFilterObj.availability}
-                typeDict={cons.AVL_CAFE_LIST}
-                allowAllSelect
-              />
-            </SpecificForms>
-          )}
+        {localFilterObj.placeTypes.includes(cons.PLACE_TYPE_CAFE) && (
+          <SpecificForms>
+            <SubLabel>Filter for Cafes</SubLabel>
+            <FilterComponent
+              onChangeFilterItems={onChangeAvailability}
+              filterItems={localFilterObj.availability}
+              typeDict={cons.AVL_CAFE_LIST}
+              allowAllSelect
+            />
+          </SpecificForms>
+        )}
 
-        {localFilterObj.placeTypes.length === 1 &&
-          localFilterObj.placeTypes[0] === cons.PLACE_TYPE_WORKSPACE && (
-            <SpecificForms>
-              <SubLabel>Filter for Work Spaces</SubLabel>
-              <FilterComponent
-                onChangeFilterItems={onChangeAvailability}
-                filterItems={localFilterObj.availability}
-                typeDict={cons.AVL_WORKSPACE_LIST}
-                allowAllSelect
-              />
-            </SpecificForms>
-          )}
+        {localFilterObj.placeTypes.includes(cons.PLACE_TYPE_WORKSPACE) && (
+          <SpecificForms>
+            <SubLabel>Filter for Work Spaces</SubLabel>
+            <FilterComponent
+              onChangeFilterItems={onChangeAvailability}
+              filterItems={localFilterObj.availability}
+              typeDict={cons.AVL_WORKSPACE_LIST}
+              allowAllSelect
+            />
+          </SpecificForms>
+        )}
 
-        {localFilterObj.placeTypes.length === 1 &&
-          localFilterObj.placeTypes[0] === cons.PLACE_TYPE_PUBLIC && (
-            <SpecificForms>
-              <SubLabel>Filter for Public Spaces</SubLabel>
-              <FilterComponent
-                onChangeFilterItems={onChangeAvailability}
-                filterItems={localFilterObj.availability}
-                typeDict={cons.AVL_PUBLICSPACE_LIST}
-                allowAllSelect
-              />
-            </SpecificForms>
-          )}
+        {localFilterObj.placeTypes.includes(cons.PLACE_TYPE_PUBLIC) && (
+          <SpecificForms>
+            <SubLabel>Filter for Public Spaces</SubLabel>
+            <FilterComponent
+              onChangeFilterItems={onChangeAvailability}
+              filterItems={localFilterObj.availability}
+              typeDict={cons.AVL_PUBLICSPACE_LIST}
+              allowAllSelect
+            />
+          </SpecificForms>
+        )}
 
-        {localFilterObj.placeTypes.length === 1 &&
-          localFilterObj.placeTypes[0] === cons.PLACE_TYPE_HOTEL && (
-            <SpecificForms>
-              <SubLabel>Filter for Hotels</SubLabel>
-              <FilterComponent
-                onChangeFilterItems={onChangeAvailability}
-                filterItems={localFilterObj.availability}
-                typeDict={cons.AVL_HOTEL_LIST}
-                allowAllSelect
-              />
-            </SpecificForms>
-          )}
+        {localFilterObj.placeTypes.includes(cons.PLACE_TYPE_HOTEL) && (
+          <SpecificForms>
+            <SubLabel>Filter for Hotels</SubLabel>
+            <FilterComponent
+              onChangeFilterItems={onChangeAvailability}
+              filterItems={localFilterObj.availability}
+              typeDict={cons.AVL_HOTEL_LIST}
+              allowAllSelect
+            />
+          </SpecificForms>
+        )}
 
         <Line />
 

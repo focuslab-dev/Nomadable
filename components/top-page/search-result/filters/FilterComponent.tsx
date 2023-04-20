@@ -28,12 +28,6 @@ export const FilterComponent: React.FC<Props> = ({
       newFilterItems = [...filterItems, placeType];
     }
 
-    if (!allowAllSelect) {
-      if (newFilterItems.length >= Object.keys(typeDict).length) {
-        newFilterItems = [];
-      }
-    }
-
     onChangeFilterItems(newFilterItems);
   };
 
