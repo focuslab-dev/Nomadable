@@ -386,10 +386,10 @@ export const JAPAN_FUKUOKA: City = {
   country: "Japan",
   city: "Fukuoka",
   boundary: {
-    latStart: 33.391940030067786,
-    lngStart: 130.1311880401468,
-    latEnd: 33.78603282095139,
-    lngEnd: 130.6479711386686,
+    latStart: 33.48064471164125,
+    lngStart: 130.2353768746321,
+    latEnd: 33.70729465157126,
+    lngEnd: 130.53933975048704,
   },
 };
 
