@@ -393,6 +393,18 @@ export const JAPAN_FUKUOKA: City = {
   },
 };
 
+export const JAPAN_OSAKA: City = {
+  slug: "japan-osaka",
+  country: "Japan",
+  city: "Osaka",
+  boundary: {
+    latStart: 34.522523112575755,
+    lngStart: 135.3000130355984,
+    latEnd: 34.830969312215544,
+    lngEnd: 135.69282121620847,
+  },
+};
+
 export const CITIES: City[] = [
   /**
    * Eeast Asia
@@ -401,6 +413,7 @@ export const CITIES: City[] = [
   JAPAN_TOKYO,
   JAPAN_KARUIZAWA,
   JAPAN_KYOTO,
+  JAPAN_OSAKA,
   JAPAN_FUKUOKA,
   /**
    * South East Asia
