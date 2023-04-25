@@ -72,11 +72,34 @@ const CHANGMAI_PLACE: Article = {
   omitReviewIds: [],
 };
 
+const TOKYO_DROPIN_AND_CAFE: Article = {
+  slug: `places-to-work-from-in-${ct.JAPAN_TOKYO.slug}`,
+  city: ct.JAPAN_TOKYO,
+  title:
+    "10 Best Places to Work From in Tokyo (Cafes & Drop-in Coworking Spaces",
+  filterObj: {
+    placeTypes: [
+      cons.PLACE_TYPE_CAFE,
+      cons.PLACE_TYPE_WORKSPACE,
+      cons.PLACE_TYPE_PUBLIC,
+    ],
+    availability: [cons.AVL_DROP_IN],
+    saved: false,
+    wifiSpeed: 1,
+    sortBy: cons.SORT_BY_REVIEW,
+  },
+  placeCnt: 10,
+  omitPlaceIds: [],
+  omitReviewIds: [],
+};
+
 /**
  * Export
  */
 
 export const ARTICLES: Article[] = [
+  // East Asia
+  TOKYO_DROPIN_AND_CAFE,
   // South East Asia
   BANGKOK_CORWORKING,
   BANGKOK_CAFE,
