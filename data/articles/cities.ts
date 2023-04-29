@@ -405,6 +405,18 @@ export const JAPAN_OSAKA: City = {
   },
 };
 
+export const INDONESIA_KUTA: City = {
+  slug: "indonesia-kuta",
+  country: "Indonesia",
+  city: "Kuta",
+  boundary: {
+    latStart: -8.800554047785752,
+    lngStart: 115.08131783787445,
+    latEnd: -8.624222017451032,
+    lngEnd: 115.27437334758162,
+  },
+};
+
 export const CITIES: City[] = [
   /**
    * Eeast Asia
@@ -422,6 +434,7 @@ export const CITIES: City[] = [
   THAILAND_CHIANGMAI,
   INDONESIA_CANGGU,
   INDONESIA_JAKARTA,
+  INDONESIA_KUTA,
   MALAYSIA_KUALA_LUMPUR,
   SINGAPORE_SINGAPORE,
   /**
