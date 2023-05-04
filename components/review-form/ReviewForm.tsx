@@ -70,7 +70,7 @@ export const ReviewForm: React.FC<Props> = (props) => {
         <StarItem
           title="Stable WiFi 🌐"
           leftText="Not usable"
-          rightText="Flawless"
+          rightText="Stable all the time"
           value={props.reviewAspects.stableWifi}
           onChange={(number) => {
             handleUpdateReviewAspects("stableWifi", number);
@@ -102,7 +102,7 @@ export const ReviewForm: React.FC<Props> = (props) => {
         <StarItem
           title="Community 🤝"
           leftText="Not cool"
-          rightText="Cool staff & people"
+          rightText="Friendly & welcoming"
           value={props.reviewAspects.community}
           onChange={(number) => {
             handleUpdateReviewAspects("community", number);
