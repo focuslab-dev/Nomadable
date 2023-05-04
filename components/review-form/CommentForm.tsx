@@ -38,12 +38,11 @@ export const CommentForm: React.FC<Props> = (props) => {
         />
       </Body>
       <Buttons>
-        <DeleteButton
-          onClick={props.onClickDelete}
-          visible={props.reviewId !== ""}
-        >
-          Delete
-        </DeleteButton>
+        <LeftButtonWrapper>
+          {props.reviewId !== "" && (
+            <DeleteButton onClick={props.onClickDelete}>Delete</DeleteButton>
+          )}
+        </LeftButtonWrapper>
         <RightButtons>
           <BackButton onClick={props.onClickBack}>Back</BackButton>
           <SubmitButton onClick={props.onClickSubmit}>Submit</SubmitButton>
@@ -83,23 +82,14 @@ const Buttons = styled.div`
   ${ContainerStyleInside}
   display: flex;
   justify-content: space-between;
+  align-items: center;
   padding-top: 1rem;
   padding-bottom: 1rem;
   border-top: 1px solid ${cons.FONT_COLOR_SUPER_LIGHT};
 `;
 
-const DeleteButton = styled.button<{ visible: boolean }>`
+const DeleteButton = styled.button`
   ${ButtonText};
-
-  visibility: hidden;
-  pointer-events: none;
-
-  ${(props) =>
-    props.visible &&
-    `
-    visibility: visible;
-    pointer-events: auto;
-  `}
 `;
 
 const SubmitButton = styled.button`
@@ -117,3 +107,5 @@ const RightButtons = styled.div`
 const BackButton = styled.button`
   ${ButtonText};
 `;
+
+const LeftButtonWrapper = styled.div``;
