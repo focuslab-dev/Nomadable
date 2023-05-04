@@ -92,10 +92,12 @@ export const ReviewFormModal: React.FC<Props> = ({}) => {
   useEffect(() => {
     if (visible) {
       setPageIndex(0);
-    } else {
-      dispatch(initReviewForm());
     }
   }, [visible]);
+
+  useEffect(() => {
+    dispatch(initReviewForm());
+  }, [reviewId]);
 
   /**
    * Render
