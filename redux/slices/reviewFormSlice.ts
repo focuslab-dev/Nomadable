@@ -83,11 +83,9 @@ const reviewFormSlice = createSlice({
     },
 
     initReviewForm: (state) => {
-      state.reviewId = "";
-      state.visible = false;
-      state.placeId = "";
+      // state.placeId = "";
       state.reviewAspects = initialReviewAspects;
-      state.stars = 0;
+      // state.stars = 0;
       state.comment = "";
     },
   },
