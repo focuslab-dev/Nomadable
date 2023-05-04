@@ -79,11 +79,7 @@ export const Reviews: React.FC<Props> = ({
         </AddReviewButton>
       )}
       <ReviewScoreSection>
-        <ReviewScore
-          stars={reviewStars}
-          reviewCnt={reviewsWithData.length}
-          avgReviewAspects={avgReviewAspects}
-        />
+        <ReviewScore stars={reviewStars} reviewCnt={reviewsWithData.length} />
       </ReviewScoreSection>
 
       <ReviewAspectsSection>

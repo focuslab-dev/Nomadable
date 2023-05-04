@@ -44,6 +44,12 @@ const ScoreBar = (props: { label: string; score: number | null }) => {
 export const AvgReviewAspectsScore: React.FC<Props> = (props) => {
   if (!props.avgReviewAspects) return null;
 
+  if (
+    Object.values(props.avgReviewAspects).filter((v) => v !== null).length === 0
+  ) {
+    return null;
+  }
+
   return (
     <AvgReviewAspectsScoreWrapper>
       <SectionLabel>Availability</SectionLabel>

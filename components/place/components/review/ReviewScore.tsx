@@ -9,7 +9,6 @@ import { ReviewStars } from "../../../app-commons/ReviewStars";
 interface Props {
   stars: number;
   reviewCnt: number;
-  avgReviewAspects: ReviewAspects;
 }
 
 export const getStarValue = (stars: number): string => {
