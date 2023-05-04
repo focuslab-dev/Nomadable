@@ -1,6 +1,6 @@
 import React from "react";
 import styled from "styled-components";
-import { Review } from "../../../../redux/slices/placeSlice";
+import { Review, ReviewAspects } from "../../../../redux/slices/placeSlice";
 
 import * as cons from "../../../../constants";
 import * as fs from "../../../../styles/styled-components/FontSize";
@@ -9,6 +9,7 @@ import { ReviewStars } from "../../../app-commons/ReviewStars";
 interface Props {
   stars: number;
   reviewCnt: number;
+  avgReviewAspects: ReviewAspects;
 }
 
 export const getStarValue = (stars: number): string => {

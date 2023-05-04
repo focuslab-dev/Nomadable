@@ -103,8 +103,6 @@ export interface ReviewAspects {
   airCondition: number | null;
   comfyChair: number | null;
   wideDesk: number | null;
-  // for cafe
-  goodCoffee: number | null;
   // others
   overall: number | null;
 }
@@ -179,8 +177,6 @@ export const initialReviewAspects: ReviewAspects = {
   airCondition: null,
   comfyChair: null,
   wideDesk: null,
-  // for cafe
-  goodCoffee: null,
   // others
   overall: null,
 };

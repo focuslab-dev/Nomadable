@@ -9,6 +9,8 @@ import { FormStyle } from "../../styles/styled-components/Forms";
 import {
   ButtonText,
   ButtonBlackSmall,
+  ButtonPrimaryMedium,
+  ButtonPrimarySmall,
 } from "../../styles/styled-components/Buttons";
 import { ContainerStyleInside } from "../../styles/styled-components/Layouts";
 
@@ -101,7 +103,8 @@ const DeleteButton = styled.button<{ visible: boolean }>`
 `;
 
 const SubmitButton = styled.button`
-  ${ButtonBlackSmall}
+  /* ${ButtonBlackSmall} */
+  ${ButtonPrimarySmall}
   margin-left: 4rem;
 `;
 

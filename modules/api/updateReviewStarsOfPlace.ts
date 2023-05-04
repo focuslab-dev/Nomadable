@@ -4,7 +4,7 @@ import {
   initialReviewAspects,
 } from "../../redux/slices/placeSlice";
 
-const getAvgReviewAspects = (reviews: Review[]) => {
+export const getAvgReviewAspects = (reviews: Review[]) => {
   const reviewAspectsValues: any = {};
   Object.keys(initialReviewAspects).forEach((key) => {
     reviewAspectsValues[key] = [];
@@ -62,7 +62,7 @@ export const updateReviewStarsOfPlace = async (
       { id: placeId },
       {
         $set: {
-          ...avgReviewAspects,
+          avgReviewAspects,
           reviewStars: avgStars || 0,
         },
       }

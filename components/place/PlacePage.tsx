@@ -250,6 +250,7 @@ export const PlacePage: React.FC<Props> = ({ placeWithData }) => {
           <InfoItemWrapper label="Reviews">
             <Reviews
               reviewsWithData={pd.reviewsWithData}
+              avgReviewAspects={pd.avgReviewAspects}
               reviewStars={pd.reviewStars}
               placeId={pd.id}
             />

@@ -25,17 +25,20 @@ import {
 import { ReviewForm } from "./review/ReviewForm";
 import { ReviewItem } from "./review/ReviewItem";
 import { ReviewScore } from "./review/ReviewScore";
+import { AvgReviewAspectsScore } from "./review/AvgReviewAspectsScore";
 
 interface Props {
   reviewsWithData: ReviewWithData[];
   reviewStars: number;
   placeId: string;
+  avgReviewAspects: ReviewAspects;
 }
 
 export const Reviews: React.FC<Props> = ({
   reviewsWithData,
   reviewStars,
   placeId,
+  avgReviewAspects,
 }) => {
   const dispatch = useAppDispatch();
   const isAuthenticated = useAppSelector(selectAuthenticated);
@@ -76,8 +79,17 @@ export const Reviews: React.FC<Props> = ({
         </AddReviewButton>
       )}
       <ReviewScoreSection>
-        <ReviewScore stars={reviewStars} reviewCnt={reviewsWithData.length} />
+        <ReviewScore
+          stars={reviewStars}
+          reviewCnt={reviewsWithData.length}
+          avgReviewAspects={avgReviewAspects}
+        />
       </ReviewScoreSection>
+
+      <ReviewAspectsSection>
+        <AvgReviewAspectsScore avgReviewAspects={avgReviewAspects} />
+      </ReviewAspectsSection>
+
       {reviewsWithData.length > 0 && (
         <ReviewItems>
           {reviewsWithData.map((reviewWithData) => (
@@ -120,3 +132,5 @@ const AddReviewButton = styled.button`
   top: -3.55rem;
   left: 7rem;
 `;
+
+const ReviewAspectsSection = styled.div``;

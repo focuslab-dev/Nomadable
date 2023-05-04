@@ -2,9 +2,11 @@ import {
   Place,
   PlaceUserData,
   PlaceWithData,
+  ReviewWithData,
 } from "../../redux/slices/placeSlice";
 import { uniqueArray } from "../ArrayUtils";
 import { makeReviewsWithData } from "./makeReviewsWithData";
+import { getAvgReviewAspects } from "./updateReviewStarsOfPlace";
 
 export const getCheckInUsers = async (
   recentCheckIns: any[],

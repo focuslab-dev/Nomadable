@@ -85,8 +85,12 @@ export const PlaceItem: React.FC<Props> = ({
       <Address>{getCity(place.spotAddress)}</Address>
       <ScoreInfo>
         {place.reviewStars > 0 && (
-          <ReviewStars>
-            <StarIcon src="/icon/star-black.svg" />
+          <ReviewStars isGold={place.reviewStars >= 4.5}>
+            {place.reviewStars >= 4.5 ? (
+              <StarIcon src="/icon/star-gold.svg" />
+            ) : (
+              <StarIcon src="/icon/star-black.svg" />
+            )}
             {getStarValue(place.reviewStars)}
             <Dot>&#x2022;</Dot>
           </ReviewStars>
@@ -197,13 +201,25 @@ const CheckInNum = styled.span`
   font-weight: 700;
 `;
 
-const ReviewStars = styled.div`
+const ReviewStars = styled.div<{ isGold: boolean }>`
   ${fs.FontSizeSemiSmall};
   font-weight: 700;
-  color: ${cons.FONT_COLOR_NORMAL};
+
   display: flex;
   align-items: center;
   margin-right: 0.2rem;
+  color: ${cons.FONT_COLOR_NORMAL};
+
+  ${(props) =>
+    !props.isGold &&
+    `
+  `}
+
+  ${(props) =>
+    props.isGold &&
+    `
+   color: "#dc9b39";
+  `}
 `;
 
 const StarIcon = styled.img`

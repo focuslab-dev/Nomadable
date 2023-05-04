@@ -56,7 +56,7 @@ export const ReviewForm: React.FC<Props> = (props) => {
       <Body>
         <SectionLabel>Availability</SectionLabel>
         <StarItem
-          title="Not Crowded"
+          title="Not Crowded 👨‍👨‍👧‍👦"
           leftText="Packed with people"
           rightText="Many available seats"
           value={props.reviewAspects.vacancy}
@@ -68,7 +68,7 @@ export const ReviewForm: React.FC<Props> = (props) => {
         />
 
         <StarItem
-          title="Stable WiFi"
+          title="Stable WiFi 🌐"
           leftText="Not usable"
           rightText="Flawless"
           value={props.reviewAspects.stableWifi}
@@ -82,7 +82,7 @@ export const ReviewForm: React.FC<Props> = (props) => {
         <SectionLabel>Vibes</SectionLabel>
 
         <StarItem
-          title="People Working"
+          title="People Working 💻"
           leftText="None working"
           rightText="Majority working"
           value={props.reviewAspects.peopleWorking}
@@ -94,7 +94,7 @@ export const ReviewForm: React.FC<Props> = (props) => {
         />
 
         <StarItem
-          title="Aesthetic"
+          title="Aesthetic 💅"
           leftText="Not impressive"
           rightText="Stylish & motivating"
           value={props.reviewAspects.aesthetic}
@@ -105,8 +105,10 @@ export const ReviewForm: React.FC<Props> = (props) => {
           }}
         />
 
+        <SectionLabel>Productivity</SectionLabel>
+
         <StarItem
-          title="Quiet"
+          title="Quiet 🤫"
           leftText="Too noisy"
           rightText="Quiet or bearable"
           value={props.reviewAspects.quiet}
@@ -117,11 +119,9 @@ export const ReviewForm: React.FC<Props> = (props) => {
           }}
         />
 
-        <SectionLabel>Productivity</SectionLabel>
-
         <StarItem
-          title="Air Condition"
-          leftText="Too hot or cold"
+          title="Air Condition 🌬"
+          leftText="Unpleasant air"
           rightText="Good temparature"
           value={props.reviewAspects.airCondition}
           onChange={(number) => {
@@ -132,7 +132,7 @@ export const ReviewForm: React.FC<Props> = (props) => {
         />
 
         <StarItem
-          title="Comfy Chair"
+          title="Comfy Chair 💺"
           leftText="Causing body pain"
           rightText="Can sit for hours"
           value={props.reviewAspects.comfyChair}
@@ -144,7 +144,7 @@ export const ReviewForm: React.FC<Props> = (props) => {
         />
 
         <StarItem
-          title="Wide Desk"
+          title="Wide Desk 👩‍💻"
           leftText="Laptop barely fits"
           rightText="More than enough space"
           value={props.reviewAspects.wideDesk}
@@ -158,7 +158,7 @@ export const ReviewForm: React.FC<Props> = (props) => {
         <SectionLabel>Others</SectionLabel>
 
         <StarItem
-          title="Overall"
+          title="Overall 👍"
           leftText="Never coming back"
           rightText="My go-to place"
           value={props.reviewAspects.overall}
