@@ -95,10 +95,6 @@ export const ReviewFormModal: React.FC<Props> = ({}) => {
     }
   }, [visible]);
 
-  useEffect(() => {
-    dispatch(initReviewForm());
-  }, [reviewId]);
-
   /**
    * Render
    */
