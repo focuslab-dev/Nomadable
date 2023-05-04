@@ -15,17 +15,19 @@ import {
 
 interface Props {
   reviewId: string;
-  reviewAspects: ReviewAspects;
+  reviewAspects: any;
   updateReviewAspects: (reviewAspects: ReviewAspects) => void;
   onClickNext: () => void;
   onClickDelete: () => void;
 }
 
 export const ReviewForm: React.FC<Props> = (props) => {
-  const handleUpdateReviewAspects = (keyValue: any) => {
+  const handleUpdateReviewAspects = (key: string, number: number) => {
+    const _number = number === props.reviewAspects[key] ? null : number;
+
     props.updateReviewAspects({
       ...props.reviewAspects,
-      ...keyValue,
+      [key]: _number,
     });
   };
 
@@ -61,9 +63,7 @@ export const ReviewForm: React.FC<Props> = (props) => {
           rightText="Many available seats"
           value={props.reviewAspects.vacancy}
           onChange={(number) => {
-            handleUpdateReviewAspects({
-              vacancy: number,
-            });
+            handleUpdateReviewAspects("vacancy", number);
           }}
         />
 
@@ -73,9 +73,7 @@ export const ReviewForm: React.FC<Props> = (props) => {
           rightText="Flawless"
           value={props.reviewAspects.stableWifi}
           onChange={(number) => {
-            handleUpdateReviewAspects({
-              stableWifi: number,
-            });
+            handleUpdateReviewAspects("stableWifi", number);
           }}
         />
 
@@ -87,9 +85,7 @@ export const ReviewForm: React.FC<Props> = (props) => {
           rightText="Majority working"
           value={props.reviewAspects.peopleWorking}
           onChange={(number) => {
-            handleUpdateReviewAspects({
-              peopleWorking: number,
-            });
+            handleUpdateReviewAspects("peopleWorking", number);
           }}
         />
 
@@ -99,9 +95,7 @@ export const ReviewForm: React.FC<Props> = (props) => {
           rightText="Stylish & motivating"
           value={props.reviewAspects.aesthetic}
           onChange={(number) => {
-            handleUpdateReviewAspects({
-              aesthetic: number,
-            });
+            handleUpdateReviewAspects("aesthetic", number);
           }}
         />
 
@@ -113,9 +107,7 @@ export const ReviewForm: React.FC<Props> = (props) => {
           rightText="Quiet or bearable"
           value={props.reviewAspects.quiet}
           onChange={(number) => {
-            handleUpdateReviewAspects({
-              quiet: number,
-            });
+            handleUpdateReviewAspects("quiet", number);
           }}
         />
 
@@ -125,9 +117,7 @@ export const ReviewForm: React.FC<Props> = (props) => {
           rightText="Good temparature"
           value={props.reviewAspects.airCondition}
           onChange={(number) => {
-            handleUpdateReviewAspects({
-              airCondition: number,
-            });
+            handleUpdateReviewAspects("airCondition", number);
           }}
         />
 
@@ -137,9 +127,7 @@ export const ReviewForm: React.FC<Props> = (props) => {
           rightText="Can sit for hours"
           value={props.reviewAspects.comfyChair}
           onChange={(number) => {
-            handleUpdateReviewAspects({
-              comfyChair: number,
-            });
+            handleUpdateReviewAspects("comfyChair", number);
           }}
         />
 
@@ -149,9 +137,7 @@ export const ReviewForm: React.FC<Props> = (props) => {
           rightText="More than enough space"
           value={props.reviewAspects.wideDesk}
           onChange={(number) => {
-            handleUpdateReviewAspects({
-              wideDesk: number,
-            });
+            handleUpdateReviewAspects("wideDesk", number);
           }}
         />
 
@@ -163,9 +149,7 @@ export const ReviewForm: React.FC<Props> = (props) => {
           rightText="My go-to place"
           value={props.reviewAspects.overall}
           onChange={(number) => {
-            handleUpdateReviewAspects({
-              overall: number,
-            });
+            handleUpdateReviewAspects("overall", number);
           }}
         />
       </Body>
