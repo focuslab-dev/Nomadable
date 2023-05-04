@@ -99,6 +99,16 @@ export const ReviewForm: React.FC<Props> = (props) => {
           }}
         />
 
+        <StarItem
+          title="Community 🤝"
+          leftText="Not cool"
+          rightText="Cool staff & people"
+          value={props.reviewAspects.community}
+          onChange={(number) => {
+            handleUpdateReviewAspects("community", number);
+          }}
+        />
+
         <SectionLabel>Productivity</SectionLabel>
 
         <StarItem

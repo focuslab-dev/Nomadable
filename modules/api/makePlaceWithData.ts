@@ -2,7 +2,9 @@ import {
   Place,
   PlaceUserData,
   PlaceWithData,
+  ReviewAspects,
   ReviewWithData,
+  initialReviewAspects,
 } from "../../redux/slices/placeSlice";
 import { uniqueArray } from "../ArrayUtils";
 import { makeReviewsWithData } from "./makeReviewsWithData";
@@ -43,6 +45,31 @@ export const getCheckInUsers = async (
     return [];
   }
 };
+
+// const normalizeReviewAspects = (reviewAspects: ReviewAspects) => {
+//   try {
+//     if (!reviewAspects) return initialReviewAspects;
+
+//     const normalized = { ...initialReviewAspects };
+
+//     const keys = Object.keys(reviewAspects);
+
+//     keys.forEach((key) => {
+//       const value = reviewAspects[key as keyof ReviewAspects];
+//       if (value) {
+//         normalized[key as keyof ReviewAspects] = value;
+//       }
+//     });
+
+//     return normalized;
+//   } catch (err) {
+//     console.log(
+//       "🚀 ~ file: makePlaceWithData.ts:64 ~ normalizeReviewAspects ~ err:",
+//       err
+//     );
+//     return initialReviewAspects;
+//   }
+// };
 
 export const makePlaceWithData = async (
   mongoose: any,
@@ -105,6 +132,7 @@ export const makePlaceWithData = async (
       checkInUsers,
       savedByUser,
       reviewsWithData,
+      // avgReviewAspects: normalizeReviewAspects(place.avgReviewAspects),
     };
 
     return placeWithData;

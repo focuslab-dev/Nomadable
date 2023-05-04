@@ -65,6 +65,7 @@ export const AvgReviewAspectsScore: React.FC<Props> = (props) => {
         score={props.avgReviewAspects.peopleWorking}
       />
       <ScoreBar label="Aesthetic 💅" score={props.avgReviewAspects.aesthetic} />
+      <ScoreBar label="Community 🤝" score={props.avgReviewAspects.community} />
 
       <SectionLabel>Productivity</SectionLabel>
       <ScoreBar label="Quiet 🤫" score={props.avgReviewAspects.quiet} />

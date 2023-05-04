@@ -98,6 +98,7 @@ export interface ReviewAspects {
   // vibes
   peopleWorking: number | null;
   aesthetic: number | null;
+  community: number | null;
   // productivity
   quiet: number | null;
   airCondition: number | null;
@@ -172,6 +173,7 @@ export const initialReviewAspects: ReviewAspects = {
   // vibes
   peopleWorking: null,
   aesthetic: null,
+  community: null,
   // productivity
   quiet: null,
   airCondition: null,
