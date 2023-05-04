@@ -12,9 +12,12 @@ interface Props {
 }
 
 export const getStarValue = (stars: number): string => {
+  if (typeof stars !== "number") return "0.0";
+
   const _stars = stars || 0;
   const floatValue = Math.round(_stars * 10) / 10;
   const valueStr = floatValue.toString();
+
   return `${valueStr}${valueStr.length === 1 ? ".0" : ""}`;
 };
 

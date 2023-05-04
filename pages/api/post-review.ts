@@ -7,6 +7,20 @@ import authenticationMiddleware from "../../middleware/authentication";
 import { updateReviewStarsOfPlace } from "../../modules/api/updateReviewStarsOfPlace";
 import { makeReviewsWithData } from "../../modules/api/makeReviewsWithData";
 import { distributePointsGeneral } from "../../modules/api/addPoint";
+import { ReviewAspects } from "../../redux/slices/placeSlice";
+
+const calcStars = (reviewAcpects: ReviewAspects) => {
+  const reviewValues = Object.values(reviewAcpects);
+  const reviewOnlyValues = reviewValues.filter(
+    (value) => typeof value === "number"
+  );
+
+  const reviewValuesSum = reviewOnlyValues.reduce((acc, cur) => acc + cur, 0);
+  const reviewValuesCnt = reviewOnlyValues.length;
+  const reviewValuesAvg = reviewValuesSum / reviewValuesCnt;
+  const reviewValuesAvgRounded = Math.round(reviewValuesAvg * 10) / 10;
+  return reviewValuesAvgRounded;
+};
 
 const handler = nextConnect();
 
@@ -15,27 +29,43 @@ handler.use(authenticationMiddleware);
 
 handler.post(async (req: any, res: any) => {
   const { userId } = req;
-  const { placeId, stars, comment } = req.body;
+  const {
+    placeId,
+    // stars,
+    comment,
+    reviewAspects,
+  } = req.body;
 
   try {
     const Review = req.mongoose.model("Review");
 
     let pointResult = { addingPoint: 0, totalPoint: 0 };
 
-    let review = await Review.findOne({ placeId, userId });
+    const existingReview = await Review.findOne({ placeId, userId });
 
-    if (review) {
-      review.stars = stars > 5 ? 5 : stars;
-      review.comment = comment;
-      await review.save();
-    } else {
-      review = await Review.create({
+    const stars = calcStars(reviewAspects);
+
+    let review = await Review.findOneAndUpdate(
+      {
         placeId,
         userId,
-        stars,
-        comment,
-      });
+      },
+      {
+        $set: {
+          placeId,
+          userId,
+          stars: stars || 0,
+          comment,
+          reviewAspects,
+        },
+      },
+      {
+        upsert: true,
+        new: true,
+      }
+    );
 
+    if (!existingReview) {
       pointResult = await distributePointsGeneral(
         req.mongoose,
         userId,
@@ -51,11 +81,15 @@ handler.post(async (req: any, res: any) => {
       userId
     );
 
-    const reviewStars = await updateReviewStarsOfPlace(req.mongoose, placeId);
+    const { avgStars, avgReviewAspects } = await updateReviewStarsOfPlace(
+      req.mongoose,
+      placeId
+    );
 
     return res.status(200).json({
       reviewWithData,
-      reviewStars,
+      reviewStars: avgStars,
+      avgReviewAspects,
       addingPoint: pointResult.addingPoint,
       totalPoint: pointResult.totalPoint,
     });

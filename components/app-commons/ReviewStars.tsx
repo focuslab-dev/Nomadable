@@ -6,7 +6,7 @@ import * as fs from "../../styles/styled-components/FontSize";
 import { ClickableStyle } from "../../styles/styled-components/Interactions";
 
 interface Props {
-  stars: number;
+  stars: number | null;
   onChange?: (stars: number) => void;
 }
 
@@ -17,23 +17,28 @@ export const ReviewStars: React.FC<Props> = ({ stars, onChange }) => {
   return (
     <ReviewStarsWrapper interactive={onChange !== undefined}>
       <StarIcon
-        src={stars >= 1 ? ICON_BLACK_STAR : ICON_WHITE_STAR}
+        src={stars && stars >= 0.5 ? ICON_BLACK_STAR : ICON_WHITE_STAR}
+        active={typeof stars === "number" && stars >= 0.5}
         onClick={() => onChange && onChange(1)}
       />
       <StarIcon
-        src={stars >= 2 ? ICON_BLACK_STAR : ICON_WHITE_STAR}
+        src={stars && stars >= 1.5 ? ICON_BLACK_STAR : ICON_WHITE_STAR}
+        active={typeof stars === "number" && stars >= 1.5}
         onClick={() => onChange && onChange(2)}
       />
       <StarIcon
-        src={stars >= 3 ? ICON_BLACK_STAR : ICON_WHITE_STAR}
+        src={stars && stars >= 2.5 ? ICON_BLACK_STAR : ICON_WHITE_STAR}
+        active={typeof stars === "number" && stars >= 2.5}
         onClick={() => onChange && onChange(3)}
       />
       <StarIcon
-        src={stars >= 4 ? ICON_BLACK_STAR : ICON_WHITE_STAR}
+        src={stars && stars >= 3.5 ? ICON_BLACK_STAR : ICON_WHITE_STAR}
+        active={typeof stars === "number" && stars >= 3.5}
         onClick={() => onChange && onChange(4)}
       />
       <StarIcon
-        src={stars >= 5 ? ICON_BLACK_STAR : ICON_WHITE_STAR}
+        src={stars && stars >= 4.5 ? ICON_BLACK_STAR : ICON_WHITE_STAR}
+        active={typeof stars === "number" && stars >= 4.5}
         onClick={() => onChange && onChange(5)}
       />
     </ReviewStarsWrapper>
@@ -54,6 +59,13 @@ const ReviewStarsWrapper = styled.div<{ interactive: boolean }>`
   `};
 `;
 
-const StarIcon = styled.img`
+const StarIcon = styled.img<{ active: boolean }>`
   width: 1.2em;
+  opacity: 0.4;
+
+  ${(props) =>
+    props.active &&
+    `
+    opacity: 1;
+  `}
 `;

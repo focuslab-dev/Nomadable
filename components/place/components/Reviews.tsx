@@ -5,7 +5,11 @@ import * as cons from "../../../constants";
 import { winddowAlert } from "../../../modules/ClientFunctions";
 import { useAppDispatch, useAppSelector } from "../../../redux/hooks";
 import { apiVoteReview } from "../../../redux/slices/api/apiReviewSlice";
-import { Review, ReviewWithData } from "../../../redux/slices/placeSlice";
+import {
+  Review,
+  ReviewAspects,
+  ReviewWithData,
+} from "../../../redux/slices/placeSlice";
 import {
   openEditReviewForm,
   openNewReviewForm,
@@ -45,8 +49,15 @@ export const Reviews: React.FC<Props> = ({
     }
   };
 
-  const onClickEdit = (reviewId: string, stars: number, comment: string) => {
-    dispatch(openEditReviewForm({ reviewId, placeId, stars, comment }));
+  const onClickEdit = (
+    reviewId: string,
+    stars: number,
+    comment: string,
+    reviewAspects: ReviewAspects
+  ) => {
+    dispatch(
+      openEditReviewForm({ reviewId, placeId, stars, comment, reviewAspects })
+    );
   };
 
   const onClickVote = (

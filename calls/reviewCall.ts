@@ -4,19 +4,21 @@ import { readCookie } from "../modules/CookieHandler";
 import { Event, EventWithData } from "../redux/slices/eventSlice";
 import {
   Review,
+  ReviewAspects,
   ReviewWithData,
   ReviewWithPlaceData,
 } from "../redux/slices/placeSlice";
 
 // check In
 
-export const callPostReview = async (
-  placeId: string,
-  stars: number,
-  comment: string
-): Promise<{
+export const callPostReview = async (props: {
+  placeId: string;
+  comment: string;
+  reviewAspects: ReviewAspects;
+}): Promise<{
   reviewWithData: ReviewWithData;
   reviewStars: number;
+  avgReviewAspects: ReviewAspects;
   addingPoint: number;
   totalPoint: number;
 }> => {
@@ -24,7 +26,7 @@ export const callPostReview = async (
     const response = await axios({
       method: "post",
       url: `${APP_URL}/api/post-review`,
-      data: { placeId, stars, comment },
+      data: props,
       headers: {
         Authorization: readCookie(COOKIE_ACCESS_TOKEN) || "",
       },

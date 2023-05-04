@@ -1,3 +1,5 @@
+import { initialReviewAspects } from "../redux/slices/placeSlice";
+
 export const ReviewSchema = (mongoose: any) => {
   const { Schema } = mongoose;
 
@@ -9,6 +11,12 @@ export const ReviewSchema = (mongoose: any) => {
     voteScore: { type: Number, default: 0 },
     upVoters: { type: [String], default: [] },
     downVoters: { type: [String], default: [] },
+    // review aspects
+    reviewAspects: {
+      type: Object,
+      default: initialReviewAspects,
+    },
+    // review aspects
     created: {
       type: Date,
       default: Date.now,

@@ -1,6 +1,9 @@
 import React from "react";
 import styled from "styled-components";
-import { ReviewWithData } from "../../../../redux/slices/placeSlice";
+import {
+  ReviewAspects,
+  ReviewWithData,
+} from "../../../../redux/slices/placeSlice";
 
 import * as cons from "../../../../constants";
 import * as fs from "../../../../styles/styled-components/FontSize";
@@ -17,7 +20,12 @@ import { VoteButtons } from "./VoteButtons";
 
 interface Props {
   reviewWithData: ReviewWithData;
-  onClickEdit: (reviewId: string, stars: number, comment: string) => void;
+  onClickEdit: (
+    reviewId: string,
+    stars: number,
+    comment: string,
+    reviewAspects: ReviewAspects
+  ) => void;
   userId: string;
   onClickVote: (
     isUpvote: boolean,
@@ -59,7 +67,9 @@ export const ReviewItem: React.FC<Props> = ({
         </StarsSection>
         {rv.myReview && (
           <EditButton
-            onClick={() => onClickEdit(rv._id || "", rv.stars, rv.comment)}
+            onClick={() =>
+              onClickEdit(rv._id || "", rv.stars, rv.comment, rv.reviewAspects)
+            }
           >
             Edit
           </EditButton>
@@ -130,5 +140,5 @@ const EditButton = styled.button`
 `;
 
 const InfoSection = styled.div`
-margin-top: 1rem;
+  margin-top: 1rem;
 `;

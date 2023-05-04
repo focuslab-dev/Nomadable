@@ -1,3 +1,4 @@
+import { initialReviewAspects } from "../redux/slices/placeSlice";
 import { STATUS_OPEN } from "./../constants";
 
 export const PlaceSchema = (mongoose: any) => {
@@ -25,6 +26,12 @@ export const PlaceSchema = (mongoose: any) => {
     testCnt: { type: Number, default: 0 },
     availability: { type: [String], default: [] },
     reviewStars: { type: Number, default: 0 },
+    // review aspects
+    avgReviewAspects: {
+      type: Object,
+      default: initialReviewAspects,
+    },
+    // review aspects
     status: { type: String, default: STATUS_OPEN },
     created: {
       type: Date,

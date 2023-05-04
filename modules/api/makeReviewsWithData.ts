@@ -1,4 +1,7 @@
-import { ReviewWithData } from "./../../redux/slices/placeSlice";
+import {
+  ReviewWithData,
+  initialReviewAspects,
+} from "./../../redux/slices/placeSlice";
 import { Review } from "../../redux/slices/placeSlice";
 
 export const makeReviewsWithData = async (
@@ -20,6 +23,7 @@ export const makeReviewsWithData = async (
         userPicture: user.picture,
         userName: user.name,
         myReview: user._id.toString() === myUserId,
+        reviewAspects: review.reviewAspects || initialReviewAspects,
       };
     });
 

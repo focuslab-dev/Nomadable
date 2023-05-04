@@ -1,3 +1,4 @@
+import { ReviewAspects, initialReviewAspects } from "./placeSlice";
 import { apiDeleteReview, apiPostReview } from "./api/apiReviewSlice";
 import { NOTIFICATION_SUCCEED } from "./../../constants";
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
@@ -13,6 +14,7 @@ interface ReviewFormState {
   reviewId: string;
   visible: boolean;
   placeId: string;
+  reviewAspects: ReviewAspects;
   stars: number;
   comment: string;
 }
@@ -25,6 +27,7 @@ const initialState: ReviewFormState = {
   reviewId: "",
   visible: false,
   placeId: "",
+  reviewAspects: initialReviewAspects,
   stars: 0,
   comment: "",
 };
@@ -40,6 +43,7 @@ const reviewFormSlice = createSlice({
         state.placeId = action.payload.placeId;
         state.comment = "";
         state.stars = 0;
+        state.reviewAspects = initialReviewAspects;
       }
     },
     openEditReviewForm: (
@@ -49,6 +53,7 @@ const reviewFormSlice = createSlice({
         placeId: string;
         stars: number;
         comment: string;
+        reviewAspects: ReviewAspects;
       }>
     ) => {
       state.visible = true;
@@ -57,6 +62,7 @@ const reviewFormSlice = createSlice({
         state.placeId = action.payload.placeId;
         state.stars = action.payload.stars;
         state.comment = action.payload.comment;
+        state.reviewAspects = action.payload.reviewAspects;
       }
     },
 
@@ -70,6 +76,19 @@ const reviewFormSlice = createSlice({
     ) => {
       state.stars = action.payload.stars;
       state.comment = action.payload.comment;
+    },
+
+    updateReviewAspects: (state, action: PayloadAction<ReviewAspects>) => {
+      state.reviewAspects = action.payload;
+    },
+
+    initReviewForm: (state) => {
+      state.reviewId = "";
+      state.visible = false;
+      state.placeId = "";
+      state.reviewAspects = initialReviewAspects;
+      state.stars = 0;
+      state.comment = "";
     },
   },
   extraReducers: (builder) => {
@@ -89,6 +108,8 @@ export const {
   openEditReviewForm,
   hideReviewModal,
   updateReviewForm,
+  updateReviewAspects,
+  initReviewForm,
 } = reviewFormSlice.actions;
 
 /**

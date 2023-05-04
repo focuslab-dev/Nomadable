@@ -47,6 +47,7 @@ export interface Place extends Spot {
   testCnt: number;
   availability: string[];
   reviewStars: number;
+  avgReviewAspects: ReviewAspects;
   status: string;
   created: Date | undefined;
 }
@@ -90,6 +91,24 @@ export interface FilterObj {
   sortBy: string;
 }
 
+export interface ReviewAspects {
+  // availability
+  vacancy: number | null;
+  stableWifi: number | null;
+  // vibes
+  peopleWorking: number | null;
+  aesthetic: number | null;
+  // productivity
+  quiet: number | null;
+  airCondition: number | null;
+  comfyChair: number | null;
+  wideDesk: number | null;
+  // for cafe
+  goodCoffee: number | null;
+  // others
+  overall: number | null;
+}
+
 export interface Review {
   _id?: string;
   placeId: string;
@@ -99,6 +118,7 @@ export interface Review {
   voteScore: number;
   upVoters: string[];
   downVoters: string[];
+  reviewAspects: ReviewAspects;
   created: string;
 }
 
@@ -147,6 +167,24 @@ export const initialFilterObj: FilterObj = {
   sortBy: cons.SORT_BY_REVIEW,
 };
 
+export const initialReviewAspects: ReviewAspects = {
+  // availability
+  vacancy: null,
+  stableWifi: null,
+  // vibes
+  peopleWorking: null,
+  aesthetic: null,
+  // productivity
+  quiet: null,
+  airCondition: null,
+  comfyChair: null,
+  wideDesk: null,
+  // for cafe
+  goodCoffee: null,
+  // others
+  overall: null,
+};
+
 export const initialPlace: Place = {
   id: "",
   placeType: cons.PLACE_TYPE_CAFE,
@@ -158,6 +196,7 @@ export const initialPlace: Place = {
   testCnt: 0,
   availability: [],
   reviewStars: 0,
+  avgReviewAspects: initialReviewAspects,
   status: STATUS_OPEN,
   created: undefined,
   googlePlaceId: "",
@@ -248,6 +287,7 @@ const placeSlice = createSlice({
     // });
     builder.addCase(apiPostReview.fulfilled, (state, action) => {
       state.placeForPage.reviewStars = action.payload.reviewStars;
+      state.placeForPage.avgReviewAspects = action.payload.avgReviewAspects;
       if (action.payload.isNew) {
         state.placeForPage.reviewsWithData.unshift(
           action.payload.reviewWithData

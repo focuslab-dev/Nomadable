@@ -6,7 +6,12 @@ import { RootState } from "../../store";
 import * as cons from "../../../constants";
 import { ERR_SOMETHING } from "../../../modules/ErrorCode";
 import { callDeleteReview, callPostReview } from "../../../calls/reviewCall";
-import { Review, ReviewWithData, ReviewWithPlaceData } from "../placeSlice";
+import {
+  Review,
+  ReviewAspects,
+  ReviewWithData,
+  ReviewWithPlaceData,
+} from "../placeSlice";
 import { showPointEarned } from "../uiSlice";
 
 /**
@@ -138,25 +143,44 @@ const unknownError = {
 
 export const apiPostReview = createAsyncThunk<
   {
-    reviewWithData: ReviewWithData;
     placeId: string;
+    reviewWithData: ReviewWithData;
     reviewStars: number;
+    avgReviewAspects: ReviewAspects;
     isNew: boolean;
   }, // Return type of the payload creator
-  { placeId: string; stars: number; comment: string; isNew: boolean }, // First argument to the payload creator
+  {
+    reviewData: {
+      placeId: string;
+      comment: string;
+      reviewAspects: ReviewAspects;
+    };
+    isNew: boolean;
+  }, // First argument to the payload creator
   {
     rejectValue: CallError;
   } // Types for ThunkAPI
->("review/PostReview", async ({ placeId, stars, comment, isNew }, thunkApi) => {
+>("review/PostReview", async (props, thunkApi) => {
   try {
-    const { reviewWithData, reviewStars, addingPoint, totalPoint } =
-      await callPostReview(placeId, stars, comment);
+    const {
+      reviewWithData,
+      reviewStars,
+      avgReviewAspects,
+      addingPoint,
+      totalPoint,
+    } = await callPostReview(props.reviewData);
 
     if (addingPoint > 0) {
       thunkApi.dispatch(showPointEarned({ addingPoint, totalPoint }));
     }
 
-    return { reviewWithData, placeId, reviewStars, isNew };
+    return {
+      placeId: props.reviewData.placeId,
+      reviewWithData,
+      reviewStars,
+      avgReviewAspects,
+      isNew: props.isNew,
+    };
   } catch (error: any) {
     return thunkApi.rejectWithValue(error as CallError);
   }

@@ -1,4 +1,4 @@
-import React from "react";
+import React, { Fragment, useEffect, useState } from "react";
 import styled from "styled-components";
 
 import * as cons from "../../constants";
@@ -11,21 +11,17 @@ import {
 } from "../../redux/slices/api/apiReviewSlice";
 import {
   hideReviewModal,
+  initReviewForm,
   selectReviewFormState,
+  updateReviewAspects,
   updateReviewForm,
 } from "../../redux/slices/reviewFormSlice";
-import {
-  ButtonBlackSmall,
-  ButtonPrimarySmall,
-  ButtonText,
-} from "../../styles/styled-components/Buttons";
-import * as fs from "../../styles/styled-components/FontSize";
-import { FormStyle } from "../../styles/styled-components/Forms";
-import { ContainerStyleInside } from "../../styles/styled-components/Layouts";
-import { ReviewStars } from "../app-commons/ReviewStars";
 import { Modal } from "../commons/Modal";
 import { ModalHeader } from "../commons/ModalHeader";
 import { PageLoader } from "../commons/PageLoader";
+import { CommentForm } from "./CommentForm";
+import { ReviewForm } from "./ReviewForm";
+import { ReviewAspects } from "../../redux/slices/placeSlice";
 
 interface Props {}
 
@@ -37,11 +33,12 @@ const getStarValue = (stars: number): string => {
 
 export const ReviewFormModal: React.FC<Props> = ({}) => {
   const dispatch = useAppDispatch();
-  const { reviewId, visible, placeId, comment, stars } = useAppSelector(
-    selectReviewFormState
-  );
+  const { reviewId, visible, placeId, comment, stars, reviewAspects } =
+    useAppSelector(selectReviewFormState);
   const apiStatusDelete = useAppSelector(selectApiDeleteReviewStatus);
   const apiStatusPost = useAppSelector(selectApiPostReviewStatus);
+  // local state
+  const [pageIndex, setPageIndex] = useState(0);
 
   const closeModal = () => {
     dispatch(hideReviewModal());
@@ -55,12 +52,26 @@ export const ReviewFormModal: React.FC<Props> = ({}) => {
     dispatch(updateReviewForm({ comment: _comment, stars }));
   };
 
+  const handleUpdateReviewAspects = (reviewAspects: ReviewAspects) => {
+    dispatch(updateReviewAspects(reviewAspects));
+  };
+
+  const onClickNext = () => {
+    setPageIndex(1);
+  };
+
+  const onClickBack = () => {
+    setPageIndex(0);
+  };
+
   const onClickSubmit = () => {
     dispatch(
       apiPostReview({
-        placeId,
-        stars,
-        comment,
+        reviewData: {
+          placeId,
+          comment,
+          reviewAspects,
+        },
         isNew: reviewId === "",
       })
     );
@@ -78,28 +89,41 @@ export const ReviewFormModal: React.FC<Props> = ({}) => {
     );
   };
 
+  useEffect(() => {
+    if (visible) {
+      setPageIndex(0);
+    } else {
+      dispatch(initReviewForm());
+    }
+  }, [visible]);
+
+  /**
+   * Render
+   */
+
   return (
-    <Modal visible={visible} width="32rem" closeModal={closeModal}>
+    <Modal visible={visible} width="32rem" closeModal={closeModal} alignTop>
       <ModalHeader onClickClose={closeModal} title={"Write Review"} />
-      <Body>
-        <StarSection>
-          <ReviewStars stars={stars} onChange={updateStars} />
-          <ReviewStarNumber>{getStarValue(stars)}</ReviewStarNumber>
-        </StarSection>
-        <CommentForm
-          value={comment}
-          onChange={(e: any) => updateComment(e.target.value)}
-          placeholder="Is it a good place to work from?"
+
+      {pageIndex === 0 && (
+        <ReviewForm
+          reviewId={reviewId}
+          reviewAspects={reviewAspects}
+          updateReviewAspects={handleUpdateReviewAspects}
+          onClickNext={onClickNext}
+          onClickDelete={onClickDelete}
         />
-      </Body>
-      <Buttons>
-        {reviewId !== "" && (
-          <DeleteButton onClick={onClickDelete}>Delete</DeleteButton>
-        )}
-        <SubmitButton onClick={onClickSubmit} disabled={stars < 1}>
-          Save
-        </SubmitButton>
-      </Buttons>
+      )}
+      {pageIndex === 1 && (
+        <CommentForm
+          reviewId={reviewId}
+          comment={comment}
+          updateComment={updateComment}
+          onClickSubmit={onClickSubmit}
+          onClickDelete={onClickDelete}
+          onClickBack={onClickBack}
+        />
+      )}
 
       <PageLoader
         visible={[apiStatusPost.status, apiStatusDelete.status].includes(
@@ -114,47 +138,3 @@ export const ReviewFormModal: React.FC<Props> = ({}) => {
     </Modal>
   );
 };
-
-const Body = styled.div`
-  ${ContainerStyleInside}
-  padding-top: 1rem;
-  padding-bottom: 1rem;
-  color: ${cons.FONT_COLOR_NORMAL};
-`;
-
-const StarSection = styled.div`
-  padding-top: 1rem;
-  padding-bottom: 2rem;
-  font-size: 1.2rem;
-  display: flex;
-  align-items: center;
-`;
-
-const ReviewStarNumber = styled.div`
-  font-weight: 600;
-  ${fs.FontSizeLarge};
-  margin-left: 0.8rem;
-`;
-
-const CommentForm = styled.textarea`
-  ${FormStyle};
-  height: 10rem;
-`;
-
-const Buttons = styled.div`
-  ${ContainerStyleInside}
-  display: flex;
-  justify-content: flex-end;
-  padding-top: 1rem;
-  padding-bottom: 1rem;
-  border-top: 1px solid ${cons.FONT_COLOR_SUPER_LIGHT};
-`;
-
-const DeleteButton = styled.button`
-  ${ButtonText}
-`;
-
-const SubmitButton = styled.button`
-  ${ButtonBlackSmall}
-  margin-left: 4rem;
-`;
