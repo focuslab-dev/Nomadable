@@ -36,7 +36,7 @@ const SizeMedium = css`
   min-width: 7.5rem;
 `;
 
-const SizeSmall = css`
+export const SizeSmall = css`
   ${FontSizeSemiSmall}
   height: 2.9rem;
   border-radius: 0.2rem;

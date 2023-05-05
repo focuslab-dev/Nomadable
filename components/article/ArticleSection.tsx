@@ -28,7 +28,7 @@ interface Props {
 const makeQueryString = (boundary: Boundary | null): string => {
   if (!boundary) return cons.PATH_MAP;
   const { latStart, lngStart, latEnd, lngEnd } = boundary;
-  const queryString = `${cons.PATH_MAP}?latStart=${latStart}&lngStart=${lngStart}&latEnd=${latEnd}&lngEnd=${lngEnd}`;
+  const queryString = `/?latStart=${latStart}&lngStart=${lngStart}&latEnd=${latEnd}&lngEnd=${lngEnd}`;
   return queryString;
 };
 

@@ -23,16 +23,18 @@ export const ArticlesSection: React.FC<Props> = (props) => {
     <ArticleSection>
       <ArticleHeader>Articles</ArticleHeader>
       <ArticlesWrapper>
-        {props.articlesWithData.map((at) => (
-          <Link href={`/article/${at.slug}`} key={at.slug}>
-            <ArticleItemWrapper key={at.slug}>
-              <CardWithImage
-                image={at.placesWithData[0].images[0]}
-                title={at.title}
-              />
-            </ArticleItemWrapper>
-          </Link>
-        ))}
+        {props.articlesWithData
+          .filter((at) => at.placesWithData.length > 0)
+          .map((at) => (
+            <Link href={`/article/${at.slug}`} key={at.slug}>
+              <ArticleItemWrapper key={at.slug}>
+                <CardWithImage
+                  image={at.placesWithData[0].images[0]}
+                  title={at.title}
+                />
+              </ArticleItemWrapper>
+            </Link>
+          ))}
       </ArticlesWrapper>
     </ArticleSection>
   );

@@ -160,6 +160,11 @@ export const PLACE_TYPE_LIST: any = {
   [PLACE_TYPE_OTHER]: { text: "Other", icon: "🌐" },
 };
 
+export const getPlaceTypeString = (type: string): string => {
+  const placeType = PLACE_TYPE_LIST[type];
+  return placeType ? `${placeType.icon} ${placeType.text}` : "";
+};
+
 /**
  * Availability
  */
