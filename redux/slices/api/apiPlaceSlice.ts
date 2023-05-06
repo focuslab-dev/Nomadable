@@ -251,6 +251,9 @@ export const apiCreatePlace = createAsyncThunk<
 >("place/CreatePlace", async ({ place, errorCallback }, thunkApi) => {
   try {
     const { placeId, addingPoint, totalPoint } = await callCreatePlace(place);
+    window.alert(
+      "The place has been added 🎉 Please add a review or test WiFi speed to make the information more useful to others."
+    );
     thunkApi.dispatch(showPointEarned({ addingPoint, totalPoint }));
     logEventSubmitPlace();
     return { placeId };

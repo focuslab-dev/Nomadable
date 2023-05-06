@@ -100,7 +100,10 @@ export const ReviewFormModal: React.FC<Props> = ({}) => {
 
   return (
     <Modal visible={visible} width="32rem" closeModal={closeModal} alignTop>
-      <ModalHeader onClickClose={closeModal} title={"Write Review"} />
+      <ModalHeader
+        onClickClose={closeModal}
+        title={`Write Review (${pageIndex + 1})`}
+      />
 
       {pageIndex === 0 && (
         <ReviewForm
