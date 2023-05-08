@@ -76,7 +76,7 @@ const TOKYO_DROPIN_AND_CAFE: Article = {
   slug: `places-to-work-from-in-${ct.JAPAN_TOKYO.slug}`,
   city: ct.JAPAN_TOKYO,
   title:
-    "10 Best Work-friendly Cafes & Coworking Spaces in Chiang Mai, Thailand",
+    "10 Best Work-friendly Cafes & Coworking Spaces (Drop-in) in Tokyo, Japan",
   filterObj: {
     placeTypes: [
       cons.PLACE_TYPE_CAFE,
@@ -95,7 +95,7 @@ const TOKYO_DROPIN_AND_CAFE: Article = {
 
 const KYOTO_DROPIN_AND_CAFE: Article = {
   slug: `places-to-work-from-in-${ct.JAPAN_KYOTO.slug}`,
-  city: ct.JAPAN_TOKYO,
+  city: ct.JAPAN_KYOTO,
   title:
     "10 Best Work-friendly Cafes & Coworking Spaces (Drop-in) in Kyoto, Japan",
   filterObj: {
