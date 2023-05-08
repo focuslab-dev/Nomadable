@@ -29,17 +29,17 @@ module.exports = {
       };
     }
 
-    if (path === "/articles") {
-      return {
-        loc: path,
-        priority: 0.5,
-      };
-    }
+    // if (path === "/articles") {
+    //   return {
+    //     loc: path,
+    //     priority: 0.5,
+    //   };
+    // }
 
     if (path.startsWith("/article")) {
       return {
         loc: path,
-        priority: 0.5,
+        priority: 0.8,
       };
     }
 
