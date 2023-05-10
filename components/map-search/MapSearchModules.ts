@@ -39,7 +39,7 @@ const makeIcon = (props: {
             props.withName
               ? `<div style="position: absolute; left: 1.9rem; top: ${
                   props.reviewStars !== null ? "-0.3rem;" : "0rem;"
-                }; width: 5rem; font-size: 0.7rem; font-weight: bold; margin-left: 0.3rem;">${props.name.slice(
+                }; width: 5rem; font-size: 0.7rem; font-weight: bold; margin-left: 0.3rem; height: 1rem; overflow: hidden;">${props.name.slice(
                   0,
                   10
                 )}</div>`
