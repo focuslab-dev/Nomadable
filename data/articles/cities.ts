@@ -417,6 +417,18 @@ export const INDONESIA_KUTA: City = {
   },
 };
 
+export const JAPAN_NAGOYA: City = {
+  slug: "japan-nagoya",
+  country: "Japan",
+  city: "Nagoya",
+  boundary: {
+    latStart: 35.036135119077954,
+    lngStart: 136.70484691614553,
+    latEnd: 35.3110311203299,
+    lngEnd: 137.09076063286517,
+  },
+};
+
 export const CITIES: City[] = [
   /**
    * Eeast Asia
@@ -427,6 +439,7 @@ export const CITIES: City[] = [
   JAPAN_KYOTO,
   JAPAN_OSAKA,
   JAPAN_FUKUOKA,
+  JAPAN_NAGOYA,
   /**
    * South East Asia
    */
