@@ -2,6 +2,7 @@ import { PLACE_TYPE_CAFE } from "./../../constants";
 import { Place } from "../../redux/slices/placeSlice";
 import { PLACE_TYPE_WORKSPACE, PLACE_TYPE_LIST } from "../../constants";
 import { getColorOfSpeed } from "../commons/NetSpeedIndicator";
+import { getStarValue } from "../place/components/review/ReviewScore";
 
 export interface Pin {
   id: string;
@@ -10,6 +11,7 @@ export interface Pin {
   color: string;
   placeType: string;
   name: string;
+  reviewStars: number | null;
 }
 
 const makeIcon = (props: {
@@ -18,6 +20,7 @@ const makeIcon = (props: {
   color: string;
   fontSize: number;
   withName: boolean;
+  reviewStars: number | null;
 }) => {
   return `
       <div style="display:flex; flex-direction: column; align-items: center;">
@@ -34,9 +37,23 @@ const makeIcon = (props: {
 
           ${
             props.withName
-              ? `<div style="position: absolute; left: 1.9rem; width: 5rem; font-size: 0.7rem; font-weight: bold; margin-left: 0.3rem;">${props.name.slice(
+              ? `<div style="position: absolute; left: 1.9rem; top: ${
+                  props.reviewStars !== null ? "-0.3rem;" : "0rem;"
+                }; width: 5rem; font-size: 0.7rem; font-weight: bold; margin-left: 0.3rem;">${props.name.slice(
                   0,
                   10
+                )}</div>`
+              : ""
+          }
+
+          ${
+            props.withName && props.reviewStars !== null
+              ? `<div style="position: absolute; left: 1.9rem; top: 0.55rem; width: 5rem; font-size: 0.7rem; font-weight: normal; margin-left: 0.3rem;"><img src="${
+                  props.reviewStars >= 4.5
+                    ? "/icon/star-gold.svg"
+                    : "/icon/star-black.svg"
+                }" style="width: 0.6rem; margin-right: 0.15rem;" />${getStarValue(
+                  props.reviewStars
                 )}</div>`
               : ""
           }
@@ -52,6 +69,7 @@ const convertPlacesToPins = (places: Place[]): Pin[] => {
     color: getColorOfSpeed(p.speedDown),
     placeType: p.placeType,
     name: p.spotName,
+    reviewStars: p.reviewStars || null,
   }));
 };
 

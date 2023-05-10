@@ -38,6 +38,7 @@ interface Pin {
   color: string;
   placeType: string;
   name: string;
+  reviewStars: number | null;
 }
 
 let geoControl: any = null;
@@ -140,6 +141,7 @@ export const MapSearch: React.FC<Props> = (props) => {
           color: pin.color,
           fontSize: zoomLevel >= 1 ? 0.8 : 0.7,
           withName: zoomLevel >= 2 ? true : false,
+          reviewStars: pin.reviewStars,
         });
       }
 
