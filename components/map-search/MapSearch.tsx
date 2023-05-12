@@ -49,7 +49,9 @@ export const MapSearch: React.FC<Props> = (props) => {
   const mapRef = useRef<mapboxgl.Map>();
   const markersRef = useRef<{ pin: Pin; marker: any }[]>([]);
   const [pins, setPins] = useState<Pin[]>([]);
-  const [zoomLevel, setZoomLevel] = useState(0);
+  // const [zoomLevel, setZoomLevel] = useState(0);
+  const [isIconVisible, setIsIconVisible] = useState(false);
+  const [isNameVisible, setIsNameVisible] = useState(false);
   // const [queryLoaded, setQueryLoaded] = useState(false);
   // const geoControlRef = useRef();
   const mapboxAccessToken = useAppSelector(selectMapboxAccessToken);
@@ -94,8 +96,11 @@ export const MapSearch: React.FC<Props> = (props) => {
       onViewportUpdate();
       if (mapRef.current) {
         const zoom = mapRef.current.getZoom();
-        const _zoomLevel = zoom < 10 ? 0 : zoom < 15 ? 1 : 2;
-        setZoomLevel(_zoomLevel);
+
+        const _iconVisible = zoom >= 10;
+        const _nameVisible = zoom >= 14;
+        setIsIconVisible(_iconVisible);
+        setIsNameVisible(_nameVisible);
       }
     });
 
@@ -134,13 +139,13 @@ export const MapSearch: React.FC<Props> = (props) => {
         props.onClickMarker(pin.id);
       });
 
-      if (zoomLevel >= 1 && props.hoveredPlace !== pin.id) {
+      if (isIconVisible && props.hoveredPlace !== pin.id) {
         marker.getElement().innerHTML = makeIcon({
           placeType: pin.placeType,
           name: pin.name,
           color: pin.color,
-          fontSize: zoomLevel >= 1 ? 0.8 : 0.7,
-          withName: zoomLevel >= 2 ? true : false,
+          fontSize: isIconVisible ? 0.8 : 0.7,
+          withName: isNameVisible,
           reviewStars: pin.reviewStars,
         });
       }
@@ -186,7 +191,7 @@ export const MapSearch: React.FC<Props> = (props) => {
 
   useEffect(() => {
     updatePins(pins);
-  }, [pins, zoomLevel, props.hoveredPlace]);
+  }, [pins, isIconVisible, isNameVisible, props.hoveredPlace]);
 
   useEffect(() => {
     updatePins(pins);
