@@ -72,23 +72,34 @@ const CHANGMAI_PLACE: Article = {
   omitReviewIds: [],
 };
 
-const TOKYO_DROPIN_AND_CAFE: Article = {
-  slug: `places-to-work-from-in-${ct.JAPAN_TOKYO.slug}`,
+const TOKYO_COWORKING: Article = {
+  slug: `top-coworking-spaces-${ct.JAPAN_TOKYO.slug}`,
   city: ct.JAPAN_TOKYO,
-  title:
-    "10 Best Work-friendly Cafes & Coworking Spaces (Drop-in) in Tokyo, Japan",
+  title: "Top 10 Coworking Spaces in Tokyo, Japan",
   filterObj: {
-    placeTypes: [
-      cons.PLACE_TYPE_CAFE,
-      cons.PLACE_TYPE_WORKSPACE,
-      cons.PLACE_TYPE_PUBLIC,
-    ],
-    availability: [cons.AVL_DROP_IN],
+    placeTypes: [cons.PLACE_TYPE_WORKSPACE],
+    availability: [],
     saved: false,
-    wifiSpeed: 1,
+    wifiSpeed: 0,
     sortBy: cons.SORT_BY_REVIEW,
   },
   placeCnt: 10,
+  omitPlaceIds: [],
+  omitReviewIds: [],
+};
+
+const TOKYO_CAFE: Article = {
+  slug: `top-work-study-cafes-${ct.JAPAN_TOKYO.slug}`,
+  city: ct.JAPAN_TOKYO,
+  title: "Top 8 Study & Work Friendly Cafes in Tokyo, Japan",
+  filterObj: {
+    placeTypes: [cons.PLACE_TYPE_CAFE],
+    availability: [],
+    saved: false,
+    wifiSpeed: 0,
+    sortBy: cons.SORT_BY_REVIEW,
+  },
+  placeCnt: 8,
   omitPlaceIds: [],
   omitReviewIds: [],
 };
@@ -120,7 +131,8 @@ const KYOTO_DROPIN_AND_CAFE: Article = {
 
 export const ARTICLES: Article[] = [
   // East Asia
-  TOKYO_DROPIN_AND_CAFE,
+  TOKYO_COWORKING,
+  TOKYO_CAFE,
   KYOTO_DROPIN_AND_CAFE,
   // South East Asia
   BANGKOK_CORWORKING,
