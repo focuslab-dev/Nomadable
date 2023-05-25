@@ -429,6 +429,18 @@ export const JAPAN_NAGOYA: City = {
   },
 };
 
+export const VIETNAM_DANANG: City = {
+  slug: "vietnam-danang",
+  country: "Vietnam",
+  city: "Danang",
+  boundary: {
+    latStart: 15.928025992264182,
+    lngStart: 108.05684205715772,
+    latEnd: 16.192817479635806,
+    lngEnd: 108.3702380056315,
+  },
+};
+
 export const CITIES: City[] = [
   /**
    * Eeast Asia
@@ -450,6 +462,7 @@ export const CITIES: City[] = [
   INDONESIA_KUTA,
   MALAYSIA_KUALA_LUMPUR,
   SINGAPORE_SINGAPORE,
+  VIETNAM_DANANG,
   /**
    * South Asia
    */
