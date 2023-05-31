@@ -89,14 +89,14 @@ export const ArticlePlaceItem: React.FC<Props> = ({ index, placeWithData }) => {
 
         <OpenInGoogle>
           <BodyLabel>Location</BodyLabel>
-          <SpotAddress>{pl.spotAddress}</SpotAddress>
-          {/* <GoogleLink
+          {/* <SpotAddress>{pl.spotAddress}</SpotAddress> */}
+          <GoogleLink
             href={`${cons.LOCATION_LINK_PLACE_ID}${pl.googlePlaceId}`}
             target="_blank"
             rel="noopener"
           >
             {pl.spotAddress}
-          </GoogleLink> */}
+          </GoogleLink>
         </OpenInGoogle>
 
         <MoreInfo>
@@ -239,7 +239,6 @@ const MoreInfoButton = styled.button`
   ${ButtonText}
   padding:0;
   color: ${cons.COLOR_RED_0};
-  text-decoration: underline;
   ${fs.FontSizeNormal}
 `;
 
