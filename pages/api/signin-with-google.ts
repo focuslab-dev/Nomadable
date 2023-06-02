@@ -1,28 +1,35 @@
 import nextConnect from "next-connect";
+import { OAuth2Client } from "google-auth-library";
 
 import databaseMiddleware from "../../middleware/database";
 import authenticationMiddleware from "../../middleware/authentication";
-import { OAuth2Client } from "google-auth-library";
 import { generateToken } from "../../modules/AuthUtils";
 import { generateUserId } from "./signup-with-email";
 import { addNewUserEvent } from "./verify-user";
+import { config } from "aws-sdk";
 
 const handler = nextConnect();
 
 handler.use(databaseMiddleware);
 handler.use(authenticationMiddleware);
 
-const gapiClient = new OAuth2Client(process.env.GAPI_CLIENT_ID);
+const oAuth2Client = new OAuth2Client(
+  process.env.GAPI_CLIENT_ID,
+  process.env.GAPI_CLIENT_SECRET,
+  "postmessage"
+);
 
 async function getGoogleAccountInfo(
   idToken: string
 ): Promise<{ email: string; googleId: string; picture: string; name: string }> {
   try {
-    const ticket = await gapiClient.verifyIdToken({
-      idToken: idToken,
-      audience: process.env.GAPI_CLIENT_ID, // Specify the CLIENT_ID of the app that accesses the backend
-      // Or, if multiple clients access the backend:
-      // [CLIENT_ID_1, CLIENT_ID_2, CLIENT_ID_3]
+    const { tokens } = await oAuth2Client.getToken(idToken);
+
+    if (!tokens || !tokens.id_token) throw Error;
+
+    const ticket = await oAuth2Client.verifyIdToken({
+      idToken: tokens.id_token,
+      audience: process.env.GAPI_CLIENT_ID,
     });
 
     const payload = ticket.getPayload();

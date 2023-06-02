@@ -225,7 +225,7 @@ const SignUpButton = styled.button`
 `;
 
 const GoToLoginButton = styled.button`
-  ${ButtonText}
+  ${ButtonText};
 `;
 
 const GoogleLoginWrapper = styled.div`
