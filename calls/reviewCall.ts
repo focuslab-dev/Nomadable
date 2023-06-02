@@ -8,6 +8,7 @@ import {
   ReviewWithData,
   ReviewWithPlaceData,
 } from "../redux/slices/placeSlice";
+import { getAccessToken } from "../modules/AuthUtils";
 
 // check In
 
@@ -28,7 +29,7 @@ export const callPostReview = async (props: {
       url: `${APP_URL}/api/post-review`,
       data: props,
       headers: {
-        Authorization: readCookie(COOKIE_ACCESS_TOKEN) || "",
+        Authorization: getAccessToken() || "",
       },
     });
 
@@ -55,7 +56,7 @@ export const callDeleteReview = async (
       url: `${APP_URL}/api/delete-review`,
       data: { reviewId, placeId },
       headers: {
-        Authorization: readCookie(COOKIE_ACCESS_TOKEN) || "",
+        Authorization: getAccessToken() || "",
       },
     });
 
@@ -109,7 +110,7 @@ export const callVoteReview = async (params: {
       url: `${APP_URL}/api/vote-review`,
       data: params,
       headers: {
-        Authorization: readCookie(COOKIE_ACCESS_TOKEN) || "",
+        Authorization: getAccessToken() || "",
       },
     });
 

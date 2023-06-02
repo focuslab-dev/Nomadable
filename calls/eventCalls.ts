@@ -2,6 +2,7 @@ import { APP_URL, COOKIE_ACCESS_TOKEN } from "../constants";
 import axios from "axios";
 import { readCookie } from "../modules/CookieHandler";
 import { Event, EventWithData } from "../redux/slices/eventSlice";
+import { getAccessToken } from "../modules/AuthUtils";
 
 // check In
 
@@ -16,7 +17,7 @@ export const callFetchLatestEvents = async (
       url: `${APP_URL}/api/latest-events`,
       params: { pageIndex },
       headers: {
-        Authorization: readCookie(COOKIE_ACCESS_TOKEN) || "",
+        Authorization: getAccessToken() || "",
       },
     });
 

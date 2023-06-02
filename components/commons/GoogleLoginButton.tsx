@@ -1,11 +1,7 @@
-declare var google: any;
-
 import { useGoogleLogin } from "@react-oauth/google";
-import React, { useEffect, useRef } from "react";
+import React from "react";
 import styled from "styled-components";
 import { ClickableStyle } from "../../styles/styled-components/Interactions";
-import { ButtonText } from "../../styles/styled-components/Buttons";
-import { ButtonSecondaryLarge } from "../../styles/styled-components/Buttons";
 import { ButtonSecondaryMedium } from "../../styles/styled-components/Buttons";
 
 interface Props {
@@ -15,7 +11,7 @@ interface Props {
 }
 
 export const GoogleLoginButton: React.FC<Props> = (props) => {
-  const loginWitnGoogle = useGoogleLogin({
+  const loginWithGoogle = useGoogleLogin({
     onSuccess: (codeResponse) => {
       props.loginWithGoogle(codeResponse.code);
     },
@@ -27,7 +23,7 @@ export const GoogleLoginButton: React.FC<Props> = (props) => {
   });
 
   return (
-    <LoginButton onClick={loginWitnGoogle}>
+    <LoginButton onClick={loginWithGoogle}>
       <GLogo src="/icon/g-logo.png" />
       {props.label}
     </LoginButton>
@@ -40,7 +36,8 @@ const GLogo = styled.img`
   /* opacity: 0.6; */
 `;
 
-export const LoginButton = styled.button`
+export const LoginButton = styled.div`
+  box-sizing: border-box;
   ${ClickableStyle}
   ${ButtonSecondaryMedium}
   width: 100%;

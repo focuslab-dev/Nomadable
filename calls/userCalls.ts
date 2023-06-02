@@ -6,6 +6,7 @@ import { readCookie } from "../modules/CookieHandler";
 import { EditableUser, User, UserWithStats } from "../redux/slices/userSlice";
 import { CallError } from "./Types";
 import { Contributer } from "../redux/slices/contributerSlice";
+import { getAccessToken } from "../modules/AuthUtils";
 
 export const callFetchUser = async (): Promise<{
   data: { user: User };
@@ -15,7 +16,7 @@ export const callFetchUser = async (): Promise<{
       method: "get",
       url: `${APP_URL}/api/user`,
       headers: {
-        Authorization: readCookie(COOKIE_ACCESS_TOKEN) || "",
+        Authorization: getAccessToken() || "",
       },
     });
 
@@ -144,7 +145,7 @@ export const callFetchMyAccountWithStats = async (): Promise<{
       method: "get",
       url: `${APP_URL}/api/my-account`,
       headers: {
-        Authorization: readCookie(COOKIE_ACCESS_TOKEN) || "",
+        Authorization: getAccessToken() || "",
       },
     });
 
@@ -196,7 +197,7 @@ export const callUpdateUser = async (
       url: `${APP_URL}/api/update-user`,
       data: { editableUser, base64 },
       headers: {
-        Authorization: readCookie(COOKIE_ACCESS_TOKEN) || "",
+        Authorization: getAccessToken() || "",
       },
     });
 
@@ -219,7 +220,7 @@ export const callDeleteUser = async (): Promise<{
       method: "post",
       url: `${APP_URL}/api/delete-user`,
       headers: {
-        Authorization: readCookie(COOKIE_ACCESS_TOKEN) || "",
+        Authorization: getAccessToken() || "",
       },
     });
 

@@ -1,7 +1,7 @@
 import CryptoJS from "crypto-js";
 import jwt from "jsonwebtoken";
 import { COOKIE_ACCESS_TOKEN } from "../constants";
-import { createCookie } from "./CookieHandler";
+import { createCookie, readCookie } from "./CookieHandler";
 
 const TOKEN_VALID_FOR = "90 days";
 const COOKIE_VALID_FOR = 90;
@@ -30,6 +30,21 @@ export const generateToken = (userId: string) => {
   return token;
 };
 
+// let savedToken = "";
+
 export const saveTokenToCookie = (token: string) => {
-  createCookie(COOKIE_ACCESS_TOKEN, token, COOKIE_VALID_FOR, "/");
+  try {
+    createCookie(COOKIE_ACCESS_TOKEN, token, COOKIE_VALID_FOR, "/");
+  } catch (error) {
+    // savedToken = token;
+  }
+};
+
+export const getAccessToken = () => {
+  try {
+    const token = readCookie(COOKIE_ACCESS_TOKEN);
+    return token;
+  } catch (error) {
+    // return savedToken;
+  }
 };

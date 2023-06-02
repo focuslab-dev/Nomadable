@@ -3,6 +3,7 @@ import { APP_URL, COOKIE_ACCESS_TOKEN } from "../constants";
 import axios from "axios";
 import { readCookie } from "../modules/CookieHandler";
 import { Event, EventWithData } from "../redux/slices/eventSlice";
+import { getAccessToken } from "../modules/AuthUtils";
 
 // check In
 
@@ -17,7 +18,7 @@ export const callCheckInHistory = async (
       url: `${APP_URL}/api/checkin-history`,
       params: { pageIndex },
       headers: {
-        Authorization: readCookie(COOKIE_ACCESS_TOKEN) || "",
+        Authorization: getAccessToken() || "",
       },
     });
 

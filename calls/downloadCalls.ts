@@ -2,6 +2,7 @@ import axios from "axios";
 import { APP_URL, COOKIE_ACCESS_TOKEN } from "../constants";
 import { readCookie } from "../modules/CookieHandler";
 import { hideSpinner, showSpinner } from "../redux/slices/uiSlice";
+import { getAccessToken } from "../modules/AuthUtils";
 
 const downloadCSV = (csvContent: any) => {
   const encodedUri = encodeURI(csvContent);
@@ -23,7 +24,7 @@ export const callDownloadPlacesAsCsv = async (): Promise<boolean> => {
       method: "get",
       url: `${APP_URL}/api/download-places-csv`,
       headers: {
-        Authorization: readCookie(COOKIE_ACCESS_TOKEN) || "",
+        Authorization: getAccessToken() || "",
       },
     });
 

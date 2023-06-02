@@ -15,6 +15,7 @@ import {
 import { readCookie } from "../modules/CookieHandler";
 import { City, CityWithData } from "../data/articles/cities";
 import { Article, ArticleWithData } from "../data/articles/articles";
+import { getAccessToken } from "../modules/AuthUtils";
 
 const callCreatePlace = async (
   place: Place
@@ -25,7 +26,7 @@ const callCreatePlace = async (
       url: `${APP_URL}/api/create-place`,
       data: { place },
       headers: {
-        Authorization: readCookie(COOKIE_ACCESS_TOKEN) || "",
+        Authorization: getAccessToken() || "",
       },
     });
 
@@ -46,7 +47,7 @@ const callDeletePlace = async (placeId: string) => {
       url: `${APP_URL}/api/delete-place`,
       data: { placeId },
       headers: {
-        Authorization: readCookie(COOKIE_ACCESS_TOKEN) || "",
+        Authorization: getAccessToken() || "",
       },
     });
 
@@ -105,7 +106,7 @@ const callCheckIn = async (data: {
       url: `${APP_URL}/api/check-in`,
       data,
       headers: {
-        Authorization: readCookie(COOKIE_ACCESS_TOKEN) || "",
+        Authorization: getAccessToken() || "",
       },
     });
 
@@ -142,7 +143,7 @@ const callFetchPlaces = async (params: {
         userLat: params.userLat,
       },
       headers: {
-        Authorization: readCookie(COOKIE_ACCESS_TOKEN) || "",
+        Authorization: getAccessToken() || "",
       },
     });
 
@@ -183,7 +184,7 @@ const callRecentCheckIns = async (): Promise<{
       method: "get",
       url: `${APP_URL}/api/recent-checkins`,
       headers: {
-        Authorization: readCookie(COOKIE_ACCESS_TOKEN) || "",
+        Authorization: getAccessToken() || "",
       },
     });
 
@@ -257,7 +258,7 @@ const callVoteAvailability = async (params: {
       url: `${APP_URL}/api/vote-availability`,
       data: params,
       headers: {
-        Authorization: readCookie(COOKIE_ACCESS_TOKEN) || "",
+        Authorization: getAccessToken() || "",
       },
     });
 
@@ -321,7 +322,7 @@ const callUpdateImages = async (params: { placeId: string }) => {
       url: `${APP_URL}/api/update-images`,
       data: params,
       headers: {
-        Authorization: readCookie(COOKIE_ACCESS_TOKEN) || "",
+        Authorization: getAccessToken() || "",
       },
     });
 
@@ -363,7 +364,7 @@ const callSavePlace = async (params: {
       url: `${APP_URL}/api/save-place`,
       data: params,
       headers: {
-        Authorization: readCookie(COOKIE_ACCESS_TOKEN) || "",
+        Authorization: getAccessToken() || "",
       },
     });
 
@@ -386,7 +387,7 @@ const callChangeStatusOfPlace = async (params: {
       url: `${APP_URL}/api/change-status-of-place`,
       data: params,
       headers: {
-        Authorization: readCookie(COOKIE_ACCESS_TOKEN) || "",
+        Authorization: getAccessToken() || "",
       },
     });
 
@@ -413,7 +414,7 @@ const callFetchNearbyPlaces = async (params: {
       url: `${APP_URL}/api/nearby-places`,
       data: params,
       headers: {
-        Authorization: readCookie(COOKIE_ACCESS_TOKEN) || "",
+        Authorization: getAccessToken() || "",
       },
     });
 

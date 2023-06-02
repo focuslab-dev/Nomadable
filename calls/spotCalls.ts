@@ -4,6 +4,7 @@ import { APP_URL, COOKIE_ACCESS_TOKEN } from "../constants";
 import { readCookie } from "../modules/CookieHandler";
 import { SpotPrediction } from "../redux/slices/api/apiSpotSlice";
 import { Spot } from "../redux/slices/placeSlice";
+import { getAccessToken } from "../modules/AuthUtils";
 
 export const callFetchSpotsByText = async (
   text: string,
@@ -17,7 +18,7 @@ export const callFetchSpotsByText = async (
       url: `${APP_URL}/api/spots-by-text`,
       params: { text, location },
       headers: {
-        Authorization: readCookie(COOKIE_ACCESS_TOKEN) || "",
+        Authorization: getAccessToken() || "",
       },
     });
 
@@ -43,7 +44,7 @@ export const callFetchSpotInfo = async (
       url: `${APP_URL}/api/spot-detail`,
       params: { placeId },
       headers: {
-        Authorization: readCookie(COOKIE_ACCESS_TOKEN) || "",
+        Authorization: getAccessToken() || "",
       },
     });
 

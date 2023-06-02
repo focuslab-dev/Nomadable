@@ -25,6 +25,7 @@ import { Contributer } from "../contributerSlice";
 import { removeCookie } from "../../../modules/CookieHandler";
 import { apiFetchNotificationUnseenCnt } from "./apiNotificationSlice";
 import { showSpinner, hideSpinner } from "../uiSlice";
+import axios from "axios";
 
 /**
  * Types
@@ -317,7 +318,7 @@ export const apiSigninWithGoogle = createAsyncThunk<
       }, 500);
     } else {
       setTimeout(() => {
-        window.location.reload();
+        thunkApi.dispatch(apiFetchUser({}));
       }, 500);
     }
 
