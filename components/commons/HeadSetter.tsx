@@ -53,19 +53,19 @@ export const HeadSetter: VFC<Props> = ({
       <link
         rel="apple-touch-icon"
         sizes="180x180"
-        href="/images/brandicons/apple-touch-icon.png"
+        href="/favicon/apple-icon-180x180.png"
       />
       <link
         rel="icon"
         type="image/png"
         sizes="32x32"
-        href="/images/brandicons/favicon-32x32.png"
+        href="/favicon/favicon-32x32.png"
       />
       <link
         rel="icon"
         type="image/png"
         sizes="16x16"
-        href="/images/brandicons/favicon-16x16.png"
+        href="/favicon/favicon-16x16.png"
       />
     </Head>
   );
