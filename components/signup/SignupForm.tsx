@@ -22,6 +22,7 @@ import { updateVisibleModal } from "../../redux/slices/uiSlice";
 
 import {
   ButtonPrimaryLarge,
+  ButtonPrimaryMedium,
   ButtonText,
 } from "../../styles/styled-components/Buttons";
 
@@ -211,16 +212,16 @@ export const SignupForm: React.FC<Props> = ({}) => {
 };
 
 const FormContainer = styled.form`
-  padding: 1.5rem 1.5rem;
+  padding: 0.8rem 1.5rem;
   box-sizing: border-box;
 `;
 
 const FormSet = styled.div``;
 
 const SignUpButton = styled.button`
-  ${ButtonPrimaryLarge}
+  ${ButtonPrimaryMedium}
   width: 100%;
-  margin-top: 2rem;
+  margin-top: 1.6rem;
 `;
 
 const GoToLoginButton = styled.button`

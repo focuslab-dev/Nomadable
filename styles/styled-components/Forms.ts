@@ -11,7 +11,7 @@ export const FormLabelStyle = styled.div<{ small?: boolean }>`
   font-weight: bold;
   ${FontSizeSemiSmall};
   color: ${cons.FONT_COLOR_NORMAL};
-  margin-top: 1.2rem;
+  margin-top: 1rem;
   margin-bottom: 0.6rem;
 
   ${(props) =>
@@ -33,7 +33,7 @@ export const FormStyle = css<{
   ${FontSizeNormal};
   border: 1px solid ${cons.FONT_COLOR_LIGHTEST};
 
-  padding: 0.9rem 1rem;
+  padding: 0.85rem 1rem;
   box-sizing: border-box;
   border-radius: 0.3rem;
   max-width: ${(props) => props.maxWidth};
@@ -102,8 +102,8 @@ export const FooterWrapperStyle = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;
-  margin-bottom: 0.2rem;
-  margin-top: -0.2rem;
+  margin-bottom: 0.8rem;
+  margin-top: -0.6rem;
 `;
 
 export const ErrorMsgStyle = styled.div`
