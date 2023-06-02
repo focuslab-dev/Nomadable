@@ -318,7 +318,7 @@ export const apiSigninWithGoogle = createAsyncThunk<
       }, 500);
     } else {
       setTimeout(() => {
-        thunkApi.dispatch(apiFetchUser({}));
+        window.location.reload();
       }, 500);
     }
 

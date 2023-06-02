@@ -119,11 +119,8 @@ export const SignupForm: React.FC<Props> = ({}) => {
 
   return (
     <FormContainer autoComplete="off">
-      {/* <FormSet>
-        <FormLabelStyle>
-          Email
-
-        </FormLabelStyle>
+      <FormSet>
+        <FormLabelStyle>Email</FormLabelStyle>
         <InputFormStyle
           placeholder="example@mail.com"
           value={email}
@@ -136,9 +133,7 @@ export const SignupForm: React.FC<Props> = ({}) => {
         <ErrorMsgStyle>{emailError}</ErrorMsgStyle>
       </FormSet>
       <FormSet>
-        <FormLabelStyle>
-          Password
-        </FormLabelStyle>
+        <FormLabelStyle>Password</FormLabelStyle>
         <InfotipStyle>
           {PASSWORD_MIN_LENGTH}+ characters, including number
         </InfotipStyle>
@@ -181,7 +176,7 @@ export const SignupForm: React.FC<Props> = ({}) => {
         Sign Up
       </SignUpButton>
 
-      <OrLine /> */}
+      <OrLine />
 
       <GoogleLoginWrapper>
         <GoogleLoginButton
@@ -191,7 +186,7 @@ export const SignupForm: React.FC<Props> = ({}) => {
         />
       </GoogleLoginWrapper>
 
-      {/* <TermsAndPrivacyStyle></TermsAndPrivacyStyle>
+      <TermsAndPrivacyStyle></TermsAndPrivacyStyle>
       <DividerStyle />
       <FooterWrapperStyle>
         <Link
@@ -205,7 +200,7 @@ export const SignupForm: React.FC<Props> = ({}) => {
         >
           <GoToLoginButton onClick={onClickLogin}>Login</GoToLoginButton>
         </Link>
-      </FooterWrapperStyle> */}
+      </FooterWrapperStyle>
     </FormContainer>
   );
 };
