@@ -187,6 +187,7 @@ export const SignupForm: React.FC<Props> = ({}) => {
         <GoogleLoginButton
           loginWithGoogle={loginWithGoogle}
           gapiClientId={gapiClientId}
+          label="Sign up with Google"
         />
       </GoogleLoginWrapper>
 

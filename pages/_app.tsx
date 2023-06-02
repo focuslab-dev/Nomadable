@@ -60,6 +60,8 @@ const App = ({ Component, pageProps }: AppProps) => {
     }
   }, [apiFetchUserStatus.status]);
 
+  if (!gapiClientId) return null;
+
   return (
     <GoogleOAuthProvider clientId={gapiClientId}>
       <Provider store={store}>

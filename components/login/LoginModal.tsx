@@ -150,6 +150,7 @@ export const LoginModal: React.FC<Props> = ({ visible, closeModal }) => {
           <GoogleLoginButton
             loginWithGoogle={loginWithGoogle}
             gapiClientId={gapiClientId}
+            label="Login with Google"
           />
         </GoogleLoginWrapper>
 
