@@ -10,7 +10,7 @@ import { store } from "../redux/store";
 import GlobalStyles from "../styles/GlobalStyles";
 import { GlobalHead } from "../components/global/GlobalHead";
 import { useAppDispatch, useAppSelector } from "../redux/hooks";
-import { API_IDLE, API_SUCCEEDED } from "../constants";
+import { API_IDLE } from "../constants";
 import { GlobalModals } from "../components/global/GlobalModals";
 import {
   apiFetchUser,
@@ -60,10 +60,12 @@ const App = ({ Component, pageProps }: AppProps) => {
     }
   }, [apiFetchUserStatus.status]);
 
-  if (!gapiClientId) return null;
-
   return (
-    <GoogleOAuthProvider clientId={gapiClientId}>
+    <GoogleOAuthProvider
+      clientId={
+        "397305107163-o3391ke1fgum12lkv0g4jgnt9gb4j4vr.apps.googleusercontent.com"
+      }
+    >
       <Provider store={store}>
         <Head>
           <GlobalHead />
