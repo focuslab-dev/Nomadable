@@ -91,6 +91,6 @@ export const GlobalHead = () => (
     />
 
     {/* Speed Test */}
-    <script src="//speedof.me/api/api.js" type="text/javascript" async />
+    <script src="https://speedof.me/api/api.js" type="text/javascript" async />
   </Fragment>
 );
