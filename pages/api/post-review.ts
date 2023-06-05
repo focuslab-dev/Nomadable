@@ -8,6 +8,7 @@ import { updateReviewStarsOfPlace } from "../../modules/api/updateReviewStarsOfP
 import { makeReviewsWithData } from "../../modules/api/makeReviewsWithData";
 import { distributePointsGeneral } from "../../modules/api/addPoint";
 import { ReviewAspects } from "../../redux/slices/placeSlice";
+import { addNewEvent } from "../../modules/api/addNewEvent";
 
 const calcStars = (reviewAcpects: ReviewAspects) => {
   const reviewValues = Object.values(reviewAcpects);
@@ -73,6 +74,15 @@ handler.post(async (req: any, res: any) => {
         placeId,
         POINT_TYPE_REVIEW
       );
+
+      await addNewEvent(req.mongoose, {
+        userId,
+        title: `posted a review 💬`,
+        timestamp: Date.now(),
+        body: "",
+        isOfficial: false,
+        placeId,
+      });
     }
 
     const [reviewWithData] = await makeReviewsWithData(
