@@ -8,11 +8,7 @@ export const getUniqueSlug = async (
     let finalCandidate = "";
 
     while (finalCandidate === "") {
-      const candidate = text
-        .toLowerCase()
-        .replace(/ /g, "-")
-        // .replace(/[^\w-]+/g, "")
-        .replace(/(-)\1+/g, "-");
+      const candidate = text.toLowerCase().replace(/[-/\s]+/g, "-");
 
       const candidateWithCount = `${candidate}${count > 0 ? `-${count}` : ""}`;
 
@@ -26,6 +22,7 @@ export const getUniqueSlug = async (
         count += 1;
       }
     }
+
     return finalCandidate;
   } catch (err) {
     console.error(err);
