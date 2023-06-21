@@ -24,12 +24,11 @@ interface Props {
 export const getCity = (address: string) => {
   const addressArr = address.split(",");
   const countryCityArr = addressArr.slice(
-    addressArr.length - 2,
+    addressArr.length - 3,
     addressArr.length
   );
-  return countryCityArr.join(",");
+  return countryCityArr.join(",").trim();
 };
-
 /**
  *  Render
  */
