@@ -91,7 +91,7 @@ const TOKYO_COWORKING: Article = {
 const TOKYO_CAFE: Article = {
   slug: `top-work-study-cafes-${ct.JAPAN_TOKYO.slug}`,
   city: ct.JAPAN_TOKYO,
-  title: "Top 8 Study & Work Friendly Cafes in Tokyo, Japan",
+  title: "Top 20 Study & Work Friendly Cafes in Tokyo, Japan",
   filterObj: {
     placeTypes: [cons.PLACE_TYPE_CAFE],
     availability: [],
@@ -99,7 +99,7 @@ const TOKYO_CAFE: Article = {
     wifiSpeed: 0,
     sortBy: cons.SORT_BY_REVIEW,
   },
-  placeCnt: 8,
+  placeCnt: 20,
   omitPlaceIds: [],
   omitReviewIds: [],
 };
