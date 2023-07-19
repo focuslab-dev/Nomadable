@@ -452,6 +452,17 @@ export const GERMANY_BERLIN: City = {
     lngEnd: 13.61830765298265,
   },
 };
+export const JAPAN_SAPPORO: City = {
+  slug: "japan-sapporo",
+  country: "Japan",
+  city: "Sapporo",
+  boundary: {
+    latStart: 42.9565480813377,
+    lngStart: 141.20156305116666,
+    latEnd: 43.14931669676534,
+    lngEnd: 141.51465094902812,
+  },
+};
 
 export const CITIES: City[] = [
   /**
@@ -464,6 +475,7 @@ export const CITIES: City[] = [
   JAPAN_OSAKA,
   JAPAN_FUKUOKA,
   JAPAN_NAGOYA,
+  JAPAN_SAPPORO,
   /**
    * South East Asia
    */
