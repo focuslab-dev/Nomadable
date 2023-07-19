@@ -441,6 +441,18 @@ export const VIETNAM_DANANG: City = {
   },
 };
 
+export const GERMANY_BERLIN: City = {
+  slug: "germany-berlin",
+  country: "Germany",
+  city: "Berlin",
+  boundary: {
+    latStart: 52.37964429963128,
+    lngStart: 13.14021022965892,
+    latEnd: 52.639476618607745,
+    lngEnd: 13.61830765298265,
+  },
+};
+
 export const CITIES: City[] = [
   /**
    * Eeast Asia
@@ -495,6 +507,7 @@ export const CITIES: City[] = [
   SWITZERLAND_ZURICH,
   SWITZERLAND_GENEVA,
   GREECE_ATHENS,
+  GERMANY_BERLIN,
   /**
    * Oceanian
    */
