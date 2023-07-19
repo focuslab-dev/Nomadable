@@ -5,6 +5,10 @@ import { hideSpinner, showSpinner } from "../redux/slices/uiSlice";
 import { getAccessToken } from "../modules/AuthUtils";
 
 const downloadCSV = (csvContent: any) => {
+  console.log(
+    "🚀 ~ file: downloadCalls.ts:8 ~ downloadCSV ~ csvContent:",
+    csvContent.length
+  );
   const encodedUri = encodeURI(csvContent);
 
   const link = document.createElement("a");

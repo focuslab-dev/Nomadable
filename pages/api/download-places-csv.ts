@@ -38,10 +38,7 @@ handler.get(async (req: any, res: any) => {
 
     // get data from DB
     const places = await Place.find({}).lean();
-    console.log(
-      "🚀 ~ file: download-places-csv.ts:41 ~ handler.get ~ places:",
-      places.lengh
-    );
+
     const savedPlaces = !userId ? [] : await SavedPlace.find({ userId }).lean();
     const savedPlaceIds = savedPlaces.map((pl: any) => pl.placeId);
 
@@ -67,15 +64,8 @@ handler.get(async (req: any, res: any) => {
       };
     });
 
-    console.log(
-      "🚀 ~ file: download-places-csv.ts:69 ~ placeData ~ placeData:",
-      placeData.length
-    );
-
     // make csv content
     const csvContent = makeCsvContent(placeData);
-
-    console.log("csvContent", csvContent.length);
 
     return res.status(200).json({ csvContent });
   } catch (error: any) {
