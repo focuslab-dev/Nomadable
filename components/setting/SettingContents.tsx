@@ -8,15 +8,36 @@ import {
   apiDeleteUser,
   selectApiDeleteUserStatus,
 } from "../../redux/slices/api/apiUserSlice";
-import { FontSizeNormal } from "../../styles/styled-components/FontSize";
+import {
+  FontSizeExLarge,
+  FontSizeLarge,
+  FontSizeNormal,
+  FontSizeSemiLarge,
+} from "../../styles/styled-components/FontSize";
 import { ClickableStyle } from "../../styles/styled-components/Interactions";
 import { PageLoader } from "../commons/PageLoader";
+import {
+  ButtonBlackSmall,
+  ButtonBlackSmallest,
+} from "../../styles/styled-components/Buttons";
+import { callDownloadPlacesAsCsv } from "../../calls/downloadCalls";
+import { showSpinner, hideSpinner } from "../../redux/slices/uiSlice";
+// import { Description } from "../place/check-in-modal/CheckInModalStyles";
 
 interface Props {}
 
 export const SettingContents: React.FC<Props> = ({}) => {
   const dispatch = useAppDispatch();
   const apiDeleteStatus = useAppSelector(selectApiDeleteUserStatus);
+
+  const onClickDownloadCsv = async () => {
+    dispatch(showSpinner({ message: "Downloading..." }));
+    const result = await callDownloadPlacesAsCsv();
+    dispatch(hideSpinner());
+    if (!result) {
+      window.alert("Something went wrong.");
+    }
+  };
 
   const onClickDeleteAccount = () => {
     const response = window.confirm(
@@ -35,7 +56,17 @@ export const SettingContents: React.FC<Props> = ({}) => {
         message="Deleting..."
       />
       <BodyWrapper>
-        <Wrapper>Comming soon...</Wrapper>
+        <Wrapper>
+          <SectionDiv>
+            <Label>Download Place Data</Label>
+            <Description>
+              You can download all the place data as CSV file.
+            </Description>
+            <DownloadLink onClick={onClickDownloadCsv}>
+              Download (CSV)
+            </DownloadLink>
+          </SectionDiv>
+        </Wrapper>
       </BodyWrapper>
       <Footer>
         <DeleteAccountButton onClick={onClickDeleteAccount}>
@@ -82,4 +113,21 @@ const DeleteAccountButton = styled.div`
   align-items: center;
   font-weight: bold;
   color: ${cons.COLOR_RED_1};
+`;
+
+export const DownloadLink = styled.button`
+  ${ButtonBlackSmallest};
+  margin-top: 1rem;
+`;
+
+const SectionDiv = styled.div``;
+
+const Label = styled.div`
+  color: ${cons.FONT_COLOR_NORMAL};
+  ${FontSizeSemiLarge};
+`;
+
+const Description = styled.div`
+  font-weight: normal;
+  margin-top: 0.6rem;
 `;
