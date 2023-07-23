@@ -37,6 +37,7 @@ import { PageLoader } from "../commons/PageLoader";
 import { CheckInButton } from "../map-search/CheckInButton";
 import { Boundary, City } from "../../data/articles/cities";
 import { HeaderSmall } from "../../styles/styled-components/Texts";
+import { ButtonPrimarySmall } from "../../styles/styled-components/Buttons";
 
 interface Props {
   places: PlaceHeader[];
@@ -318,6 +319,7 @@ export const TopPage: React.FC<Props> = ({
           viewHeight={viewHeight}
           hoveredPlace={hoveredPlace}
           mapAreaOfCity={city && city.boundary ? city.boundary : undefined}
+          mapButtonVisible={scrollButtonVisible || filterVisible}
         />
       </MapSection>
 
@@ -338,9 +340,11 @@ export const TopPage: React.FC<Props> = ({
         setUserLocationLoading={setUserLocationLoading}
       />
 
-      <MapButtons mobileHidden={scrollButtonVisible || filterVisible}>
-        <CheckInButton />
-      </MapButtons>
+      {/* <MapButtons mobileHidden={scrollButtonVisible || filterVisible}>
+        <JumpToMyLocationButton>
+          <Icon src="/icon/location-white.svg" /> <span>Zoom</span>
+        </JumpToMyLocationButton>
+      </MapButtons> */}
     </TopPageWrapper>
   );
 };
@@ -426,29 +430,6 @@ const MapSection = styled.div<{ viewHeight: number }>`
     z-index: 1;
     height: calc(${(props) => props.viewHeight}px - 15rem);
   }
-`;
-
-export const MapButtons = styled.div<{ mobileHidden: boolean }>`
-  ${AnimationSlideUp}
-  position: fixed;
-  top: 6.5rem;
-  left: 38rem;
-  z-index: 2;
-
-  ${forMobile(`
-    top: 6rem;
-    left: 1rem;
-    z-index: 3;
-    `)}
-
-  ${(props) =>
-    props.mobileHidden &&
-    `
-    display: block;
-    ${forMobile(`
-      display: none;
-    `)}
-    `}
 `;
 
 const ScrollUpButton = styled.button<{ visible: boolean }>`

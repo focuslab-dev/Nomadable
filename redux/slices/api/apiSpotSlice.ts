@@ -25,9 +25,11 @@ interface ApiState {
 }
 
 export interface SpotPrediction {
-  placeId: string;
+  googlePlaceId: string;
   mainText: string;
   secondaryText: string;
+  placeId: string;
+  distance: number | null;
 }
 
 /**

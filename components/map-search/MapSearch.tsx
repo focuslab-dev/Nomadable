@@ -4,13 +4,17 @@ import mapboxgl from "mapbox-gl";
 
 import * as cons from "../../constants";
 import { MapArea, Place } from "../../redux/slices/placeSlice";
-import { useRouter } from "next/router";
+import router, { useRouter } from "next/router";
 import { convertPlacesToPins, makeIcon } from "./MapSearchModules";
 import { useAppSelector } from "../../redux/hooks";
 import {
   selectMapboxAccessToken,
   selectMapboxStyleUrl,
 } from "../../redux/slices/envSlice";
+import { forMobile } from "../../styles/Responsive";
+import { ButtonPrimarySmall } from "../../styles/styled-components/Buttons";
+import { AnimationSlideUp } from "../../styles/styled-components/Animations";
+import { getCurrentLocation } from "../../modules/Location";
 
 interface Props {
   mapId: string;
@@ -29,6 +33,7 @@ interface Props {
   viewHeight: number;
   hoveredPlace: string;
   mapAreaOfCity?: MapArea;
+  mapButtonVisible: boolean;
 }
 
 interface Pin {
@@ -108,6 +113,11 @@ export const MapSearch: React.FC<Props> = (props) => {
       positionOptions: {
         enableHighAccuracy: true,
       },
+      fitBoundsOptions: {
+        maxZoom: 11,
+        animate: false,
+      },
+
       // When active the map will receive updates to the device's location as it changes.
       trackUserLocation: true,
       // Draw an arrow next to the location dot to indicate which direction the device is heading.
@@ -179,6 +189,15 @@ export const MapSearch: React.FC<Props> = (props) => {
   };
 
   /**
+   * User Interaction
+   */
+
+  const onClickZoom = () => {
+    // zoom to current location
+    geoControl.trigger();
+  };
+
+  /**
    * Effect
    */
 
@@ -228,6 +247,12 @@ export const MapSearch: React.FC<Props> = (props) => {
   return (
     <MapWrapper>
       <Map id={mapId} viewHeight={props.viewHeight}></Map>
+      <MapButtons mobileHidden={props.mapButtonVisible}>
+        {/* <CheckInButton /> */}
+        <JumpToMyLocationButton onClick={onClickZoom}>
+          <Icon src="/icon/location-white.svg" /> <span>Current</span>
+        </JumpToMyLocationButton>
+      </MapButtons>
     </MapWrapper>
   );
 };
@@ -245,4 +270,63 @@ const MapWrapper = styled.div`
   width: 100%;
   height: 100%;
   position: relative;
+`;
+
+const JumpToMyLocationButton = styled.button`
+  ${ButtonPrimarySmall}
+  background-color: ${cons.COLOR_PRIMARY_1};
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-radius: 50rem;
+  padding-left: 1.5rem;
+  padding-right: 1.6rem;
+  box-shadow: ${cons.SHADOW_2};
+
+  ${forMobile(`
+      width: 3.3rem;
+      min-width: 3.3rem;
+      height: 3.3rem;
+      justify-content: center;
+      padding: 0;
+
+      & span {
+        display: none;
+      }
+
+      & img {
+        margin-right: 0;
+        width: 1.3rem;
+        height: 1.3rem;
+      }
+  `)}
+`;
+
+const Icon = styled.img`
+  width: 1.1rem;
+  height: 1.1rem;
+  margin-right: 0.5rem;
+`;
+
+const MapButtons = styled.div<{ mobileHidden: boolean }>`
+  ${AnimationSlideUp}
+  position: fixed;
+  top: 6.5rem;
+  left: 38rem;
+  z-index: 2;
+
+  ${forMobile(`
+    top: 6rem;
+    left: 1rem;
+    z-index: 3;
+    `)}
+
+  ${(props) =>
+    props.mobileHidden &&
+    `
+    display: block;
+    ${forMobile(`
+      display: none;
+    `)}
+    `}
 `;

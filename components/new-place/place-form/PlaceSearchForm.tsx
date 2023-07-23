@@ -48,7 +48,15 @@ export const PlaceSearchForm: React.FC<Props> = ({
     }, 500);
   };
 
-  const onClickPlace = (spot: SpotPrediction) => {
+  const onClickPlace = (spot: SpotPrediction, placeId: string) => {
+    if (placeId) {
+      window.confirm(
+        "This place is already added. Do you want to jump to the place page?"
+      );
+      window.open(`/place/${spot.placeId}`, "_blank");
+      return;
+    }
+
     selectPlace(spot);
     setIsResultVisible(false);
   };
@@ -92,11 +100,22 @@ export const PlaceSearchForm: React.FC<Props> = ({
             return (
               <SearchResultItem
                 key={place.placeId}
-                onClick={() => onClickPlace(place)}
+                onClick={() => onClickPlace(place, place.placeId)}
               >
-                <PinIcon src="/icon/pin-black.png" />
+                <PinIconWrapper>
+                  <PinIcon src="/icon/pin-black.png" />
+                  {place.distance && (
+                    <Distance>
+                      <div>{place.distance.toFixed(1)}</div>
+                      <div>km</div>
+                    </Distance>
+                  )}
+                </PinIconWrapper>
                 <SpotInfo>
-                  <SpotName>{place.mainText}</SpotName>
+                  <SpotName>
+                    {place.mainText}{" "}
+                    {place.placeId && <AddedMark>Added</AddedMark>}
+                  </SpotName>
                   <SpotAddress>{place.secondaryText}</SpotAddress>
                 </SpotInfo>
               </SearchResultItem>
@@ -166,8 +185,6 @@ const SearchResultItem = styled.div`
 export const PinIcon = styled.img`
   width: 1rem;
   opacity: 0.4;
-  transform: translateY(0.52rem);
-  margin-right: 0.8rem;
 `;
 
 export const SpotInfo = styled.div``;
@@ -176,6 +193,8 @@ const SpotName = styled.div`
   ${fs.FontSizeNormal}
   font-weight: 600;
   color: ${cons.FONT_COLOR_NORMAL};
+  display: flex;
+  align-items: center;
 `;
 
 const SpotAddress = styled.div`
@@ -207,4 +226,31 @@ const SelectedPlaceAddress = styled.div`
   ${fs.FontSizeSemiSmall}
   font-weight: 400;
   margin-top: 0.3rem;
+`;
+
+const AddedMark = styled.span`
+  background-color: ${cons.COLOR_PRIMARY_6};
+  color: ${cons.COLOR_PRIMARY_0};
+  padding: 0.15rem 0.4rem;
+  border-radius: 0.2rem;
+  ${fs.FontSizeSmall}
+  margin-left: 0.5rem;
+`;
+
+const PinIconWrapper = styled.div`
+  display: flex;
+  flex-direction: column;
+  margin-right: 0.8rem;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  transform: translateY(0.15rem);
+  width: 2rem;
+`;
+
+const Distance = styled.div`
+  ${fs.FontSizeSmall}
+  color: ${cons.FONT_COLOR_LIGHT};
+  margin-top: 0.3rem;
+  font-weight: 400;
 `;

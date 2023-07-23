@@ -6,6 +6,7 @@ import authenticationMiddleware from "../../middleware/authentication";
 import axios from "axios";
 import { config } from "aws-sdk";
 import { text } from "stream/consumers";
+import { SpotPrediction } from "../../redux/slices/api/apiSpotSlice";
 
 const handler = nextConnect();
 
@@ -39,9 +40,40 @@ const getPlaceCandidates = async (
   }
 };
 
+const deg2rad = (deg: number) => {
+  return deg * (Math.PI / 180);
+};
+
+const calcDistanceInKm = (
+  location1: { lat: number; lng: number } | false,
+  location2: { lat: number; lng: number }
+) => {
+  if (!location1) return null;
+
+  const lat1 = location1.lat;
+  const lon1 = location1.lng;
+  const lat2 = location2.lat;
+  const lon2 = location2.lng;
+
+  const R = 6371; // Radius of the earth in km
+  const dLat = deg2rad(lat2 - lat1); // deg2rad below
+  const dLon = deg2rad(lon2 - lon1);
+  const a =
+    Math.sin(dLat / 2) * Math.sin(dLat / 2) +
+    Math.cos(deg2rad(lat1)) *
+      Math.cos(deg2rad(lat2)) *
+      Math.sin(dLon / 2) *
+      Math.sin(dLon / 2);
+  const c = 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1 - a));
+  const d = R * c; // Distance in km
+
+  return d;
+};
+
 handler.get(async (req: any, res: any) => {
   const { text } = req.query;
   const location = JSON.parse(req.query.location);
+  const Place = req.mongoose.model("Place");
 
   try {
     const { results } = await getPlaceCandidates(text, location);
@@ -53,11 +85,26 @@ handler.get(async (req: any, res: any) => {
       );
     });
 
-    const spotPredictions = resultsFiltered.map((p: any) => ({
-      placeId: p.place_id,
-      mainText: p.name,
-      secondaryText: p.formatted_address,
-    }));
+    // make spotPredictions
+
+    const allPlaces = await Place.find({}).lean();
+
+    const spotPredictions = resultsFiltered.map((p: any) => {
+      const distance = calcDistanceInKm(location, p.geometry.location);
+      const place = allPlaces.find((place: any) => {
+        return place.googlePlaceId === p.place_id;
+      });
+
+      const spotPrediction: SpotPrediction = {
+        googlePlaceId: p.place_id,
+        mainText: p.name,
+        secondaryText: p.formatted_address,
+        placeId: place ? place.id : "",
+        distance,
+      };
+
+      return spotPrediction;
+    });
 
     return res
       .status(200)
