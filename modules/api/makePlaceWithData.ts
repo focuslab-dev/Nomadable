@@ -46,31 +46,6 @@ export const getCheckInUsers = async (
   }
 };
 
-// const normalizeReviewAspects = (reviewAspects: ReviewAspects) => {
-//   try {
-//     if (!reviewAspects) return initialReviewAspects;
-
-//     const normalized = { ...initialReviewAspects };
-
-//     const keys = Object.keys(reviewAspects);
-
-//     keys.forEach((key) => {
-//       const value = reviewAspects[key as keyof ReviewAspects];
-//       if (value) {
-//         normalized[key as keyof ReviewAspects] = value;
-//       }
-//     });
-
-//     return normalized;
-//   } catch (err) {
-//     console.log(
-//       "🚀 ~ file: makePlaceWithData.ts:64 ~ normalizeReviewAspects ~ err:",
-//       err
-//     );
-//     return initialReviewAspects;
-//   }
-// };
-
 export const makePlaceWithData = async (
   mongoose: any,
   place: Place,

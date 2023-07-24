@@ -34,10 +34,10 @@ const getPlaceDetail = async (placeId: string) => {
 };
 
 handler.get(async (req: any, res: any) => {
-  const { placeId } = req.query;
+  const { googlePlaceId } = req.query;
 
   try {
-    const data = await getPlaceDetail(placeId);
+    const data = await getPlaceDetail(googlePlaceId);
 
     const country = data.result.address_components.find(
       (c: any) => c.types[0] === "country"

@@ -15,9 +15,7 @@ export const GoogleLoginButton: React.FC<Props> = (props) => {
     onSuccess: (codeResponse) => {
       props.loginWithGoogle(codeResponse.code);
     },
-    onError: (error) => {
-      console.log(error);
-    },
+    onError: (error) => {},
     flow: "auth-code",
     ux_mode: "popup",
   });

@@ -52,7 +52,7 @@ export const PlaceForm: React.FC<Props> = ({
 
   const selectPlace = (spot: SpotPrediction) => {
     dispatch(setSpotNameToNewPlace({ spot }));
-    dispatch(apiFetchSpotInfo({ placeId: spot.placeId }));
+    dispatch(apiFetchSpotInfo({ googlePlaceId: spot.googlePlaceId }));
   };
 
   const clearSelectedPlace = () => {

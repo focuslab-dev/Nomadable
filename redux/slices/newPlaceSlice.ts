@@ -36,7 +36,7 @@ const placeSlice = createSlice({
       state,
       action: PayloadAction<{ spot: SpotPrediction }>
     ) => {
-      state.newPlace.googlePlaceId = action.payload.spot.placeId;
+      state.newPlace.googlePlaceId = action.payload.spot.googlePlaceId;
       state.newPlace.spotName = action.payload.spot.mainText;
       state.newPlace.spotAddress = action.payload.spot.secondaryText;
     },

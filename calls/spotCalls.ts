@@ -34,7 +34,7 @@ export const callFetchSpotsByText = async (
 // callFetchPlaceInfo
 
 export const callFetchSpotInfo = async (
-  placeId: string
+  googlePlaceId: string
 ): Promise<{
   data: { spot: Spot };
 }> => {
@@ -42,7 +42,7 @@ export const callFetchSpotInfo = async (
     const response = await axios({
       method: "get",
       url: `${APP_URL}/api/spot-detail`,
-      params: { placeId },
+      params: { googlePlaceId },
       headers: {
         Authorization: getAccessToken() || "",
       },

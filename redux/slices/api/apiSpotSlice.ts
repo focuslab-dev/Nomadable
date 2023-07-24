@@ -135,14 +135,14 @@ export const apiFetchSpotInfo = createAsyncThunk<
     spot: Spot;
   }, // Return type of the payload creator
   {
-    placeId: string;
+    googlePlaceId: string;
   }, // First argument to the payload creator
   {
     rejectValue: CallError;
   } // Types for ThunkAPI
->("spot/FetchPlaceInfo", async ({ placeId }, thunkApi) => {
+>("spot/FetchPlaceInfo", async ({ googlePlaceId }, thunkApi) => {
   try {
-    const { data } = await callFetchSpotInfo(placeId);
+    const { data } = await callFetchSpotInfo(googlePlaceId);
     if (!data) throw unknownError;
 
     return data;
