@@ -464,6 +464,18 @@ export const JAPAN_SAPPORO: City = {
   },
 };
 
+export const NETHERLANDS_AMSTERDAM: City = {
+  slug: "netherlands-amsterdam",
+  country: "Netherlands",
+  city: "Amsterdam",
+  boundary: {
+    latStart: 52.26942034481499,
+    lngStart: 4.7026764000611365,
+    latEnd: 52.46661719747118,
+    lngEnd: 5.084198952185972,
+  },
+};
+
 export const CITIES: City[] = [
   /**
    * Eeast Asia
@@ -520,6 +532,7 @@ export const CITIES: City[] = [
   SWITZERLAND_GENEVA,
   GREECE_ATHENS,
   GERMANY_BERLIN,
+  NETHERLANDS_AMSTERDAM,
   /**
    * Oceanian
    */
