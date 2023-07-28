@@ -56,3 +56,27 @@ export const callFetchSpotInfo = async (
     };
   }
 };
+
+export const callFetchOpeningHours = async (
+  googlePlaceId: string
+): Promise<{
+  data: { openHours: string[] };
+}> => {
+  try {
+    const response = await axios({
+      method: "get",
+      url: `${APP_URL}/api/opening-hours`,
+      params: { googlePlaceId },
+      headers: {
+        Authorization: getAccessToken() || "",
+      },
+    });
+
+    return { data: response.data };
+  } catch (error: any) {
+    throw {
+      code: "",
+      message: error.response.data,
+    };
+  }
+};

@@ -91,6 +91,7 @@ const makeCondition = async (
     id: filterObj.saved ? { $in: savedPlaceIds } : { $exists: true },
     location: boundaryCondition,
     speedDown: { $gte: filterObj.wifiSpeed },
+    reviewStars: { $gte: filterObj.reviewStar },
   };
 
   if (placeAndAvailabilityFilters.length > 0) {

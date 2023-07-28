@@ -11,7 +11,6 @@ import { SpotImages } from "./components/SpotImages";
 import { InternetSpeed } from "./components/InternetSpeed";
 import { Availability } from "./components/Availability";
 import { CheckInModal } from "./check-in-modal/CheckInModal";
-import { SectionLoader } from "../commons/SectionLoader";
 import { useAppDispatch, useAppSelector } from "../../redux/hooks";
 import {
   apiChangeStatusOfPlace,
@@ -27,18 +26,15 @@ import {
 } from "../../redux/slices/api/apiPlaceSlice";
 import { selectAuthenticated, selectUser } from "../../redux/slices/userSlice";
 import { forMobile } from "../../styles/Responsive";
-import { apiPostReview } from "../../redux/slices/api/apiReviewSlice";
 import { getStarValue } from "./components/review/ReviewScore";
 import {
-  ButtonSecondaryMedium,
-  ButtonSecondarySmall,
   ButtonSecondarySmallest,
   ButtonText,
 } from "../../styles/styled-components/Buttons";
-import Router, { useRouter } from "next/router";
+import { useRouter } from "next/router";
 import { ClickableStyle } from "../../styles/styled-components/Interactions";
 import { Selection } from "../commons/Selection";
-import router from "next/router";
+import { OpeningHours } from "./components/OpeningHours";
 
 interface Props {
   placeWithData: PlaceWithData;
@@ -227,6 +223,7 @@ export const PlacePage: React.FC<Props> = ({ placeWithData }) => {
             googlePlaceId={pd.googlePlaceId}
             spotAddress={pd.spotAddress}
           />
+          <OpeningHours googlePlaceId={pd.googlePlaceId} />
         </RightSection>
         <LeftSection>
           <InfoItemWrapper label="Internet Speed">

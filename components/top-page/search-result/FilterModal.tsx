@@ -104,6 +104,11 @@ export const FilterModal: React.FC<Props> = ({
     setFilterObj({ ...localFilterObj, wifiSpeed });
   };
 
+  const onChangeReviewStar = (e: any) => {
+    const reviewStar = parseFloat(e.target.value);
+    setFilterObj({ ...localFilterObj, reviewStar });
+  };
+
   const onClickSaved = () => {
     setFilterObj({
       ...localFilterObj,
@@ -193,7 +198,7 @@ export const FilterModal: React.FC<Props> = ({
             <FilterLabel>WiFi Speed</FilterLabel>
             <WiFiFormWrapper>
               <NumberForm
-                value={localFilterObj.wifiSpeed}
+                value={0}
                 onChange={onChangeWifiSpeed}
                 type="number"
               />
@@ -208,6 +213,22 @@ export const FilterModal: React.FC<Props> = ({
               activeText="On"
               inactiveText="Off"
             />
+          </FilterWrapper>
+          <FilterWrapper>
+            <FilterLabel>Review Stars</FilterLabel>
+            <WiFiFormWrapper>
+              <ReviewSelection
+                value={localFilterObj.reviewStar}
+                onChange={onChangeReviewStar}
+              >
+                <option value={0}>All</option>
+                <option value={1}>1+</option>
+                <option value={2}>2+</option>
+                <option value={3}>3+</option>
+                <option value={4}>4+</option>
+                <option value={4.5}>4.5+</option>
+              </ReviewSelection>
+            </WiFiFormWrapper>
           </FilterWrapper>
         </SpecificForms>
 
@@ -319,4 +340,10 @@ const Line = styled.div`
 
 const SubLabel = styled(Label)`
   margin-top: 1.4rem;
+`;
+
+const ReviewSelection = styled.select`
+  ${FormStyle}
+  ${FormSmallStyle}
+  width: 5rem;
 `;

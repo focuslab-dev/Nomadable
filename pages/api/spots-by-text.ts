@@ -7,38 +7,12 @@ import axios from "axios";
 import { config } from "aws-sdk";
 import { text } from "stream/consumers";
 import { SpotPrediction } from "../../redux/slices/api/apiSpotSlice";
+import GoogleMapAPI from "../../modules/GoogleMapAPI";
 
 const handler = nextConnect();
 
 handler.use(databaseMiddleware);
 handler.use(authenticationMiddleware);
-
-const getPlaceCandidates = async (
-  input: string,
-  location: { lat: number; lng: number } | false
-) => {
-  try {
-    const URL = "https://maps.googleapis.com/maps/api/place/textsearch/json";
-    const KEY = `key=${process.env.GAPI_KEY}`;
-    const INPUT = `query=${encodeURIComponent(input.trim())}`;
-    const LOCATION = location
-      ? `&location=${location.lat},${location.lng}`
-      : "";
-
-    // const INPUT_TYPE = "inputtype=textquery";
-    // const LANG = "language=en";
-    // const ITEMS = "fields=place_id,name,structured_formatting";
-
-    const response = await axios({
-      method: "get",
-      url: `${URL}?${KEY}&${INPUT}${LOCATION}`,
-    });
-
-    return response.data;
-  } catch (error) {
-    throw Error;
-  }
-};
 
 const deg2rad = (deg: number) => {
   return deg * (Math.PI / 180);
@@ -76,7 +50,7 @@ handler.get(async (req: any, res: any) => {
   const Place = req.mongoose.model("Place");
 
   try {
-    const { results } = await getPlaceCandidates(text, location);
+    const { results } = await GoogleMapAPI.getPlaceCandidates(text, location);
 
     const resultsFiltered = results.filter((p: any) => {
       return (

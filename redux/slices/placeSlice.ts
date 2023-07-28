@@ -89,6 +89,7 @@ export interface FilterObj {
   saved: boolean;
   wifiSpeed: number;
   sortBy: string;
+  reviewStar: number;
 }
 
 export interface ReviewAspects {
@@ -164,6 +165,7 @@ export const initialFilterObj: FilterObj = {
   saved: false,
   wifiSpeed: 0,
   sortBy: cons.SORT_BY_REVIEW,
+  reviewStar: 0,
 };
 
 export const initialReviewAspects: ReviewAspects = {
