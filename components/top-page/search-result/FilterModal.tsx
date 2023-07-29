@@ -198,7 +198,7 @@ export const FilterModal: React.FC<Props> = ({
             <FilterLabel>WiFi Speed</FilterLabel>
             <WiFiFormWrapper>
               <NumberForm
-                value={0}
+                value={localFilterObj.wifiSpeed}
                 onChange={onChangeWifiSpeed}
                 type="number"
               />
