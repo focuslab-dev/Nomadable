@@ -476,6 +476,18 @@ export const NETHERLANDS_AMSTERDAM: City = {
   },
 };
 
+export const JAPAN_NAGASAKI: City = {
+  slug: "japan-nagasaki",
+  country: "Japan",
+  city: "Nagasaki",
+  boundary: {
+    latStart: 32.70695598058404,
+    lngStart: 129.80996317021874,
+    latEnd: 32.78898319734627,
+    lngEnd: 129.92356643205017,
+  },
+};
+
 export const CITIES: City[] = [
   /**
    * Eeast Asia
@@ -488,6 +500,7 @@ export const CITIES: City[] = [
   JAPAN_FUKUOKA,
   JAPAN_NAGOYA,
   JAPAN_SAPPORO,
+  JAPAN_NAGASAKI,
   /**
    * South East Asia
    */
