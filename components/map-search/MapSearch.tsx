@@ -34,6 +34,7 @@ interface Props {
   hoveredPlace: string;
   mapAreaOfCity?: MapArea;
   mapButtonVisible: boolean;
+  defaultBoundary?: MapArea | null;
 }
 
 interface Pin {
@@ -61,8 +62,6 @@ export const MapSearch: React.FC<Props> = (props) => {
   // const geoControlRef = useRef();
   const mapboxAccessToken = useAppSelector(selectMapboxAccessToken);
   const mapboxStyleUrl = useAppSelector(selectMapboxStyleUrl);
-
-  console.log("city", props.mapAreaOfCity);
 
   /**
    * Modules
@@ -96,11 +95,14 @@ export const MapSearch: React.FC<Props> = (props) => {
 
     // on change map
     mapRef.current.on("dragend", () => {
+      console.log("dragend");
       onViewportUpdate();
     });
 
     mapRef.current.on("zoomend", () => {
+      console.log("zoomend");
       onViewportUpdate();
+
       if (mapRef.current) {
         const zoom = mapRef.current.getZoom();
 
@@ -224,12 +226,14 @@ export const MapSearch: React.FC<Props> = (props) => {
     if (router.query.latStart && router.query.lngStart) {
       updateMapArea(router.query);
       // setQueryLoaded(true);
+    } else if (props.defaultBoundary) {
+      updateMapArea(props.defaultBoundary);
     } else if (props.mapAreaOfCity) {
       updateMapArea(props.mapAreaOfCity);
     } else {
-      onViewportUpdate();
+      // onViewportUpdate();
     }
-  }, [mapRef.current, props.mapAreaOfCity]);
+  }, [mapRef.current, props.mapAreaOfCity, props.defaultBoundary]);
 
   useEffect(() => {
     setPins(convertPlacesToPins(props.places));

@@ -13,22 +13,13 @@ handler.use(authenticationMiddleware);
 
 handler.post(async (req: any, res: any) => {
   const { userId } = req;
-  const {
-    latStart,
-    lngStart,
-    latEnd,
-    lngEnd,
-    pageIndex,
-    filterObj,
-    userLng,
-    userLat,
-  } = req.body;
+  const { mapArea, pageIndex, filterObj, userLng, userLat } = req.body;
 
   try {
     const { places, totalPlaceCnt } = await fetchPlacesWithFilter(
       req.mongoose,
       userId,
-      { latStart, lngStart, latEnd, lngEnd },
+      mapArea,
       filterObj,
       0,
       50,

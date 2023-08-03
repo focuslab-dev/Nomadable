@@ -328,7 +328,7 @@ export const apiCheckIn = createAsyncThunk<
 export const apiFetchPlaces = createAsyncThunk<
   { places: PlaceHeader[]; totalPlaceCnt: number }, // Return type of the payload creator
   {
-    mapArea: MapArea;
+    mapArea: MapArea | null;
     pageIndex: number;
     filterObj: FilterObj;
     filterChanged: boolean;

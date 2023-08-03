@@ -122,7 +122,7 @@ const callCheckIn = async (data: {
 // fetch places
 
 const callFetchPlaces = async (params: {
-  mapArea: MapArea;
+  mapArea: MapArea | null;
   pageIndex: number;
   filterObj: FilterObj;
   userLng?: number;
@@ -133,10 +133,7 @@ const callFetchPlaces = async (params: {
       method: "post",
       url: `${APP_URL}/api/places`,
       data: {
-        latStart: params.mapArea.latStart,
-        lngStart: params.mapArea.lngStart,
-        latEnd: params.mapArea.latEnd,
-        lngEnd: params.mapArea.lngEnd,
+        mapArea: params.mapArea,
         pageIndex: params.pageIndex,
         filterObj: params.filterObj,
         userLng: params.userLng,

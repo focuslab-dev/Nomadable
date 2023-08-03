@@ -38,17 +38,20 @@ import { CheckInButton } from "../map-search/CheckInButton";
 import { Boundary, City } from "../../data/articles/cities";
 import { HeaderSmall } from "../../styles/styled-components/Texts";
 import { ButtonPrimarySmall } from "../../styles/styled-components/Buttons";
+import places from "../../pages/api/places";
 
 interface Props {
   places: PlaceHeader[];
   searchResultTotalCnt: number;
   city?: City;
+  defaultBoundary?: Boundary | null;
 }
 
 export const TopPage: React.FC<Props> = ({
   places,
   searchResultTotalCnt,
   city,
+  defaultBoundary,
 }) => {
   const dispatch = useAppDispatch();
   const router = useRouter();
@@ -59,6 +62,7 @@ export const TopPage: React.FC<Props> = ({
 
   // ref
   const fetchTimeoutRef = useRef<any>(0);
+  const mapAreaChangedCnt = useRef(0);
   // local state
   const [mapArea, setMapArea] = useState<null | MapArea>(null);
   const [pageIndex, setPageIndex] = useState(0);
@@ -82,7 +86,7 @@ export const TopPage: React.FC<Props> = ({
    */
 
   const searchPlaces = (
-    mapArea: MapArea,
+    mapArea: MapArea | null,
     pageIndex: number,
     _filterObj: FilterObj,
     filterChanged: boolean,
@@ -201,7 +205,6 @@ export const TopPage: React.FC<Props> = ({
    */
 
   useEffect(() => {
-    // mapAreaChangedCnt.current += 1;
     if (!mapArea) return;
     if (city) return;
 
@@ -209,7 +212,7 @@ export const TopPage: React.FC<Props> = ({
   }, [mapArea]);
 
   useEffect(() => {
-    if (!mapArea) return;
+    // if (!mapArea) return;
 
     searchPlaces(
       mapArea,
@@ -320,6 +323,7 @@ export const TopPage: React.FC<Props> = ({
           hoveredPlace={hoveredPlace}
           mapAreaOfCity={city && city.boundary ? city.boundary : undefined}
           mapButtonVisible={scrollButtonVisible || filterVisible}
+          defaultBoundary={defaultBoundary}
         />
       </MapSection>
 

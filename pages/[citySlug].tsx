@@ -80,7 +80,7 @@ export default function TopPageContainer(props: TopPageProps) {
         <HeadSetter
           pageTitle={`${
             props.totalPlaceCnt >= 10 ? `${props.totalPlaceCnt} ` : ""
-          }Best Work Cafes & Co-working Spaces in ${props.city?.city}`}
+          }Best Work Cafes & Co-working Spaces in ${props.city?.city || ""}`}
           pageDescription={generatePageDescription()}
           pagePath={`${APP_URL}/${props.city?.slug}`}
         />
