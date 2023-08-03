@@ -74,9 +74,7 @@ export default function TopPageContainer(props: TopPageProps) {
    */
 
   useEffect(() => {
-    setTimeout(() => {
-      zoomToCurrentCity();
-    }, 500);
+    zoomToCurrentCity();
 
     return () => {
       dispatch(initApiFetchPlacesState());
