@@ -488,6 +488,18 @@ export const JAPAN_NAGASAKI: City = {
   },
 };
 
+export const JAPAN_HIROSHIMA: City = {
+  slug: "japan-hiroshima",
+  country: "Japan",
+  city: "Hiroshima",
+  boundary: {
+    latStart: 34.35383961782037,
+    lngStart: 132.40276190502385,
+    latEnd: 34.43439669115807,
+    lngEnd: 132.5127634803851,
+  },
+};
+
 export const CITIES: City[] = [
   /**
    * Eeast Asia
@@ -501,6 +513,7 @@ export const CITIES: City[] = [
   JAPAN_NAGOYA,
   JAPAN_SAPPORO,
   JAPAN_NAGASAKI,
+  JAPAN_HIROSHIMA,
   /**
    * South East Asia
    */

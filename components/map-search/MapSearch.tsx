@@ -62,6 +62,8 @@ export const MapSearch: React.FC<Props> = (props) => {
   const mapboxAccessToken = useAppSelector(selectMapboxAccessToken);
   const mapboxStyleUrl = useAppSelector(selectMapboxStyleUrl);
 
+  console.log("city", props.mapAreaOfCity);
+
   /**
    * Modules
    */

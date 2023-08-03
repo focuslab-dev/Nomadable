@@ -1,5 +1,5 @@
-import React, { Fragment, useEffect } from "react";
-import { GetStaticPaths, GetStaticProps } from "next";
+import React, { Fragment, useEffect, useState } from "react";
+import { GetStaticProps } from "next";
 import HeadSetter from "../components/commons/HeadSetter";
 import { Layout } from "../components/commons/Layout";
 import { SplashPage } from "../components/commons/SplashPage";
@@ -20,24 +20,61 @@ import {
   selectPlaceSearchResult,
   selectSearchResultTotalCnt,
 } from "../redux/slices/placeSlice";
-import { forMobile } from "../styles/Responsive";
-import { FontSizeLarge } from "../styles/styled-components/FontSize";
 import { callFetchAllPlaces } from "../calls/placeCalls";
-import { CITIES } from "../data/articles/cities";
+import { CITIES, City } from "../data/articles/cities";
+import { getCurrentLocation } from "../modules/Location";
+import { useRouter } from "next/router";
 
 interface TopPageProps {}
 
 export default function TopPageContainer(props: TopPageProps) {
   const dispatch = useAppDispatch();
+  const router = useRouter();
+  // global state
   const places = useAppSelector(selectPlaceSearchResult);
   const searchResultTotalCnt = useAppSelector(selectSearchResultTotalCnt);
   const apiStatus = useAppSelector(selectApiFetchPlacesStatus);
 
+  /**
+   * Functions
+   */
+
+  async function zoomToCurrentCity() {
+    const location = await getCurrentLocation({
+      accurate: false,
+      useCache: true,
+    });
+
+    if (!location) return;
+
+    const currentCity = CITIES.find((c: any) => {
+      return (
+        c.boundary.latStart < location.lat &&
+        c.boundary.latEnd > location.lat &&
+        c.boundary.lngStart < location.lng &&
+        c.boundary.lngEnd > location.lng
+      );
+    });
+
+    if (!currentCity) return;
+
+    router.push(`/${currentCity.slug}`);
+  }
+
+  /**
+   * Lifecycle
+   */
+
   useEffect(() => {
+    zoomToCurrentCity();
     return () => {
       dispatch(initApiFetchPlacesState());
     };
   }, [null]);
+
+  /**
+   * Render
+   */
 
   return (
     <Fragment>
