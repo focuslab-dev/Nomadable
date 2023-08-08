@@ -500,6 +500,30 @@ export const JAPAN_HIROSHIMA: City = {
   },
 };
 
+export const COLOMBIA_MEDELLIN: City = {
+  slug: "colombia-medellin",
+  country: "Colombia",
+  city: "Medellin",
+  boundary: {
+    latStart: 6.184369934265973,
+    lngStart: -75.64689287478086,
+    latEnd: 6.296550019047743,
+    lngEnd: -75.5071604343739,
+  },
+};
+
+export const CROATIA_SPLIT: City = {
+  slug: "croatia-split",
+  country: "Croatia",
+  city: "Split",
+  boundary: {
+    latStart: 43.47265482032762,
+    lngStart: 16.368765459344672,
+    latEnd: 43.57358996230832,
+    lngEnd: 16.541129655047342,
+  },
+};
+
 export const CITIES: City[] = [
   /**
    * Eeast Asia
@@ -538,6 +562,7 @@ export const CITIES: City[] = [
    * South America
    */
   PERU_LIMA,
+  COLOMBIA_MEDELLIN,
   /**
    * Central Asia
    */
