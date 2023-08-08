@@ -176,7 +176,12 @@ export const AVL_FOOD_MENU = "food";
 // Coworking
 export const AVL_DROP_IN = "drop_in";
 export const AVL_RENTAL_MONITOR = "monitor";
-export const AVL_LIST_WORKSPACE = [AVL_POWER_SOCKET, AVL_RENTAL_MONITOR];
+export const AVL_PHONE_BOOTH = "phone_booth";
+export const AVL_LIST_WORKSPACE = [
+  AVL_POWER_SOCKET,
+  AVL_RENTAL_MONITOR,
+  AVL_PHONE_BOOTH,
+];
 // public space
 export const AVL_OPEN_AIR = "open_air";
 export const AVL_INDOOR = "indoor";
@@ -192,6 +197,7 @@ export const AVL_CAFE_LIST: any = {
 export const AVL_WORKSPACE_LIST: any = {
   [AVL_DROP_IN]: { text: "Drop-In Available", icon: "🚪" },
   [AVL_RENTAL_MONITOR]: { text: "Rental Monitor", icon: "🖥" },
+  [AVL_PHONE_BOOTH]: { text: "Phone Booth", icon: "📞" },
 };
 
 export const AVL_PUBLICSPACE_LIST: any = {
