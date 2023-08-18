@@ -524,6 +524,18 @@ export const CROATIA_SPLIT: City = {
   },
 };
 
+export const JAPAN_YOKOHAMA: City = {
+  slug: "japan-yokohama",
+  country: "Japan",
+  city: "Yokohama",
+  boundary: {
+    latStart: 35.42053781719126,
+    lngStart: 139.5830263132429,
+    latEnd: 35.4881943694768,
+    lngEnd: 139.68414444529128,
+  },
+};
+
 export const CITIES: City[] = [
   /**
    * Eeast Asia
@@ -538,6 +550,7 @@ export const CITIES: City[] = [
   JAPAN_SAPPORO,
   JAPAN_NAGASAKI,
   JAPAN_HIROSHIMA,
+  JAPAN_YOKOHAMA,
   /**
    * South East Asia
    */
