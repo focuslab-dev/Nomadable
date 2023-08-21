@@ -536,6 +536,18 @@ export const JAPAN_YOKOHAMA: City = {
   },
 };
 
+export const BRASIL_SAOPAULO: City = {
+  slug: "brasil-saopaulo",
+  country: "Brasil",
+  city: "Sao Paulo",
+  boundary: {
+    latStart: -23.702401788629274,
+    lngStart: -46.83229676389368,
+    latEnd: -23.41842759589248,
+    lngEnd: -46.455130550465725,
+  },
+};
+
 export const CITIES: City[] = [
   /**
    * Eeast Asia
@@ -576,6 +588,7 @@ export const CITIES: City[] = [
    */
   PERU_LIMA,
   COLOMBIA_MEDELLIN,
+  BRASIL_SAOPAULO,
   /**
    * Central Asia
    */
