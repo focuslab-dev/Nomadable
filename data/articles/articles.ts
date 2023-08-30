@@ -43,7 +43,7 @@ const BANGKOK_CORWORKING: Article = {
 const BANGKOK_CAFE: Article = {
   slug: `top-work-study-cafes-${ct.THAILAND_BANGKOK.slug}`,
   city: ct.THAILAND_BANGKOK,
-  title: "Top 10 Study & Work Friendly Cafes in Bangkok, Thailand",
+  title: "Best 10 Cafes to Study or Work From in Bangkok, Thailand",
   filterObj: {
     placeTypes: [cons.PLACE_TYPE_CAFE],
     availability: [],
@@ -95,7 +95,7 @@ const TOKYO_COWORKING: Article = {
 const TOKYO_CAFE: Article = {
   slug: `top-work-study-cafes-${ct.JAPAN_TOKYO.slug}`,
   city: ct.JAPAN_TOKYO,
-  title: "Top 20 Study & Work Friendly Cafes in Tokyo, Japan",
+  title: "20 Best Cafes to Study or Work From in Tokyo, Japan",
   filterObj: {
     placeTypes: [cons.PLACE_TYPE_CAFE],
     availability: [],
