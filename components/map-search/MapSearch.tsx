@@ -14,7 +14,8 @@ import {
 import { forMobile } from "../../styles/Responsive";
 import { ButtonPrimarySmall } from "../../styles/styled-components/Buttons";
 import { AnimationSlideUp } from "../../styles/styled-components/Animations";
-import { getCurrentLocation } from "../../modules/Location";
+
+import { CheckInButton } from "../map-search/CheckInButton";
 
 interface Props {
   mapId: string;
@@ -254,10 +255,10 @@ export const MapSearch: React.FC<Props> = (props) => {
     <MapWrapper>
       <Map id={mapId} viewHeight={props.viewHeight}></Map>
       <MapButtons mobileHidden={props.mapButtonVisible}>
-        {/* <CheckInButton /> */}
-        <JumpToMyLocationButton onClick={onClickZoom}>
-          <Icon src="/icon/location-white.svg" /> <span>Current</span>
-        </JumpToMyLocationButton>
+        <CheckInButton />
+        {/* <JumpToMyLocationButton onClick={onClickZoom}> */}
+        {/* <Icon src="/icon/location-white.svg" /> <span>Current</span> */}
+        {/* </JumpToMyLocationButton> */}
       </MapButtons>
     </MapWrapper>
   );

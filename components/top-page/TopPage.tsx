@@ -34,7 +34,7 @@ import { FilterModal } from "./search-result/FilterModal";
 import { SearchResult } from "./search-result/SearchResult";
 import { getFilterCount } from "./search-result/filters/getFilterCount";
 import { PageLoader } from "../commons/PageLoader";
-import { CheckInButton } from "../map-search/CheckInButton";
+
 import { Boundary, City } from "../../data/articles/cities";
 import { HeaderSmall } from "../../styles/styled-components/Texts";
 import { ButtonPrimarySmall } from "../../styles/styled-components/Buttons";
