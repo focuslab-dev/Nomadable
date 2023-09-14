@@ -1,3 +1,6 @@
+import { count } from "console";
+import { Collection } from "mongoose";
+
 export const getUniqueSlug = async (
   Collection: any,
   text: string,
@@ -8,7 +11,10 @@ export const getUniqueSlug = async (
     let finalCandidate = "";
 
     while (finalCandidate === "") {
-      const candidate = text.toLowerCase().replace(/[-/\s]+/g, "-");
+      const candidate = text
+        .toLowerCase()
+        .replace(/[\?\&]/g, "")
+        .replace(/[-/\s]+/g, "-");
 
       const candidateWithCount = `${candidate}${count > 0 ? `-${count}` : ""}`;
 
