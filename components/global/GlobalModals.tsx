@@ -6,6 +6,7 @@ import { LoginModalContainer } from "../login/LoginModalContainer";
 import { ReviewFormModal } from "../review-form/ReviewFormModal";
 import { GlobalSpinner } from "./GlobalSpinner";
 import { PlaceSearchModal } from "../place-search/PlaceSearchModal";
+import { FastCheckInModal } from "../modals/FastCheckInModal";
 
 interface Props {}
 
@@ -18,6 +19,7 @@ export const GlobalModals: React.FC<Props> = ({}) => {
       <ReviewFormModal />
       <GlobalSpinner />
       <PlaceSearchModal />
+      <FastCheckInModal />
     </GlobalModalsWrapper>
   );
 };

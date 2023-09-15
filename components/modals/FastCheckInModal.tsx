@@ -1,45 +1,44 @@
 import Link from "next/link";
 import { useRouter } from "next/router";
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import styled from "styled-components";
 import { callFetchNearbyPlaces } from "../../calls/placeCalls";
 
 import * as cons from "../../constants";
 import { getCurrentLocation } from "../../modules/Location";
-import { useAppSelector } from "../../redux/hooks";
-import { PlaceHeader, Spot } from "../../redux/slices/placeSlice";
-import { selectAuthenticated } from "../../redux/slices/userSlice";
+import { useAppDispatch, useAppSelector } from "../../redux/hooks";
+import { PlaceHeader } from "../../redux/slices/placeSlice";
 import { forMobile } from "../../styles/Responsive";
 import {
-  ButtonPrimaryLarge,
-  ButtonPrimaryMedium,
   ButtonPrimarySmall,
-  ButtonPrimarySmallest,
   ButtonText,
 } from "../../styles/styled-components/Buttons";
 import * as fs from "../../styles/styled-components/FontSize";
 import { ClickableStyle } from "../../styles/styled-components/Interactions";
 import { ContainerStyleInside } from "../../styles/styled-components/Layouts";
-import { Header4 } from "../../styles/styled-components/Texts";
 import { Modal } from "../commons/Modal";
 import { ModalHeader } from "../commons/ModalHeader";
 import { SectionLoader } from "../commons/SectionLoader";
+import {
+  selectVisibleModal,
+  updateVisibleModal,
+} from "../../redux/slices/uiSlice";
 
 interface Props {}
 
-export const CheckInButton: React.FC<Props> = ({}) => {
+export const FastCheckInModal: React.FC<Props> = ({}) => {
+  const dispatch = useAppDispatch();
   const router = useRouter();
-  const authenticated = useAppSelector(selectAuthenticated);
-  const [placeModalVisible, setPlaceModalVisible] = useState(false);
   const [loading, setLoading] = useState(false);
   const [places, setPlaces] = useState<PlaceHeader[]>([]);
+  const visible =
+    useAppSelector(selectVisibleModal).modalId === cons.MODAL_FAST_CHECKIN;
 
   /**
    * Functions
    */
 
   const showPlaceOptions = async () => {
-    setPlaceModalVisible(true);
     setLoading(true);
     setPlaces([]);
 
@@ -77,74 +76,69 @@ export const CheckInButton: React.FC<Props> = ({}) => {
    * User Interface
    */
 
-  const onClickCheckIn = () => {
-    if (authenticated) {
-      showPlaceOptions();
-    } else {
-      window.alert("Please login to check in.");
-    }
-  };
-
   const handleCloseModal = () => {
-    setPlaceModalVisible(false);
+    dispatch(updateVisibleModal({ id: "" }));
   };
 
   const openPlacePageWithCheckIn = (placeId: string) => {
     // window.open(`${cons.APP_URL}/place/${placeId}?checkin=true`, "_blank");
-    setPlaceModalVisible(false);
+    handleCloseModal();
     router.push(`/place/${placeId}?checkin=true`);
   };
 
+  const onClickNewPlace = () => {
+    handleCloseModal();
+    router.push(cons.PATH_NEW_PLACE);
+  };
+
+  /**
+   * Effect
+   */
+
+  useEffect(() => {
+    if (visible) {
+      showPlaceOptions();
+    }
+  }, [visible]);
+
   return (
-    <CheckInButtonWrapper>
-      <Button onClick={onClickCheckIn}>
-        <Icon src="/icon/location-white.svg" /> <span>Check In</span>
-      </Button>
-      <Modal
-        visible={placeModalVisible}
-        closeModal={handleCloseModal}
-        width="28rem"
-      >
-        <ModalHeader
-          title="Checking in to..."
-          onClickClose={handleCloseModal}
-        />
-        <ModalBody>
-          <SectionLoader visible={loading} />
-          <PlaceOptions>
-            {places.map((place) => {
-              return (
-                <PlaceItem
-                  key={place.id}
-                  onClick={() => openPlacePageWithCheckIn(place.id)}
-                >
-                  <PinIcon src="/icon/pin-black.png" />
-                  <PlaceInfo>
-                    <PlaceName>{place.spotName}</PlaceName>
-                    <PlaceDistance>
-                      {place.distance
-                        ? Math.round(place.distance / 100) / 10
-                        : "--"}{" "}
-                      km
-                    </PlaceDistance>
-                  </PlaceInfo>
-                </PlaceItem>
-              );
-            })}
-          </PlaceOptions>
-        </ModalBody>
-        <ModalFooter>
-          No result?
-          <Link href={cons.PATH_NEW_PLACE}>
-            <NewPlaceButton>+ Add New Place</NewPlaceButton>
-          </Link>
-        </ModalFooter>
-      </Modal>
-    </CheckInButtonWrapper>
+    <Modal visible={visible} closeModal={handleCloseModal} width="28rem">
+      <ModalHeader title="Checking in to..." onClickClose={handleCloseModal} />
+      <ModalBody>
+        <SectionLoader visible={loading} />
+        <PlaceOptions>
+          {places.map((place) => {
+            return (
+              <PlaceItem
+                key={place.id}
+                onClick={() => openPlacePageWithCheckIn(place.id)}
+              >
+                <PinIcon src="/icon/pin-black.png" />
+                <PlaceInfo>
+                  <PlaceName>{place.spotName}</PlaceName>
+                  <PlaceDistance>
+                    {place.distance
+                      ? Math.round(place.distance / 100) / 10
+                      : "--"}{" "}
+                    km
+                  </PlaceDistance>
+                </PlaceInfo>
+              </PlaceItem>
+            );
+          })}
+        </PlaceOptions>
+      </ModalBody>
+      <ModalFooter>
+        No result?
+        {/* <Link href={cons.PATH_NEW_PLACE}> */}
+        <NewPlaceButton onClick={onClickNewPlace}>
+          + Add New Place
+        </NewPlaceButton>
+        {/* </Link> */}
+      </ModalFooter>
+    </Modal>
   );
 };
-
-const CheckInButtonWrapper = styled.div``;
 
 export const Button = styled.button`
   ${ButtonPrimarySmall}

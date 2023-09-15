@@ -6,7 +6,7 @@ import * as cons from "../../constants";
 import { MapArea, Place } from "../../redux/slices/placeSlice";
 import router, { useRouter } from "next/router";
 import { convertPlacesToPins, makeIcon } from "./MapSearchModules";
-import { useAppSelector } from "../../redux/hooks";
+import { useAppDispatch, useAppSelector } from "../../redux/hooks";
 import {
   selectMapboxAccessToken,
   selectMapboxStyleUrl,
@@ -15,7 +15,8 @@ import { forMobile } from "../../styles/Responsive";
 import { ButtonPrimarySmall } from "../../styles/styled-components/Buttons";
 import { AnimationSlideUp } from "../../styles/styled-components/Animations";
 
-import { CheckInButton } from "../map-search/CheckInButton";
+import { updateVisibleModal } from "../../redux/slices/uiSlice";
+import { selectAuthenticated } from "../../redux/slices/userSlice";
 
 interface Props {
   mapId: string;
@@ -51,6 +52,7 @@ interface Pin {
 let geoControl: any = null;
 
 export const MapSearch: React.FC<Props> = (props) => {
+  const dispatch = useAppDispatch();
   const router = useRouter();
   const mapId = `mapbox-${props.mapId}`;
   const mapRef = useRef<mapboxgl.Map>();
@@ -63,6 +65,7 @@ export const MapSearch: React.FC<Props> = (props) => {
   // const geoControlRef = useRef();
   const mapboxAccessToken = useAppSelector(selectMapboxAccessToken);
   const mapboxStyleUrl = useAppSelector(selectMapboxStyleUrl);
+  const authenticated = useAppSelector(selectAuthenticated);
 
   /**
    * Modules
@@ -202,6 +205,15 @@ export const MapSearch: React.FC<Props> = (props) => {
     geoControl.trigger();
   };
 
+  const onClickCheckIn = () => {
+    if (authenticated) {
+      // showPlaceOptions();
+      dispatch(updateVisibleModal({ id: cons.MODAL_FAST_CHECKIN }));
+    } else {
+      window.alert("Please login to check in.");
+    }
+  };
+
   /**
    * Effect
    */
@@ -255,7 +267,10 @@ export const MapSearch: React.FC<Props> = (props) => {
     <MapWrapper>
       <Map id={mapId} viewHeight={props.viewHeight}></Map>
       <MapButtons mobileHidden={props.mapButtonVisible}>
-        <CheckInButton />
+        {/* <CheckInButton /> */}
+        <Button onClick={onClickCheckIn}>
+          <Icon src="/icon/location-white.svg" /> <span>Check In</span>
+        </Button>
         {/* <JumpToMyLocationButton onClick={onClickZoom}> */}
         {/* <Icon src="/icon/location-white.svg" /> <span>Current</span> */}
         {/* </JumpToMyLocationButton> */}
@@ -263,6 +278,36 @@ export const MapSearch: React.FC<Props> = (props) => {
     </MapWrapper>
   );
 };
+
+export const Button = styled.button`
+  ${ButtonPrimarySmall}
+  background-color: ${cons.COLOR_PRIMARY_1};
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-radius: 50rem;
+  padding-left: 1.5rem;
+  padding-right: 1.6rem;
+  box-shadow: ${cons.SHADOW_2};
+
+  ${forMobile(`
+      width: 3.3rem;
+      min-width: 3.3rem;
+      height: 3.3rem;
+      justify-content: center;
+      padding: 0;
+
+      & span {
+        display: none;
+      }
+
+      & img {
+        margin-right: 0;
+        width: 1.3rem;
+        height: 1.3rem;
+      }
+  `)}
+`;
 
 const Map = styled.div<{ viewHeight: number }>`
   width: 100%;
