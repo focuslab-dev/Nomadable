@@ -548,6 +548,18 @@ export const BRASIL_SAOPAULO: City = {
   },
 };
 
+export const COLOMBIA_BOGOTA: City = {
+  slug: "colombia-bogota",
+  country: "Colombia",
+  city: "Bogota",
+  boundary: {
+    latStart: 4.491579473509589,
+    lngStart: -74.28737971934595,
+    latEnd: 4.815660616114812,
+    lngEnd: -73.89152111340377,
+  },
+};
+
 export const CITIES: City[] = [
   /**
    * Eeast Asia
@@ -589,6 +601,7 @@ export const CITIES: City[] = [
   PERU_LIMA,
   COLOMBIA_MEDELLIN,
   BRASIL_SAOPAULO,
+  COLOMBIA_BOGOTA,
   /**
    * Central Asia
    */
