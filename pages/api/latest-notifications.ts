@@ -62,7 +62,7 @@ handler.get(async (req: any, res: any) => {
       });
 
     // make all notification seen
-    await Notification.update(
+    await Notification.updateOne(
       { notifyTo: userId },
       { $set: { seen: true } },
       { multi: true }

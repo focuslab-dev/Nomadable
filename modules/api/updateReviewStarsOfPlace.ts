@@ -58,7 +58,7 @@ export const updateReviewStarsOfPlace = async (
 
     const { avgReviewAspects, avgStars } = getAvgReviewAspects(reviews);
 
-    await Place.update(
+    await Place.updateOne(
       { id: placeId },
       {
         $set: {
