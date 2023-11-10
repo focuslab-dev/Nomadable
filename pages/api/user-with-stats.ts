@@ -24,6 +24,10 @@ handler.get(async (req: any, res: any) => {
     // get recent checkins
     return res.status(200).json({ userWithStats });
   } catch (error: any) {
+    console.log(
+      "🚀 ~ file: user-with-stats.ts:27 ~ handler.get ~ error:",
+      error
+    );
     return res.status(500).json({ message: ERR_SOMETHING, placeId: "" });
   }
 });

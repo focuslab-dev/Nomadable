@@ -28,11 +28,13 @@ export const getUserWithStats = async (
     );
 
     // discovered places
-    const discoveredPlaceCnt = await Place.count({ discoveredBy: userId });
-    const reviewCnt = await Review.count({ userId });
+    const discoveredPlaceCnt = await Place.countDocuments({
+      discoveredBy: userId,
+    });
+    const reviewCnt = await Review.countDocuments({ userId });
 
     // check ins
-    const checkInCnt = await CheckIn.count({ userId });
+    const checkInCnt = await CheckIn.countDocuments({ userId });
 
     const userWithStats: UserWithStats = {
       _id: user._id,

@@ -84,7 +84,7 @@ handler.post(async (req: any, res: any) => {
 
     citiesWithData.sort((a, b) => b.spotCnt - a.spotCnt);
 
-    const totalPlaceCnt = await Place.count({ status: STATUS_OPEN });
+    const totalPlaceCnt = await Place.countDocuments({ status: STATUS_OPEN });
 
     return res.status(200).json({ citiesWithData, totalPlaceCnt });
   } catch (error: any) {

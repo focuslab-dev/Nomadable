@@ -19,7 +19,7 @@ handler.get(async (req: any, res: any) => {
   try {
     const Notification = req.mongoose.model("Notification");
 
-    const unseenCnt = await Notification.count({
+    const unseenCnt = await Notification.countDocuments({
       notifyTo: userId,
       seen: false,
     });
