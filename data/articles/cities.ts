@@ -560,6 +560,30 @@ export const COLOMBIA_BOGOTA: City = {
   },
 };
 
+export const MYANMAR_YANGON: City = {
+  slug: "myanmar-yangon",
+  country: "Myanmar",
+  city: "Yangon",
+  boundary: {
+    latStart: 16.650567700824183,
+    lngStart: 95.94351583790626,
+    latEnd: 16.969720297866886,
+    lngEnd: 96.34941395994781,
+  },
+};
+
+export const INDIA_CHENNAI: City = {
+  slug: "india-chennai",
+  country: "India",
+  city: "Chennai",
+  boundary: {
+    latStart: 12.909693961269137,
+    lngStart: 80.17832444852024,
+    latEnd: 13.216871035515144,
+    lngEnd: 80.31338415349125,
+  },
+};
+
 export const CITIES: City[] = [
   /**
    * Eeast Asia
@@ -586,10 +610,12 @@ export const CITIES: City[] = [
   MALAYSIA_KUALA_LUMPUR,
   SINGAPORE_SINGAPORE,
   VIETNAM_DANANG,
+  MYANMAR_YANGON,
   /**
    * South Asia
    */
   NEPAL_KATHMANDU,
+  INDIA_CHENNAI,
   /**
    * North America
    */
