@@ -18,6 +18,7 @@ export interface City {
   boundary: Boundary | null;
   // center: { lat: number; lng: number };
   thumbnail?: string;
+  region: string;
 }
 
 export interface CityMetaData {
@@ -32,6 +33,36 @@ export interface CityWithData extends City {
 }
 
 /**
+ * Regions
+ */
+
+export const REGION_EAST_ASIA = "East Asia";
+export const REGION_SOUTH_EAST_ASIA = "South East Asia";
+export const REGION_SOUTH_ASIA = "South Asia";
+export const REGION_NORTH_AMERICA = "North America";
+export const REGION_SOUTH_AMERICA = "South America";
+export const REGION_CENTRAL_ASIA = "Central Asia";
+export const REGION_EASTERN_EUROPE = "Eastern Europe";
+export const REGION_WESTERN_EUROPE = "Western Europe";
+export const REGION_OCEANIAN = "Oceanian";
+export const REGION_AFRICA = "Africa";
+export const REGION_MIDDLE_EAST = "Middle East";
+
+export const REGIONS = [
+  REGION_SOUTH_EAST_ASIA,
+  REGION_EAST_ASIA,
+  REGION_SOUTH_ASIA,
+  REGION_CENTRAL_ASIA,
+  REGION_WESTERN_EUROPE,
+  REGION_EASTERN_EUROPE,
+  REGION_MIDDLE_EAST,
+  REGION_NORTH_AMERICA,
+  REGION_SOUTH_AMERICA,
+  REGION_OCEANIAN,
+  REGION_AFRICA,
+];
+
+/**
  * Cities
  */
 
@@ -41,6 +72,7 @@ export const THAILAND_BANGKOK: City = {
   slug: "thailand-bangkok",
   country: "Thailand",
   city: "Bangkok",
+  region: REGION_SOUTH_EAST_ASIA,
   boundary: {
     latStart: 13.672981477425537,
     lngStart: 100.46799149310829,
@@ -55,6 +87,7 @@ export const THAILAND_CHIANGMAI: City = {
   slug: "thailand-chiangmai",
   country: "Thailand",
   city: "Chiang Mai",
+  region: REGION_SOUTH_EAST_ASIA,
   boundary: {
     latStart: 18.758529348325865,
     lngStart: 98.94571798180516,
@@ -69,6 +102,7 @@ export const INDONESIA_CANGGU: City = {
   slug: "indonesia-canggu",
   country: "Indonesia",
   city: "Canggu",
+  region: REGION_SOUTH_EAST_ASIA,
   boundary: {
     latStart: -8.707071696141014,
     lngStart: 115.07572211994403,
@@ -83,6 +117,7 @@ export const PERU_LIMA: City = {
   slug: "peru-lima",
   country: "Peru",
   city: "Lima",
+  region: REGION_SOUTH_AMERICA,
   boundary: {
     latStart: -12.309968109283844,
     lngStart: -77.34866767524159,
@@ -97,6 +132,7 @@ export const CANADA_VANCUBER: City = {
   slug: "canada-vancouver",
   country: "Canada",
   city: "Vancouver",
+  region: REGION_NORTH_AMERICA,
   boundary: {
     latStart: 49.06904929903996,
     lngStart: -123.35248601373657,
@@ -109,6 +145,7 @@ export const USA_NEW_YORK: City = {
   slug: "usa-new_york",
   country: "USA",
   city: "New York",
+  region: REGION_NORTH_AMERICA,
   boundary: {
     latStart: 40.54667681393454,
     lngStart: -74.24563592537136,
@@ -121,6 +158,7 @@ export const SOUTH_KOREA_SEOUL: City = {
   slug: "south_korea-seoul",
   country: "South Korea",
   city: "Seoul",
+  region: REGION_EAST_ASIA,
   boundary: {
     latStart: 37.411461495836576,
     lngStart: 126.78164407951601,
@@ -133,6 +171,7 @@ export const JAPAN_TOKYO: City = {
   slug: "japan-tokyo",
   country: "Japan",
   city: "Tokyo",
+  region: REGION_EAST_ASIA,
   boundary: {
     latStart: 35.52216882517227,
     lngStart: 139.4753943886995,
@@ -145,6 +184,7 @@ export const MALAYSIA_KUALA_LUMPUR: City = {
   slug: "malaysia-kuala_lumpur",
   country: "Malaysia",
   city: "Kuala Lumpur",
+  region: REGION_SOUTH_EAST_ASIA,
   boundary: {
     latStart: 3.029225521625051,
     lngStart: 101.57264492776164,
@@ -157,6 +197,7 @@ export const NEPAL_KATHMANDU: City = {
   slug: "nepal-kathmandu",
   country: "Nepal",
   city: "Kathmandu",
+  region: REGION_SOUTH_ASIA,
   boundary: {
     latStart: 27.647187383730724,
     lngStart: 85.24605637850743,
@@ -169,6 +210,7 @@ export const ITALY_ROME: City = {
   slug: "italy-rome",
   country: "Italy",
   city: "Rome",
+  region: REGION_WESTERN_EUROPE,
   boundary: {
     latStart: 41.5938809690432,
     lngStart: 12.053516911437526,
@@ -181,6 +223,7 @@ export const AUSTRALIA_MELBOURNE: City = {
   slug: "australia-melbourne",
   country: "Australia",
   city: "Melbourne",
+  region: REGION_OCEANIAN,
   boundary: {
     latStart: -37.88662402859139,
     lngStart: 144.8600930460484,
@@ -193,6 +236,7 @@ export const SOUTH_AFRICA_JOHANNESBURG: City = {
   slug: "south_africa-johannesburg",
   country: "South Africa",
   city: "Johannesburg",
+  region: REGION_AFRICA,
   boundary: {
     latStart: -26.863921174388345,
     lngStart: 27.234980504189394,
@@ -205,6 +249,7 @@ export const TURKEY_ISTANBUL: City = {
   slug: "turkey-istanbul",
   country: "Turkey",
   city: "Istanbul",
+  region: REGION_CENTRAL_ASIA,
   boundary: {
     latStart: 40.903394793472074,
     lngStart: 28.755207808988303,
@@ -217,6 +262,7 @@ export const JAPAN_KARUIZAWA: City = {
   slug: "japan-karuizawa",
   country: "Japan",
   city: "Karuizawa",
+  region: REGION_EAST_ASIA,
   boundary: {
     latStart: 36.30852732237699,
     lngStart: 138.55645389526575,
@@ -229,6 +275,7 @@ export const BELGIUM_BRUSSELS: City = {
   slug: "belgium-brussels",
   country: "Belgium",
   city: "Brussels",
+  region: REGION_WESTERN_EUROPE,
   boundary: {
     latStart: 50.759490945527716,
     lngStart: 4.219263416483102,
@@ -241,6 +288,7 @@ export const AUSTRALIA_SYDNEY: City = {
   slug: "australia-sydney",
   country: "Australia",
   city: "Sydney",
+  region: REGION_OCEANIAN,
   boundary: {
     latStart: -33.982142239207725,
     lngStart: 151.05374860268017,
@@ -253,6 +301,7 @@ export const UZBEKISTAN_TASHKENT: City = {
   slug: "uzbekistan-tashkent",
   country: "Uzbekistan",
   city: "Tashkent",
+  region: REGION_CENTRAL_ASIA,
   boundary: {
     latStart: 41.15451243262166,
     lngStart: 69.05687969272182,
@@ -265,6 +314,7 @@ export const SINGAPORE_SINGAPORE: City = {
   slug: "singapore-singapore",
   country: "Singapore",
   city: "Singapore",
+  region: REGION_SOUTH_EAST_ASIA,
   boundary: {
     latStart: 1.1715180023327036,
     lngStart: 103.660650401407,
@@ -277,6 +327,7 @@ export const UAE_DUBAI: City = {
   slug: "united-arab-emirates-dubai",
   country: "United Arab Emirates",
   city: "Dubai",
+  region: REGION_MIDDLE_EAST,
   boundary: {
     latStart: 24.713733057703138,
     lngStart: 54.750727640180145,
@@ -289,6 +340,7 @@ export const INDONESIA_JAKARTA: City = {
   slug: "indonesia-jakarta",
   country: "Indonesia",
   city: "Jakarta",
+  region: REGION_SOUTH_EAST_ASIA,
   boundary: {
     latStart: -6.39949082602466,
     lngStart: 106.60117286073415,
@@ -301,6 +353,7 @@ export const SPAIN_BARCELONA: City = {
   slug: "spain-barcelona",
   country: "Spain",
   city: "Barcelona",
+  region: REGION_WESTERN_EUROPE,
   boundary: {
     latStart: 41.26111581428441,
     lngStart: 1.9848526109420845,
@@ -313,6 +366,7 @@ export const UK_LONDON: City = {
   slug: "united-kingdom-london",
   country: "United Kingdom",
   city: "London",
+  region: REGION_WESTERN_EUROPE,
   boundary: {
     latStart: 51.33170321721539,
     lngStart: -0.43164476256447415,
@@ -325,6 +379,7 @@ export const SWITZERLAND_ZURICH: City = {
   slug: "switzerland-zurich",
   country: "Switzerland",
   city: "Zurich",
+  region: REGION_WESTERN_EUROPE,
   boundary: {
     latStart: 47.3039155001768,
     lngStart: 8.415848876070925,
@@ -337,6 +392,7 @@ export const AUSTRIA_VIENNA: City = {
   slug: "austria-vienna",
   country: "Austria",
   city: "Vienna",
+  region: REGION_EASTERN_EUROPE,
   boundary: {
     latStart: 48.078330653069855,
     lngStart: 16.161994240699045,
@@ -349,6 +405,7 @@ export const GREECE_ATHENS: City = {
   slug: "greece-athens",
   country: "Greece",
   city: "Athens",
+  region: REGION_WESTERN_EUROPE,
   boundary: {
     latStart: 37.83812168821592,
     lngStart: 23.52552238413466,
@@ -361,6 +418,7 @@ export const SWITZERLAND_GENEVA: City = {
   slug: "switzerland-geneva",
   country: "Switzerland",
   city: "Geneva",
+  region: REGION_WESTERN_EUROPE,
   boundary: {
     latStart: 46.11950308350393,
     lngStart: 6.018235698546164,
@@ -373,6 +431,7 @@ export const JAPAN_KYOTO: City = {
   slug: "japan-kyoto",
   country: "Japan",
   city: "Kyoto",
+  region: REGION_EAST_ASIA,
   boundary: {
     latStart: 34.9466681508908,
     lngStart: 135.68344341472852,
@@ -385,6 +444,7 @@ export const JAPAN_FUKUOKA: City = {
   slug: "japan-fukuoka",
   country: "Japan",
   city: "Fukuoka",
+  region: REGION_EAST_ASIA,
   boundary: {
     latStart: 33.48064471164125,
     lngStart: 130.2353768746321,
@@ -397,6 +457,7 @@ export const JAPAN_OSAKA: City = {
   slug: "japan-osaka",
   country: "Japan",
   city: "Osaka",
+  region: REGION_EAST_ASIA,
   boundary: {
     latStart: 34.522523112575755,
     lngStart: 135.3000130355984,
@@ -409,6 +470,7 @@ export const INDONESIA_KUTA: City = {
   slug: "indonesia-kuta",
   country: "Indonesia",
   city: "Kuta",
+  region: REGION_SOUTH_EAST_ASIA,
   boundary: {
     latStart: -8.800554047785752,
     lngStart: 115.08131783787445,
@@ -421,6 +483,7 @@ export const JAPAN_NAGOYA: City = {
   slug: "japan-nagoya",
   country: "Japan",
   city: "Nagoya",
+  region: REGION_EAST_ASIA,
   boundary: {
     latStart: 35.036135119077954,
     lngStart: 136.70484691614553,
@@ -433,6 +496,7 @@ export const VIETNAM_DANANG: City = {
   slug: "vietnam-danang",
   country: "Vietnam",
   city: "Danang",
+  region: REGION_SOUTH_EAST_ASIA,
   boundary: {
     latStart: 15.928025992264182,
     lngStart: 108.05684205715772,
@@ -445,6 +509,7 @@ export const GERMANY_BERLIN: City = {
   slug: "germany-berlin",
   country: "Germany",
   city: "Berlin",
+  region: REGION_WESTERN_EUROPE,
   boundary: {
     latStart: 52.37964429963128,
     lngStart: 13.14021022965892,
@@ -456,6 +521,7 @@ export const JAPAN_SAPPORO: City = {
   slug: "japan-sapporo",
   country: "Japan",
   city: "Sapporo",
+  region: REGION_EAST_ASIA,
   boundary: {
     latStart: 42.9565480813377,
     lngStart: 141.20156305116666,
@@ -468,6 +534,7 @@ export const NETHERLANDS_AMSTERDAM: City = {
   slug: "netherlands-amsterdam",
   country: "Netherlands",
   city: "Amsterdam",
+  region: REGION_WESTERN_EUROPE,
   boundary: {
     latStart: 52.26942034481499,
     lngStart: 4.7026764000611365,
@@ -480,6 +547,7 @@ export const JAPAN_NAGASAKI: City = {
   slug: "japan-nagasaki",
   country: "Japan",
   city: "Nagasaki",
+  region: REGION_EAST_ASIA,
   boundary: {
     latStart: 32.70695598058404,
     lngStart: 129.80996317021874,
@@ -492,6 +560,7 @@ export const JAPAN_HIROSHIMA: City = {
   slug: "japan-hiroshima",
   country: "Japan",
   city: "Hiroshima",
+  region: REGION_EAST_ASIA,
   boundary: {
     latStart: 34.35383961782037,
     lngStart: 132.40276190502385,
@@ -504,6 +573,7 @@ export const COLOMBIA_MEDELLIN: City = {
   slug: "colombia-medellin",
   country: "Colombia",
   city: "Medellin",
+  region: REGION_SOUTH_AMERICA,
   boundary: {
     latStart: 6.184369934265973,
     lngStart: -75.64689287478086,
@@ -516,6 +586,7 @@ export const CROATIA_SPLIT: City = {
   slug: "croatia-split",
   country: "Croatia",
   city: "Split",
+  region: REGION_EASTERN_EUROPE,
   boundary: {
     latStart: 43.47265482032762,
     lngStart: 16.368765459344672,
@@ -528,6 +599,7 @@ export const JAPAN_YOKOHAMA: City = {
   slug: "japan-yokohama",
   country: "Japan",
   city: "Yokohama",
+  region: REGION_EAST_ASIA,
   boundary: {
     latStart: 35.42053781719126,
     lngStart: 139.5830263132429,
@@ -540,6 +612,7 @@ export const BRASIL_SAOPAULO: City = {
   slug: "brasil-saopaulo",
   country: "Brasil",
   city: "Sao Paulo",
+  region: REGION_SOUTH_AMERICA,
   boundary: {
     latStart: -23.702401788629274,
     lngStart: -46.83229676389368,
@@ -552,6 +625,7 @@ export const COLOMBIA_BOGOTA: City = {
   slug: "colombia-bogota",
   country: "Colombia",
   city: "Bogota",
+  region: REGION_SOUTH_AMERICA,
   boundary: {
     latStart: 4.491579473509589,
     lngStart: -74.28737971934595,
@@ -564,6 +638,7 @@ export const MYANMAR_YANGON: City = {
   slug: "myanmar-yangon",
   country: "Myanmar",
   city: "Yangon",
+  region: REGION_SOUTH_EAST_ASIA,
   boundary: {
     latStart: 16.650567700824183,
     lngStart: 95.94351583790626,
@@ -576,6 +651,7 @@ export const INDIA_CHENNAI: City = {
   slug: "india-chennai",
   country: "India",
   city: "Chennai",
+  region: REGION_SOUTH_ASIA,
   boundary: {
     latStart: 12.909693961269137,
     lngStart: 80.17832444852024,

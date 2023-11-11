@@ -2,7 +2,7 @@ import React from "react";
 import styled from "styled-components";
 
 import * as cons from "../../constants";
-import { CityWithData } from "../../data/articles/cities";
+import { CityWithData, REGIONS } from "../../data/articles/cities";
 import { forMobile } from "../../styles/Responsive";
 import * as fs from "../../styles/styled-components/FontSize";
 import {
@@ -20,6 +20,8 @@ export const CitiesSection: React.FC<Props> = ({
   citiesWithData,
   totalPlaceCnt,
 }) => {
+  const citiesByRegion = makeCitiesWithRegion(citiesWithData);
+
   return (
     <CitiesSectionWrapper>
       <Title>Find Places to Work From</Title>
@@ -27,14 +29,40 @@ export const CitiesSection: React.FC<Props> = ({
         List of {totalPlaceCnt || ""} cafes, coworking spaces, hotels for remote
         workers worldwide.
       </Subtitle>
-      <Container>
-        {citiesWithData.map((ct) => (
-          <CityItem key={ct.slug} cityWithData={ct} />
+      <div>
+        {citiesByRegion.map((region) => (
+          <div key={region.region}>
+            <RegionName>
+              <RegionNameLabel>{region.region}</RegionNameLabel>
+              {/* <Line /> */}
+            </RegionName>
+            <Container>
+              {region.cities.map((ct) => (
+                <CityItem key={ct.slug} cityWithData={ct} />
+              ))}
+            </Container>
+          </div>
         ))}
-      </Container>
+      </div>
     </CitiesSectionWrapper>
   );
 };
+
+function makeCitiesWithRegion(citiesWithData: CityWithData[]) {
+  const citiesByRegionArray: { region: string; cities: CityWithData[] }[] = [];
+
+  REGIONS.forEach((region) => {
+    const citiesInRegion = citiesWithData.filter((ct) => ct.region === region);
+    if (citiesInRegion.length > 0) {
+      citiesByRegionArray.push({
+        region: region,
+        cities: citiesInRegion.slice(0, 10),
+      });
+    }
+  });
+
+  return citiesByRegionArray;
+}
 
 const CitiesSectionWrapper = styled.div`
   padding-top: 6rem;
@@ -54,10 +82,21 @@ const Title = styled.h1`
   `)}
 `;
 
+const RegionName = styled.div`
+  font-weight: 700;
+  margin-bottom: 1.5rem;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+  margin-bottom: 1.5rem;
+`;
+
 const Container = styled.div`
   display: flex;
   gap: 1.4rem;
   flex-wrap: wrap;
+  margin-bottom: 1.5rem;
 
   ${forMobile(`
     gap: 0.7rem;
@@ -74,4 +113,15 @@ const Subtitle = styled.div`
   ${forMobile(`
     margin-bottom: 1.5rem;
   `)}
+`;
+
+const Line = styled.div`
+  width: 100%;
+  height: 1px;
+  background-color: ${cons.FONT_COLOR_SUPER_LIGHT};
+`;
+
+const RegionNameLabel = styled.h2`
+  flex-shrink: 0;
+  font-weight: 700;
 `;
