@@ -660,6 +660,19 @@ export const INDIA_CHENNAI: City = {
   },
 };
 
+export const USA_BOSTON: City = {
+  slug: "usa-boston",
+  country: "USA",
+  city: "Boston",
+  region: REGION_NORTH_AMERICA,
+  boundary: {
+    latStart: 42.22655775514848,
+    lngStart: -71.2187267837304,
+    latEnd: 42.44648751169609,
+    lngEnd: -70.99791571365607,
+  },
+};
+
 export const CITIES: City[] = [
   /**
    * Eeast Asia
@@ -697,6 +710,7 @@ export const CITIES: City[] = [
    */
   CANADA_VANCUBER,
   USA_NEW_YORK,
+  USA_BOSTON,
   /**
    * South America
    */
