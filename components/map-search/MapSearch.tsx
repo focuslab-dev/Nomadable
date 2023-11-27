@@ -86,53 +86,57 @@ export const MapSearch: React.FC<Props> = (props) => {
    * Load Map Box
    */
   const loadMapBox = (_mapboxAccessToken: string) => {
-    mapboxgl.accessToken = _mapboxAccessToken;
+    try {
+      mapboxgl.accessToken = _mapboxAccessToken;
 
-    mapRef.current = new mapboxgl.Map({
-      container: mapId,
-      // Choose from Mapbox's core styles, or make your own style with Mapbox Studio
-      style: mapboxStyleUrl,
-      center: [0, 0],
-      zoom: 0.1,
-      interactive: true,
-    });
+      mapRef.current = new mapboxgl.Map({
+        container: mapId,
+        // Choose from Mapbox's core styles, or make your own style with Mapbox Studio
+        style: mapboxStyleUrl,
+        center: [0, 0],
+        zoom: 0.1,
+        interactive: true,
+      });
 
-    // on change map
-    mapRef.current.on("dragend", () => {
-      console.log("dragend");
-      onViewportUpdate();
-    });
+      // on change map
+      mapRef.current.on("dragend", () => {
+        console.log("dragend");
+        onViewportUpdate();
+      });
 
-    mapRef.current.on("zoomend", () => {
-      console.log("zoomend");
-      onViewportUpdate();
+      mapRef.current.on("zoomend", () => {
+        console.log("zoomend");
+        onViewportUpdate();
 
-      if (mapRef.current) {
-        const zoom = mapRef.current.getZoom();
+        if (mapRef.current) {
+          const zoom = mapRef.current.getZoom();
 
-        const _iconVisible = zoom >= 10;
-        const _nameVisible = zoom >= 14;
-        setIsIconVisible(_iconVisible);
-        setIsNameVisible(_nameVisible);
-      }
-    });
+          const _iconVisible = zoom >= 10;
+          const _nameVisible = zoom >= 14;
+          setIsIconVisible(_iconVisible);
+          setIsNameVisible(_nameVisible);
+        }
+      });
 
-    geoControl = new mapboxgl.GeolocateControl({
-      positionOptions: {
-        enableHighAccuracy: true,
-      },
-      fitBoundsOptions: {
-        maxZoom: 11,
-        animate: false,
-      },
+      geoControl = new mapboxgl.GeolocateControl({
+        positionOptions: {
+          enableHighAccuracy: true,
+        },
+        fitBoundsOptions: {
+          maxZoom: 11,
+          animate: false,
+        },
 
-      // When active the map will receive updates to the device's location as it changes.
-      trackUserLocation: true,
-      // Draw an arrow next to the location dot to indicate which direction the device is heading.
-      showUserHeading: true,
-    });
+        // When active the map will receive updates to the device's location as it changes.
+        trackUserLocation: true,
+        // Draw an arrow next to the location dot to indicate which direction the device is heading.
+        showUserHeading: true,
+      });
 
-    mapRef.current.addControl(geoControl);
+      mapRef.current.addControl(geoControl);
+    } catch (err) {
+      console.log(err);
+    }
   };
 
   /**

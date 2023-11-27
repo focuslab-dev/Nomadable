@@ -4,14 +4,12 @@ import React, { useEffect } from "react";
 import { callFetchAllPlaceIds, callFetchPlace } from "../../calls/placeCalls";
 import HeadSetter from "../../components/commons/HeadSetter";
 import { Layout } from "../../components/commons/Layout";
-import { SectionLoader } from "../../components/commons/SectionLoader";
 import { PlacePage } from "../../components/place/PlacePage";
 
 import * as cons from "../../constants";
 import { useAppDispatch, useAppSelector } from "../../redux/hooks";
 import {
   apiFetchPlaceForPage,
-  initapiFetchPlaceForPageState,
   selectApiFetchPlaceForPageStatus,
 } from "../../redux/slices/api/apiPlaceSlice";
 import {
@@ -20,7 +18,6 @@ import {
   PlaceWithData,
   selectPlaceForPage,
 } from "../../redux/slices/placeSlice";
-import placeWithData from "../api/place-with-data";
 
 interface Props {
   placeWithData?: PlaceWithData;
@@ -121,6 +118,7 @@ export const getStaticProps: GetStaticProps = async ({ params }) => {
       props: {
         placeWithData: initialPlaceWithData,
       },
+      revalidate: 1,
     };
   }
 };
