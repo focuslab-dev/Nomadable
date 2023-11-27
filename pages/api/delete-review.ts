@@ -20,8 +20,8 @@ handler.post(async (req: any, res: any) => {
     const Review = req.mongoose.model("Review");
     const Event = req.mongoose.model("Event");
 
-    await Review.remove({ userId, _id: reviewId });
-    await Event.remove({ userId, placeId });
+    await Review.deleteOne({ userId, _id: reviewId });
+    await Event.deleteOne({ userId, placeId });
 
     const reviewStars = await updateReviewStarsOfPlace(req.mongoose, placeId);
     await deletePoint(req.mongoose, userId, reviewId);

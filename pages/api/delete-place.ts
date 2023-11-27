@@ -31,7 +31,7 @@ handler.post(async (req: any, res: any) => {
 
     if (!user.admin && user._id.toString() !== place.discoveredBy) throw Error;
 
-    await Place.remove({ id: placeId });
+    await Place.deleteOne({ id: placeId });
     await Availability.deleteMany({ placeId });
     await CheckIn.deleteMany({ placeId });
     await Event.deleteMany({ placeId });

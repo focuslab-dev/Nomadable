@@ -135,7 +135,7 @@ const distributePointsGeneral = async (
 const deletePoint = async (mongoose: any, userId: string, actionId: string) => {
   const Point = mongoose.model("Point");
 
-  await Point.remove({
+  await Point.deleteOne({
     userId: userId,
     actionId,
   });
