@@ -27,7 +27,6 @@ const PlaceContainer: React.FC<Props> = (props) => {
   const router = useRouter();
   const dispatch = useAppDispatch();
 
-  const apiStatusFetchPlace = useAppSelector(selectApiFetchPlaceForPageStatus);
   const placeWithData = useAppSelector(selectPlaceForPage);
 
   const pd = placeWithData.id
@@ -35,7 +34,7 @@ const PlaceContainer: React.FC<Props> = (props) => {
     : props.placeWithData || initialPlaceWithData;
 
   const generateDescription = () => {
-    return `${props.placeWithData?.spotName} - ${props.placeWithData?.spotAddress}. Is it a good place to work from? Find out the WiFi speed, facilities, reviews and more.`;
+    return `${pd?.spotName} - ${pd?.spotAddress}. Is it a good place to work from? Find out the WiFi speed, facilities, reviews and more.`;
   };
 
   /**
@@ -118,7 +117,6 @@ export const getStaticProps: GetStaticProps = async ({ params }) => {
       props: {
         placeWithData: initialPlaceWithData,
       },
-      revalidate: 1,
     };
   }
 };
