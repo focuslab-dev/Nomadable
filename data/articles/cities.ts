@@ -679,10 +679,10 @@ export const SRI_LANKA_WELIGAMA: City = {
   city: "Weligama",
   region: REGION_SOUTH_ASIA,
   boundary: {
-    latStart: 5.997274489292141,
-    lngStart: 80.3782767672918,
-    latEnd: 6.309999999999999,
-    lngEnd: 80.68333333333334,
+    latStart: 5.9322927725611265,
+    lngStart: 80.3968281802675,
+    latEnd: 6.004366228082148,
+    lngEnd: 80.48655787329744,
   },
 };
 
