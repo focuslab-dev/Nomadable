@@ -673,6 +673,19 @@ export const USA_BOSTON: City = {
   },
 };
 
+export const SRI_LANKA_WELIGAMA: City = {
+  slug: "sri_lanka-weligama",
+  country: "Sri Lanka",
+  city: "Weligama",
+  region: REGION_SOUTH_ASIA,
+  boundary: {
+    latStart: 5.997274489292141,
+    lngStart: 80.3782767672918,
+    latEnd: 6.309999999999999,
+    lngEnd: 80.68333333333334,
+  },
+};
+
 export const CITIES: City[] = [
   /**
    * Eeast Asia
@@ -705,6 +718,7 @@ export const CITIES: City[] = [
    */
   NEPAL_KATHMANDU,
   INDIA_CHENNAI,
+  SRI_LANKA_WELIGAMA,
   /**
    * North America
    */
