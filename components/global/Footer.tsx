@@ -26,6 +26,15 @@ export const Footer: React.FC<Props> = ({ width, height }) => {
             <a>About</a>
           </Link>
           <Dot>&#x2022;</Dot>
+          <Dot>&#x2022;</Dot>
+          <Link href="/privacy" passHref>
+            <a>Privacy</a>
+          </Link>
+          <Dot>&#x2022;</Dot>
+          <Link href="/terms" passHref>
+            <a>Terms</a>
+          </Link>
+          <Dot>&#x2022;</Dot>
           <Link href="/sitemap" passHref>
             <a>Sitemap</a>
           </Link>

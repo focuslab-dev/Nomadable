@@ -134,8 +134,8 @@ const Title = styled.h1`
 
 const SectionWrapper = styled.div`
   /* margin: 1rem 0rem; */
-  border-top: 1px solid ${cons.FONT_COLOR_SUPER_LIGHT};
-  margin-top: 3rem;
+  /* border-top: 1px solid ${cons.FONT_COLOR_SUPER_LIGHT}; */
+  margin-top: 1rem;
 `;
 
 const SectionTitle = styled.h2`
