@@ -8,10 +8,7 @@ import { PlacePage } from "../../components/place/PlacePage";
 
 import * as cons from "../../constants";
 import { useAppDispatch, useAppSelector } from "../../redux/hooks";
-import {
-  apiFetchPlaceForPage,
-  selectApiFetchPlaceForPageStatus,
-} from "../../redux/slices/api/apiPlaceSlice";
+import { apiFetchPlaceForPage } from "../../redux/slices/api/apiPlaceSlice";
 import {
   initialPlaceWithData,
   initPlaceForPage,
