@@ -3,6 +3,9 @@
 const nextConfig = {
   reactStrictMode: true,
   swcMinify: true,
+  experimental: {
+    largePageDataBytes: 200 * 100000,
+  },
   // images: {
   //   domains: ["tripnote.sgp1.cdn.digitaloceanspaces.com"],
   // },

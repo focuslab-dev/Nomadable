@@ -45,6 +45,7 @@ export const LocationVerification: React.FC<Props> = (props) => {
           });
           succeed = true;
         } catch (err: any) {
+          window.alert("error code:" + err.code + " message:" + err.message);
           if (err.code !== 3) {
             succeed = false;
           }
@@ -72,10 +73,10 @@ export const LocationVerification: React.FC<Props> = (props) => {
       props.onVerified();
       setRequestingLocation(false);
     } catch (error: any) {
+      // window.alert("error message:" + error.message);
       setRequestingLocation(false);
       window.alert(
-        error ||
-          "Something went wrong. If you are using VPN, please turn it off and try again. If the problem pursists, please contact support."
+        "Something went wrong. If you are using VPN, please turn it off and try again. If the problem pursists, please contact support."
       );
     }
   };

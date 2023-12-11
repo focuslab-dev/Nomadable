@@ -22,8 +22,6 @@ export const getCurrentLocation = async ({
         resolve({ lat: crd.latitude, lng: crd.longitude });
       },
       (error) => {
-        window.alert("error code:" + error.code + " message:" + error.message);
-
         if (error.code === 3) {
           reject(error);
         } else {
