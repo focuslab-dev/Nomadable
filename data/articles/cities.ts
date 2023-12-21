@@ -686,6 +686,19 @@ export const SRI_LANKA_WELIGAMA: City = {
   },
 };
 
+export const SPAIN_MALAGA: City = {
+  slug: "spain-malaga",
+  country: "Spain",
+  city: "Malaga",
+  region: REGION_WESTERN_EUROPE,
+  boundary: {
+    latStart: 36.67582828023231,
+    lngStart: -4.485941603092755,
+    latEnd: 36.76039587465412,
+    lngEnd: -4.354580544427847,
+  },
+};
+
 export const CITIES: City[] = [
   /**
    * Eeast Asia
@@ -747,6 +760,7 @@ export const CITIES: City[] = [
   BELGIUM_BRUSSELS,
   UK_LONDON,
   SPAIN_BARCELONA,
+  SPAIN_MALAGA,
   ITALY_ROME,
   SWITZERLAND_ZURICH,
   SWITZERLAND_GENEVA,
