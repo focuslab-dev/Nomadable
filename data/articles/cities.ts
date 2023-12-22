@@ -699,6 +699,19 @@ export const SPAIN_MALAGA: City = {
   },
 };
 
+export const SPAIN_SEVILLA: City = {
+  slug: "spain-sevilla",
+  country: "Spain",
+  city: "Sevilla",
+  region: REGION_WESTERN_EUROPE,
+  boundary: {
+    latStart: 37.27310178069075,
+    lngStart: -6.175524464055371,
+    latEnd: 37.491185160648996,
+    lngEnd: -5.839526310661881,
+  },
+};
+
 export const CITIES: City[] = [
   /**
    * Eeast Asia
@@ -761,6 +774,7 @@ export const CITIES: City[] = [
   UK_LONDON,
   SPAIN_BARCELONA,
   SPAIN_MALAGA,
+  SPAIN_SEVILLA,
   ITALY_ROME,
   SWITZERLAND_ZURICH,
   SWITZERLAND_GENEVA,
