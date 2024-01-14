@@ -712,6 +712,19 @@ export const SPAIN_SEVILLA: City = {
   },
 };
 
+export const CHINA_HONGKONG: City = {
+  slug: "china-hongkong",
+  country: "China",
+  city: "Hong Kong",
+  region: REGION_EAST_ASIA,
+  boundary: {
+    latStart: 22.129657442442834,
+    lngStart: 113.90436817345102,
+    latEnd: 22.490171024739723,
+    lngEnd: 114.36109527284088,
+  },
+};
+
 export const CITIES: City[] = [
   /**
    * Eeast Asia
@@ -727,6 +740,7 @@ export const CITIES: City[] = [
   JAPAN_NAGASAKI,
   JAPAN_HIROSHIMA,
   JAPAN_YOKOHAMA,
+  CHINA_HONGKONG,
   /**
    * South East Asia
    */
