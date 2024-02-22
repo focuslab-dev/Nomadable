@@ -140,7 +140,7 @@ const PageContainer = styled.div`
 
 const Brandlogo = styled.img`
   ${ClickableStyle}
-  width: 8rem;
+  width: 7.8rem;
 `;
 
 const MenuWrapper = styled.div`
