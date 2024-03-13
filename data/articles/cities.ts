@@ -725,6 +725,19 @@ export const CHINA_HONGKONG: City = {
   },
 };
 
+export const SPAIN_MADRID: City = {
+  slug: "spain-madrid",
+  country: "Spain",
+  city: "Madrid",
+  region: REGION_WESTERN_EUROPE,
+  boundary: {
+    latStart: 40.36611733108495,
+    lngStart: -3.7842015346595588,
+    latEnd: 40.462676292058006,
+    lngEnd: -3.6289419988972895,
+  },
+};
+
 export const CITIES: City[] = [
   /**
    * Eeast Asia
@@ -786,6 +799,7 @@ export const CITIES: City[] = [
    */
   BELGIUM_BRUSSELS,
   UK_LONDON,
+  SPAIN_MADRID,
   SPAIN_BARCELONA,
   SPAIN_MALAGA,
   SPAIN_SEVILLA,
