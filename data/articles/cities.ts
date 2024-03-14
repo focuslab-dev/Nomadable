@@ -738,6 +738,19 @@ export const SPAIN_MADRID: City = {
   },
 };
 
+export const BRASIL_VITORIA: City = {
+  slug: "brasil-vitoria",
+  country: "Brasil",
+  city: "Vitória",
+  region: REGION_SOUTH_AMERICA,
+  boundary: {
+    latStart: -20.370018872601236,
+    lngStart: -40.40579489300512,
+    latEnd: -20.2609806038531,
+    lngEnd: -40.2634520855776,
+  },
+};
+
 export const CITIES: City[] = [
   /**
    * Eeast Asia
@@ -784,6 +797,7 @@ export const CITIES: City[] = [
   PERU_LIMA,
   COLOMBIA_MEDELLIN,
   BRASIL_SAOPAULO,
+  BRASIL_VITORIA,
   COLOMBIA_BOGOTA,
   /**
    * Central Asia
