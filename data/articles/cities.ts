@@ -751,6 +751,32 @@ export const BRASIL_VITORIA: City = {
   },
 };
 
+export const SRI_LANKA_COLOMBO: City = {
+  slug: "sri_lanka-colombo",
+  country: "Sri Lanka",
+  city: "Colombo",
+  region: REGION_SOUTH_ASIA,
+  boundary: {
+    latStart: 6.825528716480349,
+    lngStart: 79.72284744728415,
+    latEnd: 7.033069448987348,
+    lngEnd: 79.98528400304434,
+  },
+};
+
+export const PHILIPPINES_CEBU: City = {
+  slug: "philippines-cebu",
+  country: "Philippines",
+  city: "Cebu",
+  region: REGION_SOUTH_EAST_ASIA,
+  boundary: {
+    latStart: 10.21879756157469,
+    lngStart: 123.77787326115833,
+    latEnd: 10.404111185983055,
+    lngEnd: 124.01431051023746,
+  },
+};
+
 export const CITIES: City[] = [
   /**
    * Eeast Asia
@@ -779,12 +805,14 @@ export const CITIES: City[] = [
   SINGAPORE_SINGAPORE,
   VIETNAM_DANANG,
   MYANMAR_YANGON,
+  PHILIPPINES_CEBU,
   /**
    * South Asia
    */
   NEPAL_KATHMANDU,
   INDIA_CHENNAI,
   SRI_LANKA_WELIGAMA,
+  SRI_LANKA_COLOMBO,
   /**
    * North America
    */
