@@ -61,7 +61,10 @@ const UserInfo = styled.div`
 
 const UserPicture = styled.img`
   width: 2.6rem;
+  height: 2.6rem;
   border-radius: 100%;
+  object-fit: cover;
+  flex-shrink: 0;
 `;
 
 const NameAndDescription = styled.div`
