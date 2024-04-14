@@ -22,7 +22,6 @@ import { ContainerStyleInside } from "../../styles/styled-components/Layouts";
 import { FormSet } from "../app-commons/FormSet";
 import { Modal } from "../commons/Modal";
 import { ModalHeader } from "../commons/ModalHeader";
-import { PageLoader } from "../commons/PageLoader";
 import { PhotoUploader } from "../commons/PhotoUploader";
 import { SectionLoader } from "../commons/SectionLoader";
 

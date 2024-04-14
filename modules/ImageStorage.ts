@@ -55,7 +55,7 @@ export const removeImages = async (urls: string[]) => {
     await s3.deleteObjects(params).promise();
     return;
   } catch (err) {
-    throw Error;
+    return;
   }
 };
 

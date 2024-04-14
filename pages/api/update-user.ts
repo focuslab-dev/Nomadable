@@ -5,6 +5,7 @@ import databaseMiddleware from "../../middleware/database";
 import authenticationMiddleware from "../../middleware/authentication";
 import { ERR_SOMETHING } from "../../modules/ErrorCode";
 import { generateUserId } from "./signup-with-email";
+import { APP_HOST } from "../../constants";
 
 const handler = nextConnect();
 
