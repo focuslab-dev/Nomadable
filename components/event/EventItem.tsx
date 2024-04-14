@@ -101,6 +101,8 @@ const ProfilePic = styled.img`
   border-radius: 100%;
   width: 3rem;
   height: 3rem;
+  object-fit: cover;
+  flex-shrink: 0;
 `;
 
 const MainSection = styled.div`
