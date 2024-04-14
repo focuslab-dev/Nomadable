@@ -44,6 +44,7 @@ export const EditProfileModal: React.FC<Props> = ({
   const { id, email, picture, name, title, description, link } =
     newEditableUser;
   const [base64, setBase64] = useState("");
+  const [newPicture, setNewPicture] = useState("");
 
   const [errorMsgName, setErrorMsgName] = useState("");
   const [errorMsgId, setErrorMsgId] = useState("");
@@ -111,10 +112,10 @@ export const EditProfileModal: React.FC<Props> = ({
   };
 
   const onUploadImage = (imgElms: HTMLImageElement[]) => {
-    setEditableUser({ ...newEditableUser, picture: imgElms[0].src });
-    const _base64 = convertImgElmsToBase64s(imgElms[0], 150);
-    console.log("🚀 ~ onUploadImage ~ _base64:", _base64.length);
+    // setEditableUser({ ...newEditableUser, picture: imgElms[0].src });
+    const _base64 = convertImgElmsToBase64s(imgElms[0], 300);
     setBase64(_base64);
+    setNewPicture(imgElms[0].src);
   };
 
   /**
@@ -139,7 +140,7 @@ export const EditProfileModal: React.FC<Props> = ({
       <ModalBody>
         <PictureWrapper>
           <PhotoUploader multiple={false} onUpload={onUploadImage}>
-            <Picture src={picture} />
+            <Picture src={newPicture || picture} />
           </PhotoUploader>
         </PictureWrapper>
 
