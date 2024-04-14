@@ -6,6 +6,11 @@ const nextConfig = {
   experimental: {
     largePageDataBytes: 200 * 100000,
   },
+  api: {
+    bodyParser: {
+      sizeLimit: "1mb",
+    },
+  },
   // images: {
   //   domains: ["tripnote.sgp1.cdn.digitaloceanspaces.com"],
   // },

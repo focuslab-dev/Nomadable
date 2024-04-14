@@ -113,6 +113,7 @@ export const EditProfileModal: React.FC<Props> = ({
   const onUploadImage = (imgElms: HTMLImageElement[]) => {
     setEditableUser({ ...newEditableUser, picture: imgElms[0].src });
     const _base64 = convertImgElmsToBase64s(imgElms[0], 150);
+    console.log("🚀 ~ onUploadImage ~ _base64:", _base64.length);
     setBase64(_base64);
   };
 
