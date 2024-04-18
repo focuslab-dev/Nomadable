@@ -1,22 +1,14 @@
+import { useRouter } from "next/router";
 import React, { Fragment, useEffect, useState } from "react";
 import { GetStaticPaths, GetStaticProps } from "next";
+
 import HeadSetter from "../components/commons/HeadSetter";
 import { Layout } from "../components/commons/Layout";
-import { SplashPage } from "../components/commons/SplashPage";
 import { TopPage } from "../components/top-page/TopPage";
-import {
-  APP_NAME,
-  APP_LONG_DESCRIPTION,
-  APP_URL,
-  APP_SHORT_DESCRIPTION,
-} from "../constants";
+import { APP_URL } from "../constants";
 import { useAppDispatch, useAppSelector } from "../redux/hooks";
+import { initApiFetchPlacesState } from "../redux/slices/api/apiPlaceSlice";
 import {
-  selectApiFetchPlacesStatus,
-  initApiFetchPlacesState,
-} from "../redux/slices/api/apiPlaceSlice";
-import {
-  MapArea,
   PlaceHeader,
   selectPlaceSearchResult,
   selectSearchResultTotalCnt,
@@ -25,7 +17,6 @@ import { callFetchPlaces } from "../calls/placeCalls";
 import { CITIES, City } from "../data/articles/cities";
 import { initialFilterObj } from "../redux/slices/placeSlice";
 import { initialMapArea } from "../redux/slices/placeSlice";
-import { useRouter } from "next/router";
 
 interface TopPageProps {
   places: PlaceHeader[];
@@ -39,7 +30,7 @@ export default function TopPageContainer(props: TopPageProps) {
   // from store
   const places = useAppSelector(selectPlaceSearchResult);
   const searchResultTotalCnt = useAppSelector(selectSearchResultTotalCnt);
-  const apiStatus = useAppSelector(selectApiFetchPlacesStatus);
+
   // local state
   const [city, setCity] = useState<City | undefined>(undefined);
   // decide which deta to use
@@ -78,9 +69,9 @@ export default function TopPageContainer(props: TopPageProps) {
       /> */}
       <Layout width={"100%"} fixed>
         <HeadSetter
-          pageTitle={`${
-            props.totalPlaceCnt >= 10 ? `${props.totalPlaceCnt} ` : ""
-          }Best Work Cafes & Co-working Spaces in ${props.city?.city || ""}`}
+          pageTitle={`The Best Cafes & Coworking Spaces to Work From in ${
+            props.city?.city || ""
+          }`}
           pageDescription={generatePageDescription()}
           pagePath={`${APP_URL}/${props.city?.slug}`}
         />

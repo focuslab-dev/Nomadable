@@ -79,7 +79,6 @@ export const TopPage: React.FC<Props> = ({
   >(undefined);
   const [loadingLocation, setLoadingLocation] = useState(false);
   const lastFilterRef = useRef<FilterObj>(initialFilterObj);
-  const [pageTitle, setPageTitle] = useState("");
 
   /**
    * Modules
