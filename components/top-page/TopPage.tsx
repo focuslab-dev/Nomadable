@@ -16,14 +16,12 @@ import {
   FilterObj,
   initialFilterObj,
   MapArea,
-  Place,
   PlaceHeader,
   selectPlaceSearchResultHistory,
 } from "../../redux/slices/placeSlice";
 import { forMobile } from "../../styles/Responsive";
 import { AnimationSlideUp } from "../../styles/styled-components/Animations";
 import {
-  FontSizeNormal,
   FontSizeSemiSmall,
   FontSizeSmall,
 } from "../../styles/styled-components/FontSize";
@@ -36,9 +34,6 @@ import { getFilterCount } from "./search-result/filters/getFilterCount";
 import { PageLoader } from "../commons/PageLoader";
 
 import { Boundary, City } from "../../data/articles/cities";
-import { HeaderSmall } from "../../styles/styled-components/Texts";
-import { ButtonPrimarySmall } from "../../styles/styled-components/Buttons";
-import places from "../../pages/api/places";
 
 interface Props {
   places: PlaceHeader[];
@@ -62,7 +57,6 @@ export const TopPage: React.FC<Props> = ({
 
   // ref
   const fetchTimeoutRef = useRef<any>(0);
-  const mapAreaChangedCnt = useRef(0);
   // local state
   const [mapArea, setMapArea] = useState<null | MapArea>(null);
   const [pageIndex, setPageIndex] = useState(0);

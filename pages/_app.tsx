@@ -21,7 +21,6 @@ import { GoogleTagManager } from "../components/global/GoogleTagManager";
 import {
   apiFetchEnvVariables,
   selectGaMeasurementId,
-  selectGapiClientId,
 } from "../redux/slices/envSlice";
 import { apiFetchCitiesWithData } from "../redux/slices/api/apiCitySlice";
 
@@ -29,7 +28,6 @@ const App = ({ Component, pageProps }: AppProps) => {
   const dispatch = useAppDispatch();
 
   const apiFetchUserStatus = useAppSelector(selectApiFetchUserStatus);
-  const gapiClientId = useAppSelector(selectGapiClientId);
   const gaMeasurementId = useAppSelector(selectGaMeasurementId);
 
   const registerServiceWorker = () => {

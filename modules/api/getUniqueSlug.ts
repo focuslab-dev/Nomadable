@@ -13,8 +13,8 @@ export const getUniqueSlug = async (
     while (finalCandidate === "") {
       const candidate = text
         .toLowerCase()
-        .replace(/[\?\&]/g, "")
-        .replace(/[-/\s]+/g, "-");
+        .replace(/[\?\&\%]/g, "") // remove special characters
+        .replace(/[-/\s]+/g, "-"); // replace spaces with hyphens
 
       const candidateWithCount = `${candidate}${count > 0 ? `-${count}` : ""}`;
 
