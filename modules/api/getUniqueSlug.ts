@@ -1,6 +1,3 @@
-import { count } from "console";
-import { Collection } from "mongoose";
-
 export const getUniqueSlug = async (
   Collection: any,
   text: string,

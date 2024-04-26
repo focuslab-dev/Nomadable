@@ -1,3 +1,4 @@
+import { VIETNAM_DANANG } from "./cities";
 /**
  * Type
  */
@@ -777,6 +778,19 @@ export const PHILIPPINES_CEBU: City = {
   },
 };
 
+export const VIETNAM_HOCHIMINH_CITY: City = {
+  slug: "vietnam-hochiminh_city",
+  country: "Vietnam",
+  city: "Ho Chi Minh City",
+  region: REGION_SOUTH_EAST_ASIA,
+  boundary: {
+    latStart: 10.735228816669903,
+    lngStart: 106.65182713009756,
+    latEnd: 10.809715985375504,
+    lngEnd: 106.73981423435873,
+  },
+};
+
 export const CITIES: City[] = [
   /**
    * Eeast Asia
@@ -804,6 +818,7 @@ export const CITIES: City[] = [
   MALAYSIA_KUALA_LUMPUR,
   SINGAPORE_SINGAPORE,
   VIETNAM_DANANG,
+  VIETNAM_HOCHIMINH_CITY,
   MYANMAR_YANGON,
   PHILIPPINES_CEBU,
   /**
