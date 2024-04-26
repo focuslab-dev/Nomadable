@@ -1,4 +1,3 @@
-import { VIETNAM_DANANG } from "./cities";
 /**
  * Type
  */
