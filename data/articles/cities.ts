@@ -790,6 +790,19 @@ export const VIETNAM_HOCHIMINH_CITY: City = {
   },
 };
 
+export const VIETNAM_HANOI: City = {
+  slug: "vietnam-hanoi",
+  country: "Vietnam",
+  city: "Hanoi",
+  region: REGION_SOUTH_EAST_ASIA,
+  boundary: {
+    latStart: 20.972975775265084,
+    lngStart: 105.78128756044754,
+    latEnd: 21.081693494947075,
+    lngEnd: 105.92053786169839,
+  },
+};
+
 export const CITIES: City[] = [
   /**
    * Eeast Asia
@@ -818,6 +831,7 @@ export const CITIES: City[] = [
   SINGAPORE_SINGAPORE,
   VIETNAM_DANANG,
   VIETNAM_HOCHIMINH_CITY,
+  VIETNAM_HANOI,
   MYANMAR_YANGON,
   PHILIPPINES_CEBU,
   /**
