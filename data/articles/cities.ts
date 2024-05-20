@@ -803,6 +803,19 @@ export const VIETNAM_HANOI: City = {
   },
 };
 
+export const CAMBODIA_SIEM_REAP: City = {
+  slug: "cambodia-siem_reap",
+  country: "Cambodia",
+  city: "Siem Reap",
+  region: REGION_SOUTH_EAST_ASIA,
+  boundary: {
+    latStart: 13.23429830621906,
+    lngStart: 103.72567077344576,
+    latEnd: 13.458191478852683,
+    lngEnd: 103.99426942969012,
+  },
+};
+
 export const CITIES: City[] = [
   /**
    * Eeast Asia
@@ -834,6 +847,7 @@ export const CITIES: City[] = [
   VIETNAM_HANOI,
   MYANMAR_YANGON,
   PHILIPPINES_CEBU,
+  CAMBODIA_SIEM_REAP,
   /**
    * South Asia
    */
