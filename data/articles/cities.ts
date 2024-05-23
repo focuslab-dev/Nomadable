@@ -816,6 +816,19 @@ export const CAMBODIA_SIEM_REAP: City = {
   },
 };
 
+export const CAMBODIA_PHNOM_PENH: City = {
+  slug: "cambodia-phnom_penh",
+  country: "Cambodia",
+  city: "Phnom Penh",
+  region: REGION_SOUTH_EAST_ASIA,
+  boundary: {
+    latStart: 11.457092572386372,
+    lngStart: 104.79013371523155,
+    latEnd: 11.671741165813529,
+    lngEnd: 105.04719998292978,
+  },
+};
+
 export const CITIES: City[] = [
   /**
    * Eeast Asia
@@ -848,6 +861,7 @@ export const CITIES: City[] = [
   MYANMAR_YANGON,
   PHILIPPINES_CEBU,
   CAMBODIA_SIEM_REAP,
+  CAMBODIA_PHNOM_PENH,
   /**
    * South Asia
    */
