@@ -1,5 +1,3 @@
-import link from "next/link";
-import { title } from "process";
 import React, { useState } from "react";
 import styled from "styled-components";
 
@@ -16,11 +14,9 @@ import { ButtonSecondarySmall } from "../../styles/styled-components/Buttons";
 import {
   FontSizeLarge,
   FontSizeNormal,
-  FontSizeSemiLarge,
   FontSizeSemiSmall,
 } from "../../styles/styled-components/FontSize";
 import { ContainerStyleInside } from "../../styles/styled-components/Layouts";
-import { PageLoader } from "../commons/PageLoader";
 import { SectionLoader } from "../commons/SectionLoader";
 import { AccountDetail } from "./AccountDetail";
 import { EditProfileModal } from "./EditProfileModal";

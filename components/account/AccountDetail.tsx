@@ -2,29 +2,15 @@ import React, { useEffect, useRef, useState } from "react";
 import styled from "styled-components";
 
 import * as cons from "../../constants";
-import places from "../../pages/api/places";
-import { useAppDispatch, useAppSelector } from "../../redux/hooks";
-import {
-  apiFetchDiscoveredPlaces,
-  initApiFetchDiscoveredPlacesState,
-  selectApiFetchDiscoveredPlacesStatus,
-} from "../../redux/slices/api/apiPlaceSlice";
-import {
-  apiFetchReviews,
-  initApiFetchReviewsState,
-  selectApiFetchReviewsStatus,
-} from "../../redux/slices/api/apiReviewSlice";
-import { Place } from "../../redux/slices/placeSlice";
-import {
-  initDiscoveredAndReviews,
-  selectDiscoveredPlaces,
-  selectUserReviews,
-} from "../../redux/slices/userSlice";
+
 import { ButtonText } from "../../styles/styled-components/Buttons";
 import { FontSizeSemiSmall } from "../../styles/styled-components/FontSize";
 import { ContainerStyleInside } from "../../styles/styled-components/Layouts";
 import { MyDiscoveredPlaces } from "./DiscoveredPlaces";
 import { MyReviews } from "./MyReviews";
+import { callFetchDiscoveredPlaces } from "../../calls/placeCalls";
+import { Place, ReviewWithPlaceData } from "../../redux/slices/placeSlice";
+import { callFetchReviews } from "../../calls/reviewCall";
 
 interface Props {
   userId: string;
@@ -40,43 +26,32 @@ export const AccountDetail: React.FC<Props> = ({
   discoveredCnt,
   reviewCnt,
 }) => {
-  const dispatch = useAppDispatch();
-  // store
-  const apiStatusDiscovered = useAppSelector(
-    selectApiFetchDiscoveredPlacesStatus
-  );
-  const discoveredPlaces = useAppSelector(selectDiscoveredPlaces);
-  const apiStatusReviews = useAppSelector(selectApiFetchReviewsStatus);
-  const reviews = useAppSelector(selectUserReviews);
-  // local state
+  // states
+  const [discoveredPlaces, setDiscoveredPlaces] = useState<Place[]>([]);
+  const [reviews, setReviews] = useState<ReviewWithPlaceData[]>([]);
+  const [loading, setLoading] = useState(false);
   const [activeTab, setActiveTab] = useState(TAB_DISCOVERED);
+  // refs
   const lastFetchedUser = useRef("");
 
   /**
    * API Calls
    */
 
-  const fetchDiscovered = (loadedCnt: number) => {
+  const fetchDiscovered = async (loadedCnt: number) => {
+    setLoading(true);
     lastFetchedUser.current = userId;
-    dispatch(
-      apiFetchDiscoveredPlaces({
-        userId,
-        loadedCnt,
-        loadingCnt: 15,
-      })
-    );
+    const data = await callFetchDiscoveredPlaces(userId, loadedCnt, 15);
+    setDiscoveredPlaces(data.places);
+    setLoading(false);
   };
 
-  const fetchReviews = (loadedCnt: number) => {
+  const fetchReviews = async (loadedCnt: number) => {
+    setLoading(true);
     lastFetchedUser.current = userId;
-    dispatch(
-      apiFetchReviews({
-        userId,
-        loadedCnt,
-        loadingCnt: 15,
-        latest: true,
-      })
-    );
+    const data = await callFetchReviews({ userId, loadedCnt, loadingCnt: 15 });
+    setReviews(data.reviews);
+    setLoading(false);
   };
 
   /**
@@ -88,27 +63,12 @@ export const AccountDetail: React.FC<Props> = ({
    */
 
   useEffect(() => {
-    if (
-      activeTab === TAB_DISCOVERED &&
-      apiStatusDiscovered.status === cons.API_IDLE
-    ) {
+    if (activeTab === TAB_DISCOVERED) {
       fetchDiscovered(0);
-    } else if (
-      activeTab === TAB_REVIEWS &&
-      apiStatusReviews.status === cons.API_IDLE
-    ) {
+    } else if (activeTab === TAB_REVIEWS) {
       fetchReviews(0);
     }
   }, [activeTab]);
-
-  useEffect(() => {
-    if (userId !== lastFetchedUser.current) {
-      dispatch(initDiscoveredAndReviews());
-      dispatch(initApiFetchDiscoveredPlacesState());
-      dispatch(initApiFetchReviewsState());
-      fetchDiscovered(0);
-    }
-  }, [userId]);
 
   /**
    * Render
@@ -119,17 +79,13 @@ export const AccountDetail: React.FC<Props> = ({
       return (
         <MyDiscoveredPlaces
           places={discoveredPlaces}
-          loading={apiStatusDiscovered.status === cons.API_LOADING}
+          loading={loading}
           fetchMore={fetchDiscovered}
         />
       );
     }
     return (
-      <MyReviews
-        reviews={reviews}
-        loading={apiStatusReviews.status === cons.API_LOADING}
-        fetchMore={fetchReviews}
-      />
+      <MyReviews reviews={reviews} loading={loading} fetchMore={fetchReviews} />
     );
   };
 

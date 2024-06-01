@@ -49,8 +49,6 @@ interface ApiState {
   apiFetchPlaceForPageStatus: ApiStatus;
   apiCheckInStatus: ApiStatus;
   apiFetchPlacesStatus: ApiStatus;
-  // apiFetchRecentCheckInsStatus: ApiStatus;
-  apiFetchDiscoveredPlacesStatus: ApiStatus;
   apiVoteAvailabilityStatus: ApiStatus;
 }
 
@@ -69,8 +67,6 @@ const initialState: ApiState = {
   apiFetchPlaceForPageStatus: initialApiState,
   apiCheckInStatus: initialApiState,
   apiFetchPlacesStatus: initialApiState,
-  // apiFetchRecentCheckInsStatus: initialApiState,
-  apiFetchDiscoveredPlacesStatus: initialApiState,
   apiVoteAvailabilityStatus: initialApiState,
 };
 
@@ -93,10 +89,6 @@ const apiSlice = createSlice({
     initApiFetchPlacesState: (state) => {
       state.apiFetchPlacesStatus.status = cons.API_IDLE;
       state.apiFetchPlacesStatus.error = "";
-    },
-    initApiFetchDiscoveredPlacesState: (state) => {
-      state.apiFetchDiscoveredPlacesStatus.status = cons.API_IDLE;
-      state.apiFetchDiscoveredPlacesStatus.error = "";
     },
   },
   extraReducers: (builder) => {
@@ -177,38 +169,6 @@ const apiSlice = createSlice({
         state.apiFetchPlacesStatus.error = action.payload.message;
       } else {
         state.apiFetchPlacesStatus.error = action.error.message || "";
-      }
-    });
-
-    // Fetch Recent CheckIns
-    // builder.addCase(apiFetchRecentCheckIns.pending, (state, action) => {
-    //   state.apiFetchRecentCheckInsStatus.status = cons.API_LOADING;
-    // });
-    // builder.addCase(apiFetchRecentCheckIns.fulfilled, (state, action) => {
-    //   state.apiFetchRecentCheckInsStatus.status = cons.API_SUCCEEDED;
-    // });
-    // builder.addCase(apiFetchRecentCheckIns.rejected, (state, action) => {
-    //   state.apiFetchRecentCheckInsStatus.status = cons.API_FALIED;
-    //   if (action.payload) {
-    //     state.apiFetchRecentCheckInsStatus.error = action.payload.message;
-    //   } else {
-    //     state.apiFetchRecentCheckInsStatus.error = action.error.message || "";
-    //   }
-    // });
-
-    // Fetch Discovered Places
-    builder.addCase(apiFetchDiscoveredPlaces.pending, (state, action) => {
-      state.apiFetchDiscoveredPlacesStatus.status = cons.API_LOADING;
-    });
-    builder.addCase(apiFetchDiscoveredPlaces.fulfilled, (state, action) => {
-      state.apiFetchDiscoveredPlacesStatus.status = cons.API_SUCCEEDED;
-    });
-    builder.addCase(apiFetchDiscoveredPlaces.rejected, (state, action) => {
-      state.apiFetchDiscoveredPlacesStatus.status = cons.API_FALIED;
-      if (action.payload) {
-        state.apiFetchDiscoveredPlacesStatus.error = action.payload.message;
-      } else {
-        state.apiFetchDiscoveredPlacesStatus.error = action.error.message || "";
       }
     });
 
@@ -347,47 +307,6 @@ export const apiFetchPlaces = createAsyncThunk<
   }
 });
 
-// callFetchPlaces
-
-// export const apiFetchRecentCheckIns = createAsyncThunk<
-//   { recentCheckIns: Place[] }, // Return type of the payload creator
-//   {}, // First argument to the payload creator
-//   {
-//     rejectValue: CallError;
-//   } // Types for ThunkAPI
-// >("place/FetchRecentCheckIns", async (_, thunkApi) => {
-//   try {
-//     const { recentCheckIns } = await callRecentCheckIns();
-//     return { recentCheckIns };
-//   } catch (error: any) {
-//     return thunkApi.rejectWithValue(error as CallError);
-//   }
-// });
-
-// callFetchDiscoveredPlaces
-
-export const apiFetchDiscoveredPlaces = createAsyncThunk<
-  { places: Place[] }, // Return type of the payload creator
-  { userId: string; loadedCnt: number; loadingCnt: number }, // First argument to the payload creator
-  {
-    rejectValue: CallError;
-  } // Types for ThunkAPI
->(
-  "place/FetchDiscoveredPlaces",
-  async ({ userId, loadedCnt, loadingCnt }, thunkApi) => {
-    try {
-      const { places } = await callFetchDiscoveredPlaces(
-        userId,
-        loadedCnt,
-        loadingCnt
-      );
-      return { places };
-    } catch (error: any) {
-      return thunkApi.rejectWithValue(error as CallError);
-    }
-  }
-);
-
 // apiVoteAvailability
 
 export const apiVoteAvailability = createAsyncThunk<
@@ -467,7 +386,6 @@ export const {
   initApiCreatePlaceState,
   initApiDeletePlaceState,
   initapiFetchPlaceForPageState,
-  initApiFetchDiscoveredPlacesState,
   initApiFetchPlacesState,
 } = apiSlice.actions;
 
@@ -489,14 +407,6 @@ export const selectApiCheckInStatus = (state: RootState): ApiStatus =>
 
 export const selectApiFetchPlacesStatus = (state: RootState): ApiStatus =>
   state.apiPlace.apiFetchPlacesStatus;
-
-// export const selectApiFetchRecentCheckInsStatus = (
-//   state: RootState
-// ): ApiStatus => state.apiPlace.apiFetchRecentCheckInsStatus;
-
-export const selectApiFetchDiscoveredPlacesStatus = (
-  state: RootState
-): ApiStatus => state.apiPlace.apiFetchDiscoveredPlacesStatus;
 
 export const selectApiVoteAvailabilityStatus = (state: RootState): ApiStatus =>
   state.apiPlace.apiVoteAvailabilityStatus;

@@ -212,15 +212,25 @@ export const apiDeleteReview = createAsyncThunk<
 export const apiFetchReviews = createAsyncThunk<
   {
     reviews: ReviewWithPlaceData[];
+    inModal: boolean;
   }, // Return type of the payload creator
-  { userId: string; loadedCnt: number; loadingCnt: number; latest?: boolean }, // First argument to the payload creator
+  {
+    userId: string;
+    loadedCnt: number;
+    loadingCnt: number;
+    latest?: boolean;
+    inModal: boolean;
+  }, // First argument to the payload creator
   {
     rejectValue: CallError;
   } // Types for ThunkAPI
 >("review/FetchReviews", async (params, thunkApi) => {
   try {
     const data = await callFetchReviews(params);
-    return data;
+    return {
+      reviews: data.reviews,
+      inModal: params.inModal,
+    };
   } catch (error: any) {
     return thunkApi.rejectWithValue(error as CallError);
   }
