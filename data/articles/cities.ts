@@ -829,6 +829,19 @@ export const CAMBODIA_PHNOM_PENH: City = {
   },
 };
 
+export const TAIWAN_TAIPEI: City = {
+  slug: "taiwan-taipei",
+  country: "Taiwan",
+  city: "Taipei",
+  region: REGION_EAST_ASIA,
+  boundary: {
+    latStart: 24.959802516433513,
+    lngStart: 121.42217315360102,
+    latEnd: 25.12558164813386,
+    lngEnd: 121.64543538406173,
+  },
+};
+
 export const CITIES: City[] = [
   /**
    * Eeast Asia
@@ -845,6 +858,7 @@ export const CITIES: City[] = [
   JAPAN_HIROSHIMA,
   JAPAN_YOKOHAMA,
   CHINA_HONGKONG,
+  TAIWAN_TAIPEI,
   /**
    * South East Asia
    */
