@@ -50,16 +50,16 @@ export const REGION_MIDDLE_EAST = "Middle East";
 
 export const REGIONS = [
   REGION_SOUTH_EAST_ASIA,
-  REGION_EAST_ASIA,
-  REGION_SOUTH_ASIA,
-  REGION_CENTRAL_ASIA,
   REGION_WESTERN_EUROPE,
+  REGION_EAST_ASIA,
+  REGION_SOUTH_AMERICA,
+  REGION_NORTH_AMERICA,
+  REGION_SOUTH_ASIA,
   REGION_EASTERN_EUROPE,
   REGION_MIDDLE_EAST,
-  REGION_NORTH_AMERICA,
-  REGION_SOUTH_AMERICA,
   REGION_OCEANIAN,
   REGION_AFRICA,
+  REGION_CENTRAL_ASIA,
 ];
 
 /**
@@ -842,6 +842,19 @@ export const TAIWAN_TAIPEI: City = {
   },
 };
 
+export const CANADA_MONTREAL: City = {
+  slug: "canada-montreal",
+  country: "Canada",
+  city: "Montreal",
+  region: REGION_NORTH_AMERICA,
+  boundary: {
+    latStart: 45.418520923247826,
+    lngStart: -73.70690704769046,
+    latEnd: 45.58081441932012,
+    lngEnd: -73.4409274439477,
+  },
+};
+
 export const CITIES: City[] = [
   /**
    * Eeast Asia
@@ -889,6 +902,7 @@ export const CITIES: City[] = [
   CANADA_VANCUBER,
   USA_NEW_YORK,
   USA_BOSTON,
+  CANADA_MONTREAL,
   /**
    * South America
    */
