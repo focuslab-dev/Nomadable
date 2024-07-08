@@ -116,7 +116,6 @@ const TopReview: React.FC<{ topReview: ReviewSimpleType }> = ({
 };
 
 const PlaceItemWrapper = styled.div<{ selected: undefined | boolean }>`
-  overflow: hidden;
   ${ClickableStyle}
   position: relative;
   ${AnimationSlideUp}
@@ -263,6 +262,7 @@ const ReviewInfo = styled.div`
   align-items: center;
   gap: 0.5rem;
   ${fs.FontSizeSmall};
+  overflow: hidden;
 `;
 
 const UserPicture = styled.img`
@@ -276,4 +276,5 @@ const UserPicture = styled.img`
 const Comment = styled.div`
   white-space: nowrap;
   color: ${cons.FONT_COLOR_SECONDARY};
+  ${fs.FontSizeSmall};
 `;
