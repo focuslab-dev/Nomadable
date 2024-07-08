@@ -269,10 +269,11 @@ const UserPicture = styled.img`
   height: 1.2rem;
   object-fit: cover;
   border-radius: 100%;
+  flex-shrink: 0;
 `;
 
 const Comment = styled.div`
   white-space: nowrap;
   color: ${cons.FONT_COLOR_SECONDARY};
-  ${fs.FontSizeSmall}
+  font-size: 0.83rem;
 `;
