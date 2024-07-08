@@ -105,8 +105,7 @@ export const PlaceItem: React.FC<Props> = ({
 const TopReview: React.FC<{ topReview: ReviewSimpleType }> = ({
   topReview,
 }) => {
-  const reviewLength = topReview.comment.length;
-  if (!topReview || reviewLength === 0) return null;
+  if (!topReview || topReview.comment.length === 0) return null;
 
   return (
     <ReviewInfo>
