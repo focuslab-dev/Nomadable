@@ -22,7 +22,7 @@ import {
   apiFetchEnvVariables,
   selectGaMeasurementId,
 } from "../redux/slices/envSlice";
-import { apiFetchCitiesWithData } from "../redux/slices/api/apiCitySlice";
+// import { apiFetchCitiesWithData } from "../redux/slices/api/apiCitySlice";
 
 const App = ({ Component, pageProps }: AppProps) => {
   const dispatch = useAppDispatch();
@@ -54,7 +54,7 @@ const App = ({ Component, pageProps }: AppProps) => {
       // doFetchUser(dispatch);
       dispatch(apiFetchUser({}));
       dispatch(apiFetchEnvVariables({}));
-      dispatch(apiFetchCitiesWithData({}));
+      // dispatch(apiFetchCitiesWithData({}));
     }
   }, [apiFetchUserStatus.status]);
 

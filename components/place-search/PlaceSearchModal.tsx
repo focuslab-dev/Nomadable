@@ -9,14 +9,11 @@ import {
   updateVisibleModal,
 } from "../../redux/slices/uiSlice";
 import { useDispatch } from "react-redux";
-import { selectCitiesWithData } from "../../redux/slices/citySlice";
+// import { selectCitiesWithData } from "../../redux/slices/citySlice";
 import { SearchResultItem } from "./SearchResultItem";
 import { FormStyle } from "../../styles/styled-components/Forms";
-import { CityWithData } from "../../data/articles/cities";
-import {
-  FontSizeNormal,
-  FontSizeSemiLarge,
-} from "../../styles/styled-components/FontSize";
+import { CITIES, City } from "../../data/articles/cities";
+import { FontSizeNormal } from "../../styles/styled-components/FontSize";
 import { useRouter } from "next/router";
 
 interface Props {}
@@ -27,17 +24,19 @@ export const PlaceSearchModal: React.FC<Props> = ({}) => {
   // from store
   const visible =
     useAppSelector(selectVisibleModal).modalId === cons.MODAL_PLACE_SEARCH;
-  const citiesWithData = useAppSelector(selectCitiesWithData);
+  const cities = CITIES;
+  cities.sort((a, b) => (a.city > b.city ? 1 : -1));
+  // const citiesWithData = useAppSelector(selectCitiesWithData);
   // local state
   const [searchText, setSearchText] = useState("");
-  const [searchResult, setSearchResult] = useState<CityWithData[]>([]);
+  const [searchResult, setSearchResult] = useState<City[]>([]);
 
   /**
    * Modules
    */
 
-  const filterCities = (cities: CityWithData[], searchText: string) => {
-    return cities.filter((city) => {
+  const filterCities = (_cities: City[], searchText: string) => {
+    return _cities.filter((city) => {
       const cityStr = city.city.toLowerCase();
       const countryStr = city.country.toLowerCase();
       const searchTextStr = searchText.toLowerCase();
@@ -57,7 +56,7 @@ export const PlaceSearchModal: React.FC<Props> = ({}) => {
 
   const onChangeInpput = (e: React.ChangeEvent<HTMLInputElement>) => {
     setSearchText(e.target.value);
-    const filteredCities = filterCities(citiesWithData, e.target.value);
+    const filteredCities = filterCities(cities, e.target.value);
     setSearchResult(filteredCities);
   };
 
@@ -71,10 +70,10 @@ export const PlaceSearchModal: React.FC<Props> = ({}) => {
    */
 
   useEffect(() => {
-    if (citiesWithData && citiesWithData.length > 0) {
-      setSearchResult(citiesWithData);
+    if (cities && cities.length > 0) {
+      setSearchResult(cities);
     }
-  }, [citiesWithData]);
+  }, [cities]);
 
   /**
    * Render

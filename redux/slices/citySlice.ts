@@ -1,52 +1,52 @@
-import { createSlice, PayloadAction } from "@reduxjs/toolkit";
-import { RootState } from "../store";
-import { CityWithData } from "../../data/articles/cities";
-import { apiFetchCitiesWithData } from "./api/apiCitySlice";
+// import { createSlice, PayloadAction } from "@reduxjs/toolkit";
+// import { RootState } from "../store";
+// import { CityWithData } from "../../data/articles/cities";
+// import { apiFetchCitiesWithData } from "./api/apiCitySlice";
 
-/**
- * Types
- */
+// /**
+//  * Types
+//  */
 
-interface CityState {
-  citiesWithData: CityWithData[];
-  totalPlaceCnt: number;
-}
+// interface CityState {
+//   citiesWithData: CityWithData[];
+//   totalPlaceCnt: number;
+// }
 
-/**
- * Reducer
- */
+// /**
+//  * Reducer
+//  */
 
-const initialState: CityState = {
-  citiesWithData: [],
-  totalPlaceCnt: 0,
-};
+// const initialState: CityState = {
+//   citiesWithData: [],
+//   totalPlaceCnt: 0,
+// };
 
-const citySlice = createSlice({
-  name: "citiesWithData",
-  initialState,
-  reducers: {},
-  extraReducers: (builder) => {
-    builder.addCase(apiFetchCitiesWithData.fulfilled, (state, action) => {
-      state.citiesWithData = action.payload.citiesWithData;
-      state.totalPlaceCnt = action.payload.totalPlaceCnt;
-    });
-  },
-});
+// const citySlice = createSlice({
+//   name: "citiesWithData",
+//   initialState,
+//   reducers: {},
+//   extraReducers: (builder) => {
+//     builder.addCase(apiFetchCitiesWithData.fulfilled, (state, action) => {
+//       state.citiesWithData = action.payload.citiesWithData;
+//       state.totalPlaceCnt = action.payload.totalPlaceCnt;
+//     });
+//   },
+// });
 
-export const {} = citySlice.actions;
+// export const {} = citySlice.actions;
 
-/**
- * Selectors
- */
+// /**
+//  * Selectors
+//  */
 
-export const selectCitiesWithData = (state: RootState): CityWithData[] =>
-  state.city.citiesWithData;
+// export const selectCitiesWithData = (state: RootState): CityWithData[] =>
+//   state.city.citiesWithData;
 
-export const selectTotalPlaceCnt = (state: RootState): number =>
-  state.city.totalPlaceCnt;
+// export const selectTotalPlaceCnt = (state: RootState): number =>
+//   state.city.totalPlaceCnt;
 
-/**
- * Export actions & reducer
- */
+// /**
+//  * Export actions & reducer
+//  */
 
-export default citySlice.reducer;
+// export default citySlice.reducer;

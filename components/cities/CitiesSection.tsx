@@ -56,7 +56,7 @@ function makeCitiesWithRegion(citiesWithData: CityWithData[]) {
     if (citiesInRegion.length > 0) {
       citiesByRegionArray.push({
         region: region,
-        cities: citiesInRegion.slice(0, 10),
+        cities: citiesInRegion.slice(0, 15),
       });
     }
   });

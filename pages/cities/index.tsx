@@ -15,11 +15,10 @@ import {
 import { CityWithData, CITIES } from "../../data/articles/cities";
 import { Contributer } from "../../redux/slices/contributerSlice";
 import { forMobile } from "../../styles/Responsive";
-import { useAppSelector } from "../../redux/hooks";
-import {
-  selectCitiesWithData,
-  selectTotalPlaceCnt,
-} from "../../redux/slices/citySlice";
+// import {
+//   selectCitiesWithData,
+//   selectTotalPlaceCnt,
+// } from "../../redux/slices/citySlice";
 
 interface Props {
   citiesWithData: CityWithData[];
@@ -29,17 +28,17 @@ interface Props {
 
 const Cities: React.FC<Props> = (props) => {
   // from store
-  const citiesWithData = useAppSelector(selectCitiesWithData);
-  const totalPlaceCnt = useAppSelector(selectTotalPlaceCnt);
+  // const citiesWithData = useAppSelector(selectCitiesWithData);
+  // const totalPlaceCnt = useAppSelector(selectTotalPlaceCnt);
 
   // decide which data to use
-  const _citiesWithData =
-    citiesWithData && citiesWithData.length > 0
-      ? citiesWithData
-      : props.citiesWithData;
+  // const _citiesWithData =
+  //   citiesWithData && citiesWithData.length > 0
+  //     ? citiesWithData
+  //     : props.citiesWithData;
 
-  const _totalPlaceCnt =
-    totalPlaceCnt && totalPlaceCnt > 0 ? totalPlaceCnt : props.totalPlaceCnt;
+  // const _totalPlaceCnt =
+  //   totalPlaceCnt && totalPlaceCnt > 0 ? totalPlaceCnt : props.totalPlaceCnt;
 
   /**
    * Render
@@ -48,7 +47,7 @@ const Cities: React.FC<Props> = (props) => {
   const generatePageDescription = () => {
     return `
       Find best places to work from wherever you are: 
-      ${_citiesWithData
+      ${props.citiesWithData
         .map((city, index) => ` ${index + 1}. ${city.city}`)
         .join(" · ")}.
     `;
@@ -64,8 +63,8 @@ const Cities: React.FC<Props> = (props) => {
       <PageWrapper>
         <LeftWrapper>
           <CitiesSection
-            citiesWithData={_citiesWithData}
-            totalPlaceCnt={_totalPlaceCnt}
+            citiesWithData={props.citiesWithData}
+            totalPlaceCnt={props.totalPlaceCnt}
           />
         </LeftWrapper>
       </PageWrapper>

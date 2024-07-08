@@ -2,17 +2,13 @@ import React from "react";
 import styled from "styled-components";
 
 import * as cons from "../../constants";
-import { CityWithData } from "../../data/articles/cities";
-import {
-  ContainerStyle,
-  ContainerStyleInside,
-} from "../../styles/styled-components/Layouts";
+import { City } from "../../data/articles/cities";
+import { ContainerStyleInside } from "../../styles/styled-components/Layouts";
 import { FontSizeSemiSmall } from "../../styles/styled-components/FontSize";
 import { ClickableStyle } from "../../styles/styled-components/Interactions";
-import Link from "next/link";
 
 interface Props {
-  city: CityWithData;
+  city: City;
   onClickCity: (citySlug: string) => void;
 }
 
@@ -21,12 +17,8 @@ export const SearchResultItem: React.FC<Props> = (props: Props) => {
     <Wrapper onClick={() => props.onClickCity(props.city.slug)}>
       <LeftSection>
         <CityName>{props.city.city}</CityName>
-        <CityCountry>{props.city.country}</CityCountry>
+        <CityCountry>- {props.city.country}</CityCountry>
       </LeftSection>
-      <RightSection>
-        <PlaceCnt>{props.city.spotCnt}</PlaceCnt>
-        <PlaceCntUnit>places</PlaceCntUnit>
-      </RightSection>
     </Wrapper>
   );
 };
@@ -46,7 +38,13 @@ const Wrapper = styled.div`
   }
 `;
 
-const LeftSection = styled.div``;
+const LeftSection = styled.div`
+  display: flex;
+  gap: 0.3rem;
+  /* justify-content: space-between; */
+  width: 100%;
+`;
+
 const CityName = styled.div`
   font-weight: bold;
   color: ${cons.FONT_COLOR_NORMAL};
