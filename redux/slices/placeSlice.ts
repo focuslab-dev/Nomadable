@@ -55,7 +55,7 @@ export interface Place extends Spot {
 export interface PlaceHeader extends Place {
   savedByUser: boolean;
   distance: number | undefined;
-  topReview: string;
+  topReview: ReviewSimpleType;
 }
 
 export interface PlaceUserData {
@@ -121,6 +121,12 @@ export interface Review {
   downVoters: string[];
   reviewAspects: ReviewAspects;
   created: string;
+}
+
+export interface ReviewSimpleType {
+  placeId: string;
+  userPicture: string;
+  comment: string;
 }
 
 export interface ReviewWithData extends Review {

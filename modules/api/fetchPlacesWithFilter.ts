@@ -1,7 +1,10 @@
 import * as cons from "./../../constants";
 import { Boundary } from "../../data/articles/cities";
-import { FilterObj, PlaceHeader } from "../../redux/slices/placeSlice";
-import { group } from "console";
+import {
+  FilterObj,
+  PlaceHeader,
+  ReviewSimpleType,
+} from "../../redux/slices/placeSlice";
 
 const getAvailabilitiesOfPlaceType = (placeType: string) => {
   switch (placeType) {
@@ -183,10 +186,16 @@ export const fetchPlacesWithFilter = async (
       pipeline.concat([{ $skip: skip }, { $limit: limit }])
     );
 
+    const placeIds = places.map((p: any) => p.id);
+    const topReviews = await getTopReviews(mongoose, placeIds);
+
     const placeHeaders = places.map((p: any) => {
+      const topReview = topReviews.find((r) => r.placeId === p.id);
+
       return {
         ...p,
         savedByUser: savedPlaceIds.includes(p.id),
+        topReview: topReview ? topReview : null,
       };
     });
 
@@ -202,3 +211,45 @@ export const fetchPlacesWithFilter = async (
     throw err;
   }
 };
+
+async function getTopReviews(mongoose: any, placeIds: string) {
+  const Review = mongoose.model("Review");
+  const User = mongoose.model("User");
+
+  try {
+    const reviews: any[] = await Review.aggregate([
+      {
+        $match: {
+          placeId: { $in: placeIds },
+        },
+      },
+      {
+        $sort: { reviewStars: -1 },
+      },
+      {
+        $group: {
+          _id: "$placeId",
+          comment: { $first: "$comment" },
+          userId: { $first: "$userId" },
+        },
+      },
+    ]);
+
+    const users: any[] = await User.find({
+      _id: { $in: reviews.map((r) => r.userId) },
+    }).lean();
+
+    const topReviews: ReviewSimpleType[] = reviews.map((r) => {
+      const user = users.find((u) => u._id.toString() === r.userId);
+      return {
+        userPicture: user ? user.picture : "",
+        placeId: r._id,
+        comment: r.comment,
+      };
+    });
+
+    return topReviews;
+  } catch (err) {
+    throw err;
+  }
+}

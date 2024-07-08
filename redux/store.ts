@@ -10,7 +10,7 @@ import notificationReducer from "./slices/notificationSlice";
 import reviewFormReducer from "./slices/reviewFormSlice";
 import checkInReducer from "./slices/checkInSlice";
 import envReducer from "./slices/envSlice";
-import cityReducer from "./slices/citySlice";
+// import cityReducer from "./slices/citySlice";
 import apiUserReducer from "./slices/api/apiUserSlice";
 import apiSpotReducer from "./slices/api/apiSpotSlice";
 import apiPlaceReducer from "./slices/api/apiPlaceSlice";
@@ -18,7 +18,7 @@ import apiEventReducer from "./slices/api/apiEventSlice";
 import apiReviewReducer from "./slices/api/apiReviewSlice";
 import apiNotificationReducer from "./slices/api/apiNotificationSlice";
 import apiCheckInReducer from "./slices/api/apiCheckInSlice";
-import apiCityReducer from "./slices/api/apiCitySlice";
+// import apiCityReducer from "./slices/api/apiCitySlice";
 
 export const store = configureStore({
   reducer: {
@@ -32,7 +32,7 @@ export const store = configureStore({
     reviewForm: reviewFormReducer,
     checkIn: checkInReducer,
     env: envReducer,
-    city: cityReducer,
+    // city: cityReducer,
     apiUser: apiUserReducer,
     apiSpot: apiSpotReducer,
     apiPlace: apiPlaceReducer,
@@ -40,7 +40,7 @@ export const store = configureStore({
     apiReview: apiReviewReducer,
     apiNotification: apiNotificationReducer,
     apiCheckIn: apiCheckInReducer,
-    apiCity: apiCityReducer,
+    // apiCity: apiCityReducer,
   },
 });
 

@@ -1,19 +1,16 @@
-import Link from "next/link";
 import React, { Fragment } from "react";
 import styled from "styled-components";
 
 import * as cons from "../../../constants";
 import * as fs from "../../../styles/styled-components/FontSize";
-import { Place, PlaceHeader } from "../../../redux/slices/placeSlice";
+import {
+  PlaceHeader,
+  ReviewSimpleType,
+} from "../../../redux/slices/placeSlice";
 import { ClickableStyle } from "../../../styles/styled-components/Interactions";
 import { NetSpeedIndicator } from "../../commons/NetSpeedIndicator";
 import { AnimationSlideUp } from "../../../styles/styled-components/Animations";
-import { Bold } from "../../../styles/styled-components/Texts";
 import { getStarValue } from "../../place/components/review/ReviewScore";
-import { ButtonText } from "../../../styles/styled-components/Buttons";
-import { useAppSelector } from "../../../redux/hooks";
-import { selectAuthenticated } from "../../../redux/slices/userSlice";
-import { useRouter } from "next/router";
 
 interface Props {
   place: PlaceHeader;
@@ -100,11 +97,26 @@ export const PlaceItem: React.FC<Props> = ({
 
         {renderDistance(place.distance)}
       </ScoreInfo>
+      <TopReview topReview={place.topReview} />
     </PlaceItemWrapper>
   );
 };
 
+const TopReview: React.FC<{ topReview: ReviewSimpleType }> = ({
+  topReview,
+}) => {
+  if (!topReview) return null;
+
+  return (
+    <ReviewInfo>
+      <UserPicture src={topReview.userPicture} />
+      <Comment>{topReview.comment}</Comment>
+    </ReviewInfo>
+  );
+};
+
 const PlaceItemWrapper = styled.div<{ selected: undefined | boolean }>`
+  overflow: hidden;
   ${ClickableStyle}
   position: relative;
   ${AnimationSlideUp}
@@ -118,6 +130,8 @@ const PlaceItemWrapper = styled.div<{ selected: undefined | boolean }>`
       height: calc(100% - 6px);
     }
   `};
+
+  margin-bottom: 1rem;
 `;
 
 const ImageWrapper = styled.div`
@@ -177,16 +191,17 @@ const Name = styled.div`
 
 const Address = styled.div`
   color: ${cons.FONT_COLOR_LIGHT};
-  ${fs.FontSizeSemiSmall};
+  ${fs.FontSizeSmall};
   font-weight: 400;
   margin-bottom: 0.4rem;
   /* font-weight: 600; */
+  /* white-space: nowrap; */
 `;
 
 const ScoreInfo = styled.div`
   display: flex;
   align-items: center;
-  margin-bottom: 1.2rem;
+  margin-bottom: 0.5rem;
 `;
 
 const CheckInCnt = styled.div`
@@ -242,3 +257,22 @@ const DistanceNum = styled.span`
 `;
 
 export const LinkA = styled.a``;
+
+const ReviewInfo = styled.div`
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+`;
+
+const UserPicture = styled.img`
+  width: 1.2rem;
+  height: 1.2rem;
+  object-fit: cover;
+  border-radius: 100%;
+`;
+
+const Comment = styled.div`
+  white-space: nowrap;
+  color: ${cons.FONT_COLOR_SECONDARY};
+  ${fs.FontSizeSmall}
+`;
