@@ -112,7 +112,7 @@ const TopReview: React.FC<{ topReview: ReviewSimpleType }> = ({
       <UserPicture src={topReview.userPicture} />
       <Comment
         style={{
-          fontSize: "0.83rem",
+          fontSize: "0.5rem",
         }}
       >
         {topReview.comment}
@@ -281,5 +281,5 @@ const UserPicture = styled.img`
 const Comment = styled.div`
   white-space: nowrap;
   color: ${cons.FONT_COLOR_SECONDARY};
-  font-size: 0.83rem;
+  font-size: 0.5rem;
 `;
