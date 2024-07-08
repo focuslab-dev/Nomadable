@@ -262,6 +262,7 @@ const ReviewInfo = styled.div`
   display: flex;
   align-items: center;
   gap: 0.5rem;
+  ${fs.FontSizeSmall};
 `;
 
 const UserPicture = styled.img`
@@ -275,5 +276,4 @@ const UserPicture = styled.img`
 const Comment = styled.div`
   white-space: nowrap;
   color: ${cons.FONT_COLOR_SECONDARY};
-  font-size: 13px;
 `;
