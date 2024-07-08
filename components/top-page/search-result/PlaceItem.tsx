@@ -110,7 +110,13 @@ const TopReview: React.FC<{ topReview: ReviewSimpleType }> = ({
   return (
     <ReviewInfo>
       <UserPicture src={topReview.userPicture} />
-      <Comment>{topReview.comment}</Comment>
+      <Comment
+        style={{
+          fontSize: "0.83rem",
+        }}
+      >
+        {topReview.comment}
+      </Comment>
     </ReviewInfo>
   );
 };
