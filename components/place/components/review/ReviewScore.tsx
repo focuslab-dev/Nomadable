@@ -26,7 +26,7 @@ export const ReviewScore: React.FC<Props> = ({ stars, reviewCnt }) => {
     <ReviewScoreWrapper>
       <StarIcon src="/icon/star-black.svg" />
       <ReviewStarValue>{getStarValue(stars)}</ReviewStarValue>
-      <ReviewCnt>({reviewCnt} reveiws)</ReviewCnt>
+      <ReviewCnt>({reviewCnt} reviews)</ReviewCnt>
     </ReviewScoreWrapper>
   );
 };

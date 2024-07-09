@@ -63,7 +63,7 @@ export const InternetSpeed: React.FC<Props> = ({
             {checkedInByUser ? (
               <Fragment>
                 <ButtonText>Check-In Completed</ButtonText>
-                <ButtonSubtext>(disabeld for 6 hours)</ButtonSubtext>
+                <ButtonSubtext>(disabled for 6 hours)</ButtonSubtext>
               </Fragment>
             ) : (
               <Fragment>
