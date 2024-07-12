@@ -60,6 +60,13 @@ export const AvailabilityForm: React.FC<Props> = ({
             onClickSwitch={onClickSwitch}
             active={availability.includes(cons.AVL_RENTAL_MONITOR)}
           />
+
+          <ToggleForm
+            title="Are there phone booths?"
+            item={cons.AVL_PHONE_BOOTH}
+            onClickSwitch={onClickSwitch}
+            active={availability.includes(cons.AVL_PHONE_BOOTH)}
+          />
         </SpecificForms>
       )}
 
