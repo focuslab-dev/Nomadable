@@ -855,6 +855,19 @@ export const CANADA_MONTREAL: City = {
   },
 };
 
+export const SPAIN_OVIEDO: City = {
+  slug: "spain-oviedo",
+  country: "Spain",
+  city: "Oviedo",
+  region: REGION_WESTERN_EUROPE,
+  boundary: {
+    latStart: 43.30369363811437,
+    lngStart: -5.9544994157796225,
+    latEnd: 43.42542133262086,
+    lngEnd: -5.7554945708637035,
+  },
+};
+
 export const CITIES: City[] = [
   /**
    * Eeast Asia
@@ -929,6 +942,7 @@ export const CITIES: City[] = [
   SPAIN_BARCELONA,
   SPAIN_MALAGA,
   SPAIN_SEVILLA,
+  SPAIN_OVIEDO,
   ITALY_ROME,
   SWITZERLAND_ZURICH,
   SWITZERLAND_GENEVA,
