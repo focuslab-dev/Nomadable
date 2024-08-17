@@ -868,6 +868,19 @@ export const SPAIN_OVIEDO: City = {
   },
 };
 
+export const JAPAN_KAMAKURA: City = {
+  slug: "japan-kamakura",
+  country: "Japan",
+  city: "Kamakura",
+  region: REGION_EAST_ASIA,
+  boundary: {
+    latStart: 35.2877398514362,
+    lngStart: 139.50306518498178,
+    latEnd: 35.33871998954142,
+    lngEnd: 139.57818241002258,
+  },
+};
+
 export const CITIES: City[] = [
   /**
    * Eeast Asia
@@ -883,6 +896,7 @@ export const CITIES: City[] = [
   JAPAN_NAGASAKI,
   JAPAN_HIROSHIMA,
   JAPAN_YOKOHAMA,
+  JAPAN_KAMAKURA,
   CHINA_HONGKONG,
   TAIWAN_TAIPEI,
   /**
