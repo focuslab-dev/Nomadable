@@ -881,6 +881,19 @@ export const JAPAN_KAMAKURA: City = {
   },
 };
 
+export const CANADA_TORONTO: City = {
+  slug: "canada-toronto",
+  country: "Canada",
+  city: "Toronto",
+  region: REGION_NORTH_AMERICA,
+  boundary: {
+    latStart: 43.55808418509827,
+    lngStart: -79.59228638161466,
+    latEnd: 43.78431836936076,
+    lngEnd: -79.2045801505962,
+  },
+};
+
 export const CITIES: City[] = [
   /**
    * Eeast Asia
@@ -926,10 +939,11 @@ export const CITIES: City[] = [
   /**
    * North America
    */
-  CANADA_VANCUBER,
   USA_NEW_YORK,
   USA_BOSTON,
   CANADA_MONTREAL,
+  CANADA_VANCUBER,
+  CANADA_TORONTO,
   /**
    * South America
    */
