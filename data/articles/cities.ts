@@ -894,6 +894,97 @@ export const CANADA_TORONTO: City = {
   },
 };
 
+export const CANADA_CALGARY: City = {
+  slug: "canada-calgary",
+  country: "Canada",
+  city: "Calgary",
+  region: REGION_NORTH_AMERICA,
+  boundary: {
+    latStart: 50.94937152937575,
+    lngStart: 114.23974989600028,
+    latEnd: 51.1313848120555,
+    lngEnd: -113.88092624336164,
+  },
+};
+
+export const CANADA_NELSON: City = {
+  slug: "canada-nelson",
+  country: "Canada",
+  city: "Nelson",
+  region: REGION_NORTH_AMERICA,
+  boundary: {
+    latStart: 49.464203116069655,
+    lngStart: -117.34978406487284,
+    latEnd: 49.52454095926865,
+    lngEnd: -117.23463343576765,
+  },
+};
+
+export const CANADA_VICTORIA: City = {
+  slug: "canada-victoria",
+  country: "Canada",
+  city: "Victoria",
+  region: REGION_NORTH_AMERICA,
+  boundary: {
+    latStart: 48.3929720592042,
+    lngStart: -123.4285628130119,
+    latEnd: 48.45991707474582,
+    lngEnd: -123.30350949815616,
+  },
+};
+
+export const USA_SAN_FRANCISCO: City = {
+  slug: "usa-san_francisco",
+  country: "USA",
+  city: "San Francisco",
+  region: REGION_NORTH_AMERICA,
+  boundary: {
+    latStart: 37.58865724702474,
+    lngStart: -122.64596648026301,
+    latEnd: 37.858722669738654,
+    lngEnd: -122.22273269185769,
+  },
+};
+
+export const USA_SAN_ST_PETERSBURG: City = {
+  slug: "usa-st_petersburg",
+  country: "USA",
+  city: "St Petersburg",
+  region: REGION_NORTH_AMERICA,
+  boundary: {
+    latStart: 27.684863326605736,
+    lngStart: -82.78345583671626,
+    latEnd: 27.828070778757308,
+    lngEnd: -82.58285848271294,
+  },
+};
+
+export const CANADA_WHITEHOURSE: City = {
+  slug: "canada-whitehorse",
+  country: "Canada",
+  city: "Whitehorse",
+  region: REGION_NORTH_AMERICA,
+  boundary: {
+    latStart: 60.681904503138156,
+    lngStart: -135.15247493993792,
+    latEnd: 60.75495638532149,
+    lngEnd: -134.9673337342963,
+  },
+};
+
+export const USA_PRAYA_DEL_CARMEN: City = {
+  slug: "usa-praya_del_carmen",
+  country: "USA",
+  city: "Praya del Carmen",
+  region: REGION_NORTH_AMERICA,
+  boundary: {
+    latStart: 20.556157223421422,
+    lngStart: -87.19822285386277,
+    latEnd: 20.724924220771797,
+    lngEnd: -86.97467490065073,
+  },
+};
+
 export const CITIES: City[] = [
   /**
    * Eeast Asia
@@ -941,9 +1032,16 @@ export const CITIES: City[] = [
    */
   USA_NEW_YORK,
   USA_BOSTON,
+  USA_SAN_FRANCISCO,
+  USA_SAN_ST_PETERSBURG,
+  USA_PRAYA_DEL_CARMEN,
   CANADA_MONTREAL,
   CANADA_VANCUBER,
   CANADA_TORONTO,
+  CANADA_CALGARY,
+  CANADA_NELSON,
+  CANADA_VICTORIA,
+  CANADA_WHITEHOURSE,
   /**
    * South America
    */
