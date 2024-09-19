@@ -901,7 +901,7 @@ export const CANADA_CALGARY: City = {
   region: REGION_NORTH_AMERICA,
   boundary: {
     latStart: 50.94937152937575,
-    lngStart: 114.23974989600028,
+    lngStart: -114.23974989600028,
     latEnd: 51.1313848120555,
     lngEnd: -113.88092624336164,
   },
@@ -985,10 +985,25 @@ export const USA_PRAYA_DEL_CARMEN: City = {
   },
 };
 
+export const MONGOL_URAANBAATAR: City = {
+  slug: "mongol-uraanbaatar",
+  country: "Mongol",
+  city: "Uraanbaatar",
+  region: REGION_EAST_ASIA,
+  boundary: {
+    latStart: 47.85844827648083,
+    lngStart: 106.80732493120422,
+    latEnd: 47.96917145105422,
+    lngEnd: 107.0120986445067,
+  },
+};
+
 export const CITIES: City[] = [
   /**
    * Eeast Asia
    */
+  CHINA_HONGKONG,
+  MONGOL_URAANBAATAR,
   SOUTH_KOREA_SEOUL,
   JAPAN_TOKYO,
   JAPAN_KARUIZAWA,
@@ -1001,7 +1016,6 @@ export const CITIES: City[] = [
   JAPAN_HIROSHIMA,
   JAPAN_YOKOHAMA,
   JAPAN_KAMAKURA,
-  CHINA_HONGKONG,
   TAIWAN_TAIPEI,
   /**
    * South East Asia
