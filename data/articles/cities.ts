@@ -972,10 +972,10 @@ export const CANADA_WHITEHOURSE: City = {
   },
 };
 
-export const USA_PRAYA_DEL_CARMEN: City = {
-  slug: "usa-praya_del_carmen",
-  country: "USA",
-  city: "Praya del Carmen",
+export const MEXICO_PLAYA_DEL_CARMEN: City = {
+  slug: "mexico-playa_del_carmen",
+  country: "Mexico",
+  city: "Playa del Carmen",
   region: REGION_NORTH_AMERICA,
   boundary: {
     latStart: 20.556157223421422,
@@ -1008,6 +1008,45 @@ export const CANADA_EDMONTON: City = {
     lngStart: -113.76337538134558,
     latEnd: 53.651692090791386,
     lngEnd: -113.24453143989672,
+  },
+};
+
+export const USA_PORTLAND: City = {
+  slug: "usa-portland",
+  country: "USA",
+  city: "Portland",
+  region: REGION_NORTH_AMERICA,
+  boundary: {
+    latStart: 45.401249414566735,
+    lngStart: -122.80803080157706,
+    latEnd: 45.639876722132186,
+    lngEnd: -122.41401190880637,
+  },
+};
+
+export const USA_SEATTLE: City = {
+  slug: "usa-seattle",
+  country: "USA",
+  city: "Seattle",
+  region: REGION_NORTH_AMERICA,
+  boundary: {
+    latStart: 47.449008784365276,
+    lngStart: -122.55988869459541,
+    latEnd: 47.73963515250276,
+    lngEnd: -122.06130985284841,
+  },
+};
+
+export const MEXICO_PUERTO_VALLARTA: City = {
+  slug: "mexico-puerto_vallarta",
+  country: "Mexico",
+  city: "Puerto Vallarta",
+  region: REGION_NORTH_AMERICA,
+  boundary: {
+    latStart: 20.487936477194992,
+    lngStart: -105.4023398969342,
+    latEnd: 20.759739089630827,
+    lngEnd: -105.06635658247536,
   },
 };
 
@@ -1061,7 +1100,8 @@ export const CITIES: City[] = [
   USA_BOSTON,
   USA_SAN_FRANCISCO,
   USA_SAN_ST_PETERSBURG,
-  USA_PRAYA_DEL_CARMEN,
+  USA_PORTLAND,
+  USA_SEATTLE,
   CANADA_MONTREAL,
   CANADA_VANCUBER,
   CANADA_TORONTO,
@@ -1070,6 +1110,8 @@ export const CITIES: City[] = [
   CANADA_VICTORIA,
   CANADA_WHITEHOURSE,
   CANADA_EDMONTON,
+  MEXICO_PLAYA_DEL_CARMEN,
+  MEXICO_PUERTO_VALLARTA,
   /**
    * South America
    */
