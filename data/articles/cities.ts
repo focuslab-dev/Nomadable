@@ -998,6 +998,19 @@ export const MONGOL_URAANBAATAR: City = {
   },
 };
 
+export const CANADA_EDMONTON: City = {
+  slug: "canada-edmonton",
+  country: "Canada",
+  city: "Edmonton",
+  region: REGION_NORTH_AMERICA,
+  boundary: {
+    latStart: 53.40687844281277,
+    lngStart: -113.76337538134558,
+    latEnd: 53.651692090791386,
+    lngEnd: -113.24453143989672,
+  },
+};
+
 export const CITIES: City[] = [
   /**
    * Eeast Asia
@@ -1056,6 +1069,7 @@ export const CITIES: City[] = [
   CANADA_NELSON,
   CANADA_VICTORIA,
   CANADA_WHITEHOURSE,
+  CANADA_EDMONTON,
   /**
    * South America
    */
