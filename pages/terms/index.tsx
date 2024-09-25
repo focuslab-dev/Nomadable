@@ -106,7 +106,7 @@ const Terms: React.FC<Props> = ({}) => {
           <SectionBody>
             <p>
               For any inquiries related to these terms of service, please
-              contact us at yuya.uzu@gmail.com.
+              contact us at support@nomadable.net.
             </p>
           </SectionBody>
         </SectionWrapper>

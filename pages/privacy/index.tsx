@@ -133,8 +133,8 @@ const Privacy: React.FC<Props> = ({}) => {
           <SectionBody>
             <p>
               For any questions or concerns regarding our privacy practices,
-              please feel free to contact us at yuya.uzu@gmail.com. We are here
-              to assist you.
+              please feel free to contact us at support@nomadable.net. We are
+              here to assist you.
             </p>
           </SectionBody>
         </SectionWrapper>
