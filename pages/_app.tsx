@@ -69,7 +69,7 @@ const App = ({ Component, pageProps }: AppProps) => {
           <GlobalHead />
         </Head>
         {/* Google tag (gtag.js) */}
-        <GoogleTagManager googleId={gaMeasurementId} />
+        <GoogleTagManager googleId={"G-CSH3FHQBZD"} />
         <GlobalStyles />
         <Notification />
         <Component {...pageProps} />
