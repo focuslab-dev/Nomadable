@@ -73,31 +73,31 @@ const PlaceContainer: React.FC<Props> = (props) => {
 
 export default PlaceContainer;
 
-// export const getStaticPaths: GetStaticPaths = async () => {
-//   try {
-//     const { placeIds } = await callFetchAllPlaceIds();
+export const getStaticPaths: GetStaticPaths = async () => {
+  try {
+    const { placeIds } = await callFetchAllPlaceIds();
 
-//     const paths = placeIds.map((placeId: string) => {
-//       return {
-//         params: {
-//           placeId,
-//         },
-//       };
-//     });
+    const paths = placeIds.map((placeId: string) => {
+      return {
+        params: {
+          placeId,
+        },
+      };
+    });
 
-//     return {
-//       paths,
-//       fallback: true,
-//     };
-//   } catch (err) {
-//     return {
-//       paths: [{ params: { placeId: "" } }],
-//       fallback: true,
-//     };
-//   }
-// };
+    return {
+      paths,
+      fallback: true,
+    };
+  } catch (err) {
+    return {
+      paths: [{ params: { placeId: "" } }],
+      fallback: true,
+    };
+  }
+};
 
-export const getServerSideProps: GetStaticProps = async ({ params }) => {
+export const getStaticProps: GetStaticProps = async ({ params }) => {
   try {
     if (!params || typeof params.placeId !== "string") throw Error;
 
