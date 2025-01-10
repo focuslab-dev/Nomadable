@@ -222,6 +222,7 @@ export const PlacePage: React.FC<Props> = ({ placeWithData }) => {
           <LocationInfo
             googlePlaceId={pd.googlePlaceId}
             spotAddress={pd.spotAddress}
+            coordinates={pd.location.coordinates}
           />
           <OpeningHours googlePlaceId={pd.googlePlaceId} />
         </RightSection>

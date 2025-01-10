@@ -11,11 +11,13 @@ import * as fs from "../../../styles/styled-components/FontSize";
 interface Props {
   googlePlaceId: string;
   spotAddress: string;
+  coordinates?: [number, number]; // [lng, lat]
 }
 
 export const LocationInfo: React.FC<Props> = ({
   googlePlaceId,
   spotAddress,
+  coordinates,
 }) => {
   const onClickLink = () => {
     logEventGoogleLink(googlePlaceId);
@@ -35,6 +37,15 @@ export const LocationInfo: React.FC<Props> = ({
           <LinkIcon src="/icon/external-link-black.png" />
           Open in Google Map
         </MapButton>
+        {coordinates && (
+          <MapButton onClick={() => {
+            const [lng, lat] = coordinates;
+            window.location.href = `/?latStart=${lat}&latEnd=${lat}&lngStart=${lng}&lngEnd=${lng}`;
+          }}>
+            <LinkIcon src="/icon/map-black.png" />
+            View on Map
+          </MapButton>
+        )}
       </Card>
     </LocationInfoWrapper>
   );
