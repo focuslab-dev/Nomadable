@@ -1,5 +1,6 @@
 import React, { useEffect, useRef, useState } from "react";
 import styled from "styled-components";
+import Link from "next/link";
 
 import * as cons from "../../constants";
 
@@ -85,7 +86,17 @@ export const AccountDetail: React.FC<Props> = ({
       );
     }
     return (
-      <MyReviews reviews={reviews} loading={loading} fetchMore={fetchReviews} />
+      <>
+        <MapLinkWrapper>
+          <Link href={`/reviews/${userId}`}>
+            <MapLink>
+              <MapIcon src="/icon/map-red.svg" />
+              View Reviews on Map
+            </MapLink>
+          </Link>
+        </MapLinkWrapper>
+        <MyReviews reviews={reviews} loading={loading} fetchMore={fetchReviews} />
+      </>
     );
   };
 
@@ -139,4 +150,27 @@ const ItemCnt = styled.span`
   margin-left: 0.2rem;
   color: ${cons.FONT_COLOR_LIGHT};
   ${FontSizeSemiSmall}
+`;
+
+const MapLinkWrapper = styled.div`
+  ${ContainerStyleInside}
+  margin: 1rem 0;
+`;
+
+const MapLink = styled.a`
+  display: flex;
+  align-items: center;
+  color: ${cons.COLOR_RED_2};
+  font-weight: 500;
+  cursor: pointer;
+
+  &:hover {
+    opacity: 0.8;
+  }
+`;
+
+const MapIcon = styled.img`
+  width: 1rem;
+  height: 1rem;
+  margin-right: 0.5rem;
 `;
